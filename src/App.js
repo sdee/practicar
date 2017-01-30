@@ -4,7 +4,7 @@ import { Panel, Grid, Row, Col } from 'react-bootstrap';
 import { HotKeys } from 'react-hotkeys';
 import Readme from './components/Readme';
 import Controls from './components/Controls';
-import CustomOptions from './components/CustomOptions';
+import CustomOptions from './containers/CustomOptions';
 import FeedbackCard from './components/FeedbackCard';
 import VerbCard from './components/VerbCard';
 import AnswerCard from './components/AnswerCard';
@@ -35,12 +35,6 @@ class App extends Component {
 		};
 		const handlers = {
 			// 'right': (event) => this.getFlux().actions.nextQuestion(this.state.enableIrregular,
-			// this.state.useVosotros,
-			// this.state.allowPresent,
-			// this.state.allowPreterite,
-			// this.state.allowImperfect,
-			// this.state.allowConditional,
-			// this.state.allowFuture),
 			// 'up': (event) => this.getFlux().actions.showAnswer()
 		};
 		if (this.state.hasSubmittedAnswer && curr.infinitive) {
