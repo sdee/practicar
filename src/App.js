@@ -62,30 +62,30 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Panel header="practice your verbs, eat your vegetables">
-						<Grid>
+					<Grid>
+						<Row className="show-grid">
+							<Col md={7}>
 								<Row className="show-grid">
-										<Col md={7}>
-											<Row className="show-grid">
-												<HotKeys keyMap={keyMap} handlers={handlers}>
-													{card}
-												</HotKeys>
-											</Row>
-											<Row className="card ctrl">
-												<br></br>
-												<Controls question={this.state.currentQuestion}/>
-											</Row>
-											<Row className="card ctrl">
-												<br></br>
-												<HotKeys keyMap={keyMap} handlers={handlers}>
-													<UserAnswer answer={this.state.currentQuestion.answer}/>
-												</HotKeys>
-											</Row>
-										</Col>
-										<Col md={5}>
-											<CustomOptions/>
-										</Col>
+									<HotKeys keyMap={keyMap} handlers={handlers}>
+										{card}
+									</HotKeys>
 								</Row>
-						</Grid>
+								<Row className="card ctrl">
+									<br></br>
+									<Controls question={this.state.currentQuestion}/>
+								</Row>
+								<Row className="card ctrl">
+									<br></br>
+									<HotKeys keyMap={keyMap} handlers={handlers}>
+										<UserAnswer answer={this.state.currentQuestion.answer}/>
+									</HotKeys>
+								</Row>
+							</Col>
+							<Col md={5}>
+								<CustomOptions/>
+							</Col>
+						</Row>
+					</Grid>
 				</Panel>
 				<Readme/>
 			</div>
