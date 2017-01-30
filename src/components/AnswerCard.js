@@ -5,14 +5,10 @@ class AnswerCard extends Component {
 		answer: PropTypes.string.isRequired
 	};
 
-	getInitialState() {
-		return {};
-	}
-
 	render() {
 		return (<div>
 			<section className="back">
-		{this.props.answer}
+				{this.props.answer}
 			</section>
 		</div>
 		);

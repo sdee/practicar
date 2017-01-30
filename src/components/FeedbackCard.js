@@ -7,10 +7,6 @@ class FeedbackCard extends Component {
 		submittedAnswer: PropTypes.string.isRequired
 	};
 
-	getInitialState() {
-		return {};
-	}
-
 	render() {
 		return (
 			<div>
