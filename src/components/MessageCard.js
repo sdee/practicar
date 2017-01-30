@@ -5,10 +5,6 @@ class MessageCard extends Component {
 		msg: PropTypes.string.isRequired
 	};
 
-	getInitialState() {
-		return {};
-	}
-
 	render() {
 		return (<div>
 			<section className="front">

@@ -7,7 +7,7 @@ class VerbCard extends Component {
 		tense: PropTypes.string.isRequired
 	};
 
-	getInitialState: function () {
+	getInitialState() {
 		return {};
 	}
 

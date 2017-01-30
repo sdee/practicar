@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { ButtonInput } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 class UserAnswer extends Component {
 	static propTypes = {
@@ -16,7 +16,7 @@ class UserAnswer extends Component {
 						type="text"
 						placeholder="Your Answer"
 					/>
-					<ButtonInput type="submit" value="post" bsStyle="success" bsSize="small" />
+					<Button type="submit" bsStyle="success" bsSize="small">post</Button>
 					<br />
 					<input type="checkbox"/> Ignore Accents
 				</form>

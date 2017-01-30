@@ -7,7 +7,6 @@ class CustomOptions extends Component {
 				<Panel header="Customize your lesson">
 					<Row>
 						<FormGroup>
-							{' '}
 							<Checkbox inline>
 							allow irregular
 							</Checkbox>

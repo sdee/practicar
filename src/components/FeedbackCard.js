@@ -16,11 +16,11 @@ class FeedbackCard extends Component {
 			<div>
 				<section className="back">
 					<font color={this.props.correct ? "green" : "red"}>{this.props.submittedAnswer}</font>
-					<font color="black">{this.props.correct == false ? "->" + this.props.correctAnswer : ''}</font>
+					<font color="black">{this.props.correct === false ? "->" + this.props.correctAnswer : ''}</font>
 				</section>
 			</div>
 		)
 	}
-});
+}
 
 export default FeedbackCard;
