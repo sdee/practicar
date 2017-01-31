@@ -37850,40 +37850,44 @@ var Quiz = React.createClass({displayName: "Quiz",
     console.log(this.state.idx);
     console.log("loaded");
     console.log(this.state.is_loaded);
+    console.log("flipped");
+    console.log(this.state.is_flipped);
     console.log(this.state.verbs);
     console.log(this.state.verbs[this.state.idx]);
+
     if (this.state.is_loaded) {
+      var card = this.state.verbs[this.state.idx];
       return (
 
-    React.createElement("div", null, 
-    React.createElement("div", null, this.state.idx), 
-    React.createElement("div", null, this.state.verbs[this.state.idx].infinitive), 
-    React.createElement(ReactBootstrap.Button, {bsStyle: "success", onClick: this.onNextQuestion}, "Next Question"), 
-    React.createElement(ReactBootstrap.Button, {bsStyle: "success", onClick: this.onFlipQuestion}, "Flip Question")
-    )
-    );
+        React.createElement("div", null, 
+        React.createElement("div", null, this.state.idx), 
+        React.createElement("div", null, this.state.is_flipped ? card.infinitive : card.answer), 
+        React.createElement(ReactBootstrap.Button, {bsStyle: "success", onClick: this.onNextQuestion}, "Next Question"), 
+        React.createElement(ReactBootstrap.Button, {bsStyle: "success", onClick: this.onFlipQuestion}, "Flip Question")
+        )
+        );
     }
     else {
       return (
-
-      React.createElement("div", null, 
-      this.state.idx, 
-    React.createElement(ReactBootstrap.Button, {bsStyle: "success", onClick: this.onNextQuestion}, "Next Question"), 
-    React.createElement(ReactBootstrap.Button, {bsStyle: "success", onClick: this.onFlipQuestion}, "Flip Question")
-    )
-    )
+        React.createElement("div", null, 
+        this.state.idx, 
+        React.createElement(ReactBootstrap.Button, {bsStyle: "success", onClick: this.onNextQuestion}, "Next Question"), 
+        React.createElement(ReactBootstrap.Button, {bsStyle: "success", onClick: this.onFlipQuestion}, "Flip Question")
+        )
+        )
     }
     
-  
-  },
-   onNextQuestion:function (){
-      QuizActions.nextQuestion();
-      console.log("Button Next Question");
 
-    },
-    onFlipQuestion:function (){
-      console.log("Flip Question");
-    }
+  },
+  onNextQuestion:function (){
+    QuizActions.nextQuestion();
+    console.log("Button Next Question");
+
+  },
+  onFlipQuestion:function (){
+    console.log("Flip Question");
+    QuizActions.flipQuestion();
+  }
 });
 
 module.exports = Quiz;
@@ -37962,6 +37966,7 @@ var QuizSource = require('../sources/QuizSource');
 		this.idx = 0;
 		this.test = "test";
 		this.is_loaded = false;
+		this.is_flipped = false;
 		this.currentQuestion = {"text": "Get started by clicking 'next question'!"}; //display instructions
 		this.bindListeners({
 			handleNextQuestion: QuizActions.NEXT_QUESTION,
@@ -37975,6 +37980,7 @@ var QuizSource = require('../sources/QuizSource');
 	QuizStore.prototype.handleNextQuestion=function() {"use strict";
 		console.log("handleNextQuestion");
 		this.idx +=1;
+		this.is_flipped = false; //resets card to side with question
 	};
 
 	//sets verbs passed from source
@@ -37987,6 +37993,7 @@ var QuizSource = require('../sources/QuizSource');
 
 	QuizStore.prototype.handleFlipQuestion=function() {"use strict";
 		console.log("handleFlipQuestion");
+		this.is_flipped = !this.is_flipped;
 	};
 
 

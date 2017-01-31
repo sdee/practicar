@@ -9,6 +9,7 @@ class QuizStore {
 		this.idx = 0;
 		this.test = "test";
 		this.is_loaded = false;
+		this.is_flipped = false;
 		this.currentQuestion = {"text": "Get started by clicking 'next question'!"}; //display instructions
 		this.bindListeners({
 			handleNextQuestion: QuizActions.NEXT_QUESTION,
@@ -22,6 +23,7 @@ class QuizStore {
 	handleNextQuestion() {
 		console.log("handleNextQuestion");
 		this.idx +=1;
+		this.is_flipped = false; //resets card to side with question
 	}
 
 	//sets verbs passed from source
@@ -34,6 +36,7 @@ class QuizStore {
 
 	handleFlipQuestion() {
 		console.log("handleFlipQuestion");
+		this.is_flipped = !this.is_flipped;
 	}
 }
 
