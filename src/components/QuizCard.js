@@ -4,24 +4,41 @@ import VerbCard from './VerbCard';
 import AnswerCard from './AnswerCard';
 import MessageCard from './MessageCard';
 
+
+function shouldShowFeedbackCard(props) {
+	return props.hasSubmittedAnswer && props.infinitive;
+}
+
+function shouldShowVerbCard(props) {
+	return props.infinitive && props.showAnswer === false;
+}
+
+function shouldShowAnswerCard(props) {
+	return props.infinitive && props.showAnswer === true;
+}
+
 function QuizCard(props) {
-	if (props.hasSubmittedAnswer && props.infinitive) {
+	if (shouldShowFeedbackCard(props)) {
+		console.log('showing FeedbackCard');
 		return (
 			<FeedbackCard
-				correct={props.correct}
-				correctAnswer={props.answer}
+				isCorrect={props.isCorrect}
+				correctAnswer={props.correctAnswer}
 				submittedAnswer={props.submittedAnswer}
 			/>
 		);
-	} else if (props.infinitive && props.showAnswer === false) {
+	} else if (shouldShowVerbCard(props)) {
+		console.log('showing VerbCard');
 		return (
 			<VerbCard pronoun={props.pronoun} infinitive={props.infinitive} tense={props.tense} />
 		);
-	} else if (props.infinitive && props.showAnswer === true) {
+	} else if (shouldShowAnswerCard(props)) {
+		console.log('showing AnswerCard');
 		return (
-			<AnswerCard answer={props.answer} />
+			<AnswerCard answer={props.correctAnswer} />
 		);
 	}
+	console.log('showing MessageCard');
 	return (
 		<MessageCard msg={props.text} />
 	);
@@ -29,11 +46,11 @@ function QuizCard(props) {
 
 QuizCard.propTypes = {
 	hasSubmittedAnswer: PropTypes.bool,
-	correct: PropTypes.bool,
+	isCorrect: PropTypes.bool,
 	showAnswer: PropTypes.bool,
-	submittedAnswer: PropTypes.bool,
+	submittedAnswer: PropTypes.string,
 	infinitive: PropTypes.string,
-	answer: PropTypes.string,
+	correctAnswer: PropTypes.string,
 	tense: PropTypes.string,
 	pronoun: PropTypes.string,
 	text: PropTypes.string
@@ -43,7 +60,7 @@ QuizCard.defaultProps = {
 	hasSubmittedAnswer: false,
 	correct: false,
 	showAnswer: false,
-	submittedAnswer: false,
+	submittedAnswer: '',
 	infinitive: '',
 	answer: '',
 	tense: '',

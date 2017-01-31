@@ -10,6 +10,8 @@ export const LOAD_QUIZ = 'LOAD_QUIZ';
 // LOAD_QUIZ_SUCCESS
 // LOAD_QUIZ_FAIL
 
+export const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
+
 /*
  * other constants
  */
@@ -38,4 +40,8 @@ export function nextQuestion() {
 
 export function showAnswer() {
 	return { type: SHOW_ANSWER };
+}
+
+export function submitAnswer(userAnswer, ignoreAccents) {
+	return { type: SUBMIT_ANSWER, userAnswer, ignoreAccents };
 }

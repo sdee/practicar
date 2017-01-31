@@ -80,3 +80,13 @@ section {
   background: #fff6de;
   height: 100%;
 }
+.correctAnswer {
+  color: green;
+}
+.incorrectAnswer {
+  color: red;
+}
+.answer {
+  color: black;
+}
+

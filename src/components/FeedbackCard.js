@@ -1,18 +1,19 @@
 import React, { PropTypes } from 'react';
 
-function FeedbackCard({ correct, correctAnswer, submittedAnswer }) {
+function FeedbackCard({ isCorrect, correctAnswer, submittedAnswer }) {
+	const userAnswerClass = isCorrect ? 'correctAnswer' : 'incorrectAnswer';
 	return (
 		<div>
 			<section className="back">
-				<font color={correct ? 'green' : 'red'}>{submittedAnswer}</font>
-				<font color="black">{correct === false ? `-> ${correctAnswer}` : ''}</font>
+				<span className={userAnswerClass}>{submittedAnswer}</span>
+				<span className="answer">{isCorrect ? '' : ` -> ${correctAnswer}`}</span>
 			</section>
 		</div>
 	);
 }
 
 FeedbackCard.propTypes = {
-	correct: PropTypes.bool.isRequired,
+	isCorrect: PropTypes.bool.isRequired,
 	correctAnswer: PropTypes.string.isRequired,
 	submittedAnswer: PropTypes.string.isRequired
 };
