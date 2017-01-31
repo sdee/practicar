@@ -1,4 +1,5 @@
-var React = require('react');
+var React = require('react'),
+ReactBootstrap = require("react-bootstrap");
 var QuizStore = require('../stores/QuizStore');
 
 var Quiz = React.createClass({
@@ -22,9 +23,13 @@ var Quiz = React.createClass({
     return (
     <div>
     <b>{this.state.idx}</b>
+    <ReactBootstrap.Button bsStyle="success" onClick={this.onNextQuestion}>Next Question</ReactBootstrap.Button>
     </div>
     );
-  }
+  },
+   onNextQuestion (){
+           console.log("Next Question");
+    }
 });
 
 module.exports = Quiz;

@@ -5,11 +5,13 @@
   "main": "server.js",
   "dependencies": {
     "alt": "^0.16.0",
-    "react": "^0.12.2"
+    "react": "^0.14.0",
+    "reactify": "^0.17.1",
+    "react-bootstrap": "^0.28.3",
+    "react-dom": "^0.14.7"
   },
   "devDependencies": {
-    "browserify": "^8.0.3",
-    "reactify": "^0.17.1"
+    "browserify": "^8.0.3"
   },
   "scripts": {
     "build": "browserify -t [reactify --es6] src/App.jsx > build/app.js",
