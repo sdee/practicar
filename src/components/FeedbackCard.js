@@ -1,22 +1,20 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-class FeedbackCard extends Component {
-	static propTypes = {
-		correct: PropTypes.bool.isRequired,
-		correctAnswer: PropTypes.string.isRequired,
-		submittedAnswer: PropTypes.string.isRequired
-	};
-
-	render() {
-		return (
-			<div>
-				<section className="back">
-					<font color={this.props.correct ? "green" : "red"}>{this.props.submittedAnswer}</font>
-					<font color="black">{this.props.correct === false ? "->" + this.props.correctAnswer : ''}</font>
-				</section>
-			</div>
-		)
-	}
+function FeedbackCard({ correct, correctAnswer, submittedAnswer }) {
+	return (
+		<div>
+			<section className="back">
+				<font color={correct ? 'green' : 'red'}>{submittedAnswer}</font>
+				<font color="black">{correct === false ? `-> ${correctAnswer}` : ''}</font>
+			</section>
+		</div>
+	);
 }
+
+FeedbackCard.propTypes = {
+	correct: PropTypes.bool.isRequired,
+	correctAnswer: PropTypes.string.isRequired,
+	submittedAnswer: PropTypes.string.isRequired
+};
 
 export default FeedbackCard;

@@ -1,58 +1,39 @@
 import React, { Component } from 'react';
-import './App.css';
 import { Panel, Grid, Row, Col } from 'react-bootstrap';
-import { HotKeys } from 'react-hotkeys';
+import './App.css';
 import Readme from './components/Readme';
-import Controls from './components/Controls';
+import LinkControls from './containers/LinkControls';
 import CustomOptions from './containers/CustomOptions';
-import FeedbackCard from './components/FeedbackCard';
-import VerbCard from './components/VerbCard';
-import AnswerCard from './components/AnswerCard';
-import MessageCard from './components/MessageCard';
+import ControlledCard from './containers/ControlledCard';
 import UserAnswer from './components/UserAnswer';
 
-class App extends Component {
-	state = {
-		currentQuestion: {
-			answer: 'foo',
-			infinitive: '',
-			tense: '',
-			text: 'foo'
-		},
-		quiz: {},
-		submittedAnswer: false,
-		showAnswer: false,
-		correct: false
-	};
+function submitAnswer(e) {
+	e.preventDefault();
+	// dispatch user input redux action
+	// track user input in store and get back
+	// whether correct or not
 
+  // var tidyText = this.state.userAnswer.trim();
+  // if (!tidyText) {
+  //     return;
+  // }
+  // //check answer and change color
+  // //check if correct
+  // var correctAnswer = this.props.answer;
+  // if (this.state.ignoreAccents) {
+  //     tidyText = Utils.accentsTidy(tidyText);
+  //     correctAnswer = Utils.accentsTidy(correctAnswer);
+  // }
+  // var correct = tidyText == correctAnswer;
+  // this.setState({finalAnswer: tidyText});//submitted
+  // this.setState({correct: correct});
+  // this.setState({userAnswer: ''}); //user input as being typed
+}
+
+class App extends Component {
 	render() {
 		// let questions = this.state.quiz;
-		let curr = this.state.currentQuestion;
-		let card;
-		const keyMap = {
-			'left': 'left',
-			'right': 'right'
-		};
-		const handlers = {
-			// 'right': (event) => this.getFlux().actions.nextQuestion(this.state.enableIrregular,
-			// 'up': (event) => this.getFlux().actions.showAnswer()
-		};
-		if (this.state.hasSubmittedAnswer && curr.infinitive) {
-			card = <FeedbackCard
-								correct={this.state.correct}
-								correctAnswer={curr.answer}
-								submittedAnswer={this.state.submittedAnswer}
-						 />;
-		}
-		else if (curr.infinitive && this.state.showAnswer === false) {
-			card = <VerbCard pronoun={curr.pronoun} infinitive={curr.infinitive} tense={curr.tense} />;
-		}
-		else if (curr.infinitive && this.state.showAnswer === true) {
-			card = <AnswerCard answer={curr.answer}/>;
-		}
-		else {
-			card = <MessageCard msg={curr.text}/>;
-		}
+		// const curr = this.state.currentQuestion;
 		return (
 			<div className="App">
 				<Panel header="practice your verbs, eat your vegetables">
@@ -60,28 +41,24 @@ class App extends Component {
 						<Row className="show-grid">
 							<Col md={7}>
 								<Row className="show-grid">
-									<HotKeys keyMap={keyMap} handlers={handlers}>
-										{card}
-									</HotKeys>
+									<ControlledCard />
 								</Row>
 								<Row className="card ctrl">
-									<br></br>
-									<Controls question={this.state.currentQuestion}/>
+									<br />
+									<LinkControls />
 								</Row>
 								<Row className="card ctrl">
-									<br></br>
-									<HotKeys keyMap={keyMap} handlers={handlers}>
-										<UserAnswer answer={this.state.currentQuestion.answer}/>
-									</HotKeys>
+									<br />
+									<UserAnswer onSubmitAnswer={submitAnswer} />
 								</Row>
 							</Col>
 							<Col md={5}>
-								<CustomOptions/>
+								<CustomOptions />
 							</Col>
 						</Row>
 					</Grid>
 				</Panel>
-				<Readme/>
+				<Readme />
 			</div>
 		);
 	}

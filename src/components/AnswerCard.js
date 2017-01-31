@@ -1,18 +1,17 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-class AnswerCard extends Component {
-	static propTypes = {
-		answer: PropTypes.string.isRequired
-	};
-
-	render() {
-		return (<div>
+function AnswerCard({ answer }) {
+	return (
+		<div>
 			<section className="back">
-				{this.props.answer}
+				{answer}
 			</section>
 		</div>
-		);
-	}
+	);
 }
+
+AnswerCard.propTypes = {
+	answer: PropTypes.string.isRequired
+};
 
 export default AnswerCard;

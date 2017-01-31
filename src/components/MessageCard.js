@@ -1,17 +1,15 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-class MessageCard extends Component {
-	static propTypes = {
-		msg: PropTypes.string.isRequired
-	};
-
-	render() {
-		return (<div>
-			<section className="front">
-				{this.props.msg}
-			</section>
-		</div>);
-	}
+function MessageCard({ msg }) {
+	return (<div>
+		<section className="front">
+			{msg}
+		</section>
+	</div>);
 }
+
+MessageCard.propTypes = {
+	msg: PropTypes.string.isRequired
+};
 
 export default MessageCard;

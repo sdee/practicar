@@ -1,28 +1,31 @@
-import React, { Component, PropTypes } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { PropTypes } from 'react';
+import { FormGroup, FormControl, Button } from 'react-bootstrap';
 
-class UserAnswer extends Component {
-	static propTypes = {
-		answer: PropTypes.string
-	};
-
-	render() {
-		return (
-			<div>
-				<b><font></font></b>
-				<form className="userInput form-inline ctrl">
-					<input
-						autoFocus
-						type="text"
-						placeholder="Your Answer"
-					/>
-					<Button type="submit" bsStyle="success" bsSize="small">post</Button>
-					<br />
-					<input type="checkbox"/> Ignore Accents
-				</form>
-			</div>
-		);
-	}
+function UserAnswer({ onSubmitAnswer }) {
+	return (
+		<form className="userInput form-inline ctrl">
+			<FormGroup
+				controlId="formUserAnswer"
+			>
+				<FormControl
+					type="text"
+					placeholder="Your Answer"
+				/>
+				<Button
+					type="submit"
+					bsStyle="success"
+					bsSize="small"
+					onClick={onSubmitAnswer}
+				>
+					post
+				</Button>
+			</FormGroup>
+		</form>
+	);
 }
+
+UserAnswer.propTypes = {
+	onSubmitAnswer: PropTypes.func.isRequired
+};
 
 export default UserAnswer;
