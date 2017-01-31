@@ -28,7 +28,7 @@ var Quiz = React.createClass({
     );
   },
    onNextQuestion (){
-           console.log("Next Question");
+      console.log("Button Next Question");
     }
 });
 

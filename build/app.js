@@ -37780,15 +37780,18 @@ React.render(
 );
 
 },{"./components/Quiz.jsx":430,"react":422}],428:[function(require,module,exports){
-var alt = require('../alt');
+	var alt = require('../alt');
 
-function QuizActions(){"use strict";}
- 		QuizActions.prototype.nextQuestion=function() {"use strict";
-			console.log("next question");
- };
+	function QuizActions(){"use strict";}
+	 QuizActions.prototype.nextQuestion=function() {"use strict";
+		console.log("next question");
+	 };
+	 QuizActions.prototype.flipQuestion=function(){"use strict";
+	 	console.log("flip question");
+	 };
+	
 
-
-module.exports = alt.createActions(QuizActions);
+	module.exports = alt.createActions(QuizActions);
 
 },{"../alt":429}],429:[function(require,module,exports){
 var Alt = require('alt');
@@ -37830,7 +37833,7 @@ var Quiz = React.createClass({displayName: "Quiz",
     );
   },
    onNextQuestion:function (){
-           console.log("Next Question");
+      console.log("Button Next Question");
     }
 });
 
@@ -37844,15 +37847,21 @@ var QuizActions = require('../actions/QuizActions');
 	function QuizStore() {"use strict";
 		this.questions = [];
 		this.idx = 0;
-		this.test ="test";
+		this.test = "test";
 		this.currentQuestion = {"text": "Get started by clicking 'next question'!"}; //display instructions
 		this.bindListeners({
-			handleNextQuestion: QuizActions.NEXT_QUESTION
+			handleNextQuestion: QuizActions.NEXT_QUESTION,
+			handleFlipQuestion: QuizActions.FLIP_QUESTION
 		});
 	}
-
+	
 	QuizStore.prototype.handleNextQuestion=function() {"use strict";
+		console.log("handleNextQuestion");
 		this.idx +=1;
+	};
+
+	QuizStore.prototype.handleFlipQuestion=function() {"use strict";
+		console.log("handleFlipQuestion");
 	};
 
 

@@ -15,6 +15,7 @@
   },
   "scripts": {
     "build": "browserify -t [reactify --es6] src/App.jsx > build/app.js",
+    "debug": "node --debug server.js",
     "start": "npm run build && open 'index.html' "
   },
   "author": "Josh Perez <josh@goatslacker.com>",
