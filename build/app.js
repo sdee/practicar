@@ -37792,6 +37792,23 @@ React.render(
 	 	console.log("flip question");
 	 	this.dispatch();
 	 };
+
+	 	 QuizActions.prototype.updateVerbs=function(){"use strict";
+	 	console.log("Action-update verbs");
+	 	this.dispatch();
+	 };
+
+	 	 QuizActions.prototype.verbsFailed=function(){"use strict";
+	 	console.log("Action-verbs failed");
+	 	this.dispatch();
+	 };
+
+	 	 QuizActions.prototype.fetchVerbs=function(){"use strict";
+	 	console.log("Action-fetch verbs");
+	 	this.dispatch();
+	 };
+
+
 	
 
 	module.exports = alt.createActions(QuizActions);
@@ -37817,6 +37834,7 @@ var Quiz = React.createClass({displayName: "Quiz",
   },
 
   componentDidMount:function() {
+    QuizStore.fetchVerbs();
     QuizStore.listen(this.onChange);
   },
 
@@ -37849,12 +37867,75 @@ var Quiz = React.createClass({displayName: "Quiz",
 
 module.exports = Quiz;
 
-},{"../actions/QuizActions":428,"../stores/QuizStore":431,"react":422,"react-bootstrap":258}],431:[function(require,module,exports){
-var alt = require('../alt');
+},{"../actions/QuizActions":428,"../stores/QuizStore":432,"react":422,"react-bootstrap":258}],431:[function(require,module,exports){
 var QuizActions = require('../actions/QuizActions');
 
+var mockData = [{"irregular": false, "pronoun": "yo", 
+"infinitive": "hablar", "tense": "future", "mode": "indicative", "answer": "hablar\u00e9"}, 
+{"irregular": false, "pronoun": "tu", "infinitive": "llamar", "tense": "imperfect", "mode": "indicative", "answer": "llamabas"},
+{"irregular": false, "pronoun": "nosotros", "infinitive": "hablar", "tense": "present", "mode": "indicative", "answer": "hablamos"}, 
+{"irregular": false, "pronoun": "ellos", "infinitive": "hablar", "tense": "present", "mode": "indicative", "answer": "hablan"}, 
+{"irregular": true, "pronoun": "el", "infinitive": "venir", "tense": "past", "mode": "indicative", "answer": "vino"}, 
+{"irregular": false, "pronoun": "nosotros", "infinitive": "escribir", "tense": "future", "mode": "indicative", "answer": "escribiremos"}, 
+{"irregular": false, "pronoun": "nosotros", "infinitive": "llamar", "tense": "past", "mode": "indicative", "answer": "llamamos"}, 
+{"irregular": false, "pronoun": "tu", "infinitive": "dormir", "tense": "past", "mode": "indicative", "answer": "dormiste"}, 
+{"irregular": true, "pronoun": "el", "infinitive": "venir", "tense": "future", "mode": "indicative", "answer": "vendr\u00e1"}, 
+{"irregular": true, "pronoun": "yo", "infinitive": "ir", "tense": "present", "mode": "indicative", "answer": "voy"}, 
+{"irregular": true, "pronoun": "yo", "infinitive": "venir", "tense": "past", "mode": "indicative", "answer": "vine"}, 
+{"irregular": false, "pronoun": "tu", "infinitive": "escribir", "tense": "future", "mode": "indicative", "answer": "escribir\u00e1s"}, 
+{"irregular": false, "pronoun": "ellos", "infinitive": "hablar", "tense": "imperfect", "mode": "indicative", "answer": "hablaban"}, 
+{"irregular": false, "pronoun": "tu", "infinitive": "escribir", "tense": "past", "mode": "indicative", "answer": "escribiste"}, 
+{"irregular": false, "pronoun": "nosotros", "infinitive": "dormir", "tense": "present", "mode": "indicative", "answer": "dormimos"}, 
+{"irregular": true, "pronoun": "tu", "infinitive": "venir", "tense": "present", "mode": "indicative", "answer": "vienes"}, 
+{"irregular": false, "pronoun": "yo", "infinitive": "dormir", "tense": "imperfect", "mode": "indicative", "answer": "dorm\u00eda"}, 
+{"irregular": true, "pronoun": "yo", "infinitive": "ir", "tense": "imperfect", "mode": "indicative", "answer": "iba"}, 
+{"irregular": true, "pronoun": "tu", "infinitive": "dormir", "tense": "present", "mode": "indicative", "answer": "duermes"}, 
+{"irregular": false, "pronoun": "el", "infinitive": "llamar", "tense": "future", "mode": "indicative", "answer": "llamar\u00e1"}, 
+{"irregular": false, "pronoun": "el", "infinitive": "llamar", "tense": "present", "mode": "indicative", "answer": "llama"}, 
+{"irregular": false, "pronoun": "yo", "infinitive": "venir", "tense": "imperfect", "mode": "indicative", "answer": "ven\u00eda"}
+];
 
-	
+var QuizSource = {
+  fetchVerbs:function() {
+    console.log("fetchVerbs");
+    return {
+      remote:function() {
+        return new Promise(function (resolve, reject) {
+          // simulate an asynchronous flow where data is fetched on
+          // a remote server somewhere.
+          setTimeout(function () {
+
+            // change this to `false` to see the error action being handled.
+            if (true) {
+              // resolve with some mock data
+              resolve(mockData);
+            } else {
+              reject('Things have broken');
+            }
+          }, 250);
+        });
+      },
+
+      local:function() {
+        // Never check locally, always fetch remotely.
+        return null;
+      },
+      success: QuizActions.updateVerbs,
+      error: QuizActions.verbsFailed,
+      loading: QuizActions.fetchVerbs
+    }
+  }
+};
+
+module.exports = QuizSource;
+
+},{"../actions/QuizActions":428}],432:[function(require,module,exports){
+var alt = require('../alt');
+var QuizActions = require('../actions/QuizActions');
+var QuizSource = require('../sources/QuizSource');
+
+
+
 	function QuizStore() {"use strict";
 		this.questions = [];
 		this.idx = 0;
@@ -37864,6 +37945,8 @@ var QuizActions = require('../actions/QuizActions');
 			handleNextQuestion: QuizActions.NEXT_QUESTION,
 			handleFlipQuestion: QuizActions.FLIP_QUESTION
 		});
+
+		this.exportAsync(QuizSource);
 	}
 
 	QuizStore.prototype.handleNextQuestion=function() {"use strict";
@@ -37878,4 +37961,4 @@ var QuizActions = require('../actions/QuizActions');
 
 module.exports = alt.createStore(QuizStore, 'QuizStore');
 
-},{"../actions/QuizActions":428,"../alt":429}]},{},[427]);
+},{"../actions/QuizActions":428,"../alt":429,"../sources/QuizSource":431}]},{},[427]);

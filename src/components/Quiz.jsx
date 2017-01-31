@@ -9,6 +9,7 @@ var Quiz = React.createClass({
   },
 
   componentDidMount() {
+    QuizStore.fetchVerbs();
     QuizStore.listen(this.onChange);
   },
 

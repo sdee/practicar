@@ -1,8 +1,9 @@
 var alt = require('../alt');
 var QuizActions = require('../actions/QuizActions');
+var QuizSource = require('../sources/QuizSource');
 
 class QuizStore {
-	
+
 	constructor() {
 		this.questions = [];
 		this.idx = 0;
@@ -12,6 +13,8 @@ class QuizStore {
 			handleNextQuestion: QuizActions.NEXT_QUESTION,
 			handleFlipQuestion: QuizActions.FLIP_QUESTION
 		});
+
+		this.exportAsync(QuizSource);
 	}
 
 	handleNextQuestion() {
