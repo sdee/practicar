@@ -37784,10 +37784,13 @@ React.render(
 
 	function QuizActions(){"use strict";}
 	 QuizActions.prototype.nextQuestion=function() {"use strict";
-		console.log("next question");
+		console.log("Action-next question");
+		this.dispatch();
 	 };
+
 	 QuizActions.prototype.flipQuestion=function(){"use strict";
 	 	console.log("flip question");
+	 	this.dispatch();
 	 };
 	
 
@@ -37806,6 +37809,7 @@ module.exports = alt;
 var React = require('react'),
 ReactBootstrap = require("react-bootstrap");
 var QuizStore = require('../stores/QuizStore');
+var QuizActions = require('../actions/QuizActions');
 
 var Quiz = React.createClass({displayName: "Quiz",
   getInitialState:function() {
@@ -37828,22 +37832,29 @@ var Quiz = React.createClass({displayName: "Quiz",
     return (
     React.createElement("div", null, 
     React.createElement("b", null, this.state.idx), 
-    React.createElement(ReactBootstrap.Button, {bsStyle: "success", onClick: this.onNextQuestion}, "Next Question")
+    React.createElement(ReactBootstrap.Button, {bsStyle: "success", onClick: this.onNextQuestion}, "Next Question"), 
+    React.createElement(ReactBootstrap.Button, {bsStyle: "success", onClick: this.onFlipQuestion}, "Flip Question")
     )
     );
   },
    onNextQuestion:function (){
+      QuizActions.nextQuestion();
       console.log("Button Next Question");
+
+    },
+    onFlipQuestion:function (){
+      console.log("Flip Question");
     }
 });
 
 module.exports = Quiz;
 
-},{"../stores/QuizStore":431,"react":422,"react-bootstrap":258}],431:[function(require,module,exports){
+},{"../actions/QuizActions":428,"../stores/QuizStore":431,"react":422,"react-bootstrap":258}],431:[function(require,module,exports){
 var alt = require('../alt');
 var QuizActions = require('../actions/QuizActions');
 
 
+	
 	function QuizStore() {"use strict";
 		this.questions = [];
 		this.idx = 0;
@@ -37854,7 +37865,7 @@ var QuizActions = require('../actions/QuizActions');
 			handleFlipQuestion: QuizActions.FLIP_QUESTION
 		});
 	}
-	
+
 	QuizStore.prototype.handleNextQuestion=function() {"use strict";
 		console.log("handleNextQuestion");
 		this.idx +=1;

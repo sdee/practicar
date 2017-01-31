@@ -2,11 +2,13 @@
 
 	class QuizActions {
 	 nextQuestion() {
-		console.log("next question");
+		console.log("Action-next question");
+		this.dispatch();
 	 }
-	 
+
 	 flipQuestion(){
 	 	console.log("flip question");
+	 	this.dispatch();
 	 }
 	}
 
