@@ -5,13 +5,15 @@ var QuizSource = require('../sources/QuizSource');
 class QuizStore {
 
 	constructor() {
-		this.questions = [];
+		this.verbs = [];
 		this.idx = 0;
 		this.test = "test";
+		this.is_loaded = false;
 		this.currentQuestion = {"text": "Get started by clicking 'next question'!"}; //display instructions
 		this.bindListeners({
 			handleNextQuestion: QuizActions.NEXT_QUESTION,
-			handleFlipQuestion: QuizActions.FLIP_QUESTION
+			handleFlipQuestion: QuizActions.FLIP_QUESTION,
+			handleUpdateVerbs: QuizActions.UPDATE_VERBS
 		});
 
 		this.exportAsync(QuizSource);
@@ -20,6 +22,14 @@ class QuizStore {
 	handleNextQuestion() {
 		console.log("handleNextQuestion");
 		this.idx +=1;
+	}
+
+	//sets verbs passed from source
+	handleUpdateVerbs(verbs){
+		console.log("handleUpdateVerbs");
+		console.log(verbs);
+		this.verbs = verbs;
+		this.is_loaded = true;
 	}
 
 	handleFlipQuestion() {

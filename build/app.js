@@ -37793,9 +37793,9 @@ React.render(
 	 	this.dispatch();
 	 };
 
-	 	 QuizActions.prototype.updateVerbs=function(){"use strict";
+	 	 QuizActions.prototype.updateVerbs=function(verbs){"use strict";
 	 	console.log("Action-update verbs");
-	 	this.dispatch();
+	 	this.dispatch(verbs);
 	 };
 
 	 	 QuizActions.prototype.verbsFailed=function(){"use strict";
@@ -37847,13 +37847,34 @@ var Quiz = React.createClass({displayName: "Quiz",
   },
 
   render:function() {
-    return (
+    console.log(this.state.idx);
+    console.log("loaded");
+    console.log(this.state.is_loaded);
+    console.log(this.state.verbs);
+    console.log(this.state.verbs[this.state.idx]);
+    if (this.state.is_loaded) {
+      return (
+
     React.createElement("div", null, 
-    React.createElement("b", null, this.state.idx), 
+    React.createElement("div", null, this.state.idx), 
+    React.createElement("div", null, this.state.verbs[this.state.idx].infinitive), 
     React.createElement(ReactBootstrap.Button, {bsStyle: "success", onClick: this.onNextQuestion}, "Next Question"), 
     React.createElement(ReactBootstrap.Button, {bsStyle: "success", onClick: this.onFlipQuestion}, "Flip Question")
     )
     );
+    }
+    else {
+      return (
+
+      React.createElement("div", null, 
+      this.state.idx, 
+    React.createElement(ReactBootstrap.Button, {bsStyle: "success", onClick: this.onNextQuestion}, "Next Question"), 
+    React.createElement(ReactBootstrap.Button, {bsStyle: "success", onClick: this.onFlipQuestion}, "Flip Question")
+    )
+    )
+    }
+    
+  
   },
    onNextQuestion:function (){
       QuizActions.nextQuestion();
@@ -37909,13 +37930,13 @@ var QuizSource = {
             if (true) {
               // resolve with some mock data
               resolve(mockData);
+              console.log(mockData);
             } else {
               reject('Things have broken');
             }
           }, 250);
         });
       },
-
       local:function() {
         // Never check locally, always fetch remotely.
         return null;
@@ -37937,13 +37958,15 @@ var QuizSource = require('../sources/QuizSource');
 
 
 	function QuizStore() {"use strict";
-		this.questions = [];
+		this.verbs = [];
 		this.idx = 0;
 		this.test = "test";
+		this.is_loaded = false;
 		this.currentQuestion = {"text": "Get started by clicking 'next question'!"}; //display instructions
 		this.bindListeners({
 			handleNextQuestion: QuizActions.NEXT_QUESTION,
-			handleFlipQuestion: QuizActions.FLIP_QUESTION
+			handleFlipQuestion: QuizActions.FLIP_QUESTION,
+			handleUpdateVerbs: QuizActions.UPDATE_VERBS
 		});
 
 		this.exportAsync(QuizSource);
@@ -37952,6 +37975,14 @@ var QuizSource = require('../sources/QuizSource');
 	QuizStore.prototype.handleNextQuestion=function() {"use strict";
 		console.log("handleNextQuestion");
 		this.idx +=1;
+	};
+
+	//sets verbs passed from source
+	QuizStore.prototype.handleUpdateVerbs=function(verbs){"use strict";
+		console.log("handleUpdateVerbs");
+		console.log(verbs);
+		this.verbs = verbs;
+		this.is_loaded = true;
 	};
 
 	QuizStore.prototype.handleFlipQuestion=function() {"use strict";

@@ -11,9 +11,9 @@
 	 	this.dispatch();
 	 }
 
-	 	 updateVerbs(){
+	 	 updateVerbs(verbs){
 	 	console.log("Action-update verbs");
-	 	this.dispatch();
+	 	this.dispatch(verbs);
 	 }
 
 	 	 verbsFailed(){
