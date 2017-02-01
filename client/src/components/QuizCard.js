@@ -19,7 +19,6 @@ function shouldShowAnswerCard(props) {
 
 function QuizCard(props) {
 	if (shouldShowFeedbackCard(props)) {
-		console.log('showing FeedbackCard');
 		return (
 			<FeedbackCard
 				isCorrect={props.isCorrect}
@@ -28,17 +27,14 @@ function QuizCard(props) {
 			/>
 		);
 	} else if (shouldShowVerbCard(props)) {
-		console.log('showing VerbCard');
 		return (
 			<VerbCard pronoun={props.pronoun} infinitive={props.infinitive} tense={props.tense} />
 		);
 	} else if (shouldShowAnswerCard(props)) {
-		console.log('showing AnswerCard');
 		return (
 			<AnswerCard answer={props.correctAnswer} />
 		);
 	}
-	console.log('showing MessageCard');
 	return (
 		<MessageCard msg={props.text} />
 	);
@@ -58,7 +54,7 @@ QuizCard.propTypes = {
 
 QuizCard.defaultProps = {
 	hasSubmittedAnswer: false,
-	correct: false,
+	isCorrect: false,
 	showAnswer: false,
 	submittedAnswer: '',
 	infinitive: '',

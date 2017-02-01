@@ -1,41 +1,5 @@
-import { NEXT_QUESTION, SHOW_ANSWER, LOAD_QUIZ, SUBMIT_ANSWER } from '../actions';
-
-// TODO: remove, only for testing
-const tempQuiz = [
-	{
-		irregular: false,
-		pronoun: 'yo',
-		infinitive: 'hablar',
-		tense: 'future',
-		mode: 'indicative',
-		answer: 'hablaré'
-	},
-	{
-		irregular: false,
-		pronoun: 'tu',
-		infinitive: 'llamar',
-		tense: 'imperfect',
-		mode: 'indicative',
-		answer: 'llamabas'
-	},
-	{
-		irregular: false,
-		pronoun: 'nosotros',
-		infinitive: 'hablar',
-		tense: 'present',
-		mode: 'indicative',
-		answer: 'hablamos'
-	},
-	{
-		irregular: false,
-		pronoun: 'ellos',
-		infinitive: 'hablar',
-		tense: 'present',
-		mode: 'indicative',
-		answer: 'hablan'
-	}
-];
-let tempIndex = -1;
+// import Immutable from 'immutable';
+import { NEXT_QUESTION, SHOW_ANSWER, SUBMIT_ANSWER, LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR } from '../actions';
 
 // TODO: move this
 function accentsTidy(s) {
@@ -69,7 +33,10 @@ function checkUserAnswer(finalUserAnswer, finalCorrectAnswer) {
 	return finalUserAnswer === finalCorrectAnswer;
 }
 
-const quiz = (state = {
+// const initialState = new Immutable.Map({
+const initialState = {
+	currentQuestionIndex: -1,
+	questions: [],
 	ignoreAccents: false,
 	correctAnswer: '',
 	infinitive: '',
@@ -79,26 +46,32 @@ const quiz = (state = {
 	submittedAnswer: '',
 	showAnswer: false,
 	isCorrect: false,
-	hasSubmittedAnswer: false }, action) => {
+	hasSubmittedAnswer: false
+};
+
+const quiz = (state = initialState, action) => {
 	switch (action.type) {
 	case NEXT_QUESTION: {
-		tempIndex++;
-		if (tempIndex > tempQuiz.length) {
-			tempIndex = 0;
+		let currQuestion = state.currentQuestionIndex + 1;
+		const questions = state.questions;
+		if (currQuestion > questions.length) {
+			currQuestion = 0;
 		}
-		const question = tempQuiz[tempIndex];
+		const question = questions[currQuestion].question;
+		const answer = questions[currQuestion].answer;
 		console.log('NEXT_QUESTION');
 		return Object.assign({}, state, {
+			currentQuestionIndex: currQuestion,
 			hasSubmittedAnswer: false,
 			submittedAnswer: '',
 			isCorrect: false,
 			showAnswer: false,
-			irregular: question.irregular,
+			irregular: question.isIrregular,
 			pronoun: question.pronoun,
-			infinitive: question.infinitive,
+			infinitive: question.verb,
 			tense: question.tense,
 			mode: question.mode,
-			correctAnswer: question.answer
+			correctAnswer: answer
 		});
 	}
 	case SHOW_ANSWER: {
@@ -107,7 +80,26 @@ const quiz = (state = {
 	}
 	case LOAD_QUIZ: {
 		console.log('LOAD_QUIZ');
-		return state;
+		return Object.assign({}, state, {
+			isLoadingQuiz: true,
+			isQuizLoaded: false,
+		});
+	}
+	case LOAD_QUIZ_SUCCESS: {
+		console.log('LOAD_QUIZ_SUCCESS');
+		return Object.assign({}, state, {
+			questions: action.quiz.questions,
+			currentQuestionIndex: -1,
+			isLoadingQuiz: false,
+			isQuizLoaded: true,
+		});
+	}
+	case LOAD_QUIZ_ERROR: {
+		console.log('LOAD_QUIZ_ERROR');
+		return Object.assign({}, state, {
+			isLoadingQuiz: false,
+			isQuizLoaded: false,
+		});
 	}
 	case SUBMIT_ANSWER: {
 		console.log(`userAnswer: ${action.userAnswer} ignoreAccents: ${action.ignoreAccents}`);
