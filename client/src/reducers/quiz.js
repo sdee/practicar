@@ -1,4 +1,3 @@
-// import Immutable from 'immutable';
 import { NEXT_QUESTION, SHOW_ANSWER, SUBMIT_ANSWER, LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR } from '../actions';
 
 // TODO: move this
@@ -33,7 +32,6 @@ function checkUserAnswer(finalUserAnswer, finalCorrectAnswer) {
 	return finalUserAnswer === finalCorrectAnswer;
 }
 
-// const initialState = new Immutable.Map({
 const initialState = {
 	currentQuestionIndex: -1,
 	questions: [],

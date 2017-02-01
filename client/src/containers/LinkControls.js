@@ -3,7 +3,6 @@ import { nextQuestion, showAnswer } from '../actions';
 import Controls from '../components/Controls';
 
 const mapStateToProps = (state, ownProps) => ({
-	// active: ownProps.filter === state.filter
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

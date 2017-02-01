@@ -49,6 +49,4 @@ UserAnswer.propTypes = {
 	dispatch: PropTypes.func.isRequired
 };
 
-const UserAnswerRedux = connect()(UserAnswer);
-
-export default UserAnswerRedux;
+export default connect()(UserAnswer);

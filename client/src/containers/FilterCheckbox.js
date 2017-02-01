@@ -1,19 +1,27 @@
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Checkbox } from 'react-bootstrap';
 import { setFilter } from '../actions';
 
-const mapStateToProps = (state, ownProps) => ({
-});
+const FilterCheckbox = ({ dispatch, label, filter }) => {
+  let filterInput;
+  return (
+    <Checkbox
+      inputRef={(ref) => { filterInput = ref; }}
+      onClick={(e) => {
+        dispatch(setFilter(filter, filterInput.checked));
+      }
+      }
+    >
+      {label}
+    </Checkbox>
+  );
+}
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-	onClick: () => {
-		dispatch(setFilter(ownProps.filter));
-	}
-});
+FilterCheckbox.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+  filter: PropTypes.string.isRequired
+};
 
-const FilterCheckbox = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Checkbox);
-
-export default FilterCheckbox;
+export default connect()(FilterCheckbox);
