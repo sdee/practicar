@@ -10,6 +10,7 @@ function CustomOptions() {
 					<FilterCheckbox filter="ALLOW_IRREGULAR" label="allow irregular" inline />
 					<FilterCheckbox filter="ALLOW_VOSOTROS" label="use vosotros" inline />
 					<FilterCheckbox filter="ALLOW_REPEATS" label="allow repeats" inline />
+					<FilterCheckbox filter="ALLOW_REFLEXIVE" label="allow reflexive" inline />
 				</FormGroup>
 			</Panel>
 			<Panel header="Choose tenses">

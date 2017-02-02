@@ -44,6 +44,9 @@ function doesQuestionPassFilter(state, question) {
 	if (!state.ALLOW_VOSOTROS && question.pronoun === 'vosotros') {
 		return false;
 	}
+	if (!state.ALLOW_REFLEXIVE && question.isReflexive) {
+		return false;
+	}
 	if (!state.ALLOW_PRESENT && question.tense === 'present') {
 		return false;
 	}
@@ -102,7 +105,6 @@ const quiz = (state = initialState, action) => {
 			}
 		}
 		const answer = questions[currQuestion].answer;
-		console.log('NEXT_QUESTION');
 		return Object.assign({}, state, {
 			currentQuestionIndex: currQuestion,
 			hasSubmittedAnswer: false,
@@ -118,18 +120,15 @@ const quiz = (state = initialState, action) => {
 		});
 	}
 	case SHOW_ANSWER: {
-		console.log('SHOW_ANSWER');
 		return Object.assign({}, state, { showAnswer: true });
 	}
 	case LOAD_QUIZ: {
-		console.log('LOAD_QUIZ');
 		return Object.assign({}, state, {
 			isLoadingQuiz: true,
 			isQuizLoaded: false,
 		});
 	}
 	case LOAD_QUIZ_SUCCESS: {
-		console.log('LOAD_QUIZ_SUCCESS');
 		return Object.assign({}, state, {
 			questions: action.quiz.questions,
 			currentQuestionIndex: -1,
@@ -138,7 +137,6 @@ const quiz = (state = initialState, action) => {
 		});
 	}
 	case LOAD_QUIZ_ERROR: {
-		console.log('LOAD_QUIZ_ERROR');
 		return Object.assign({}, state, {
 			isLoadingQuiz: false,
 			isQuizLoaded: false,

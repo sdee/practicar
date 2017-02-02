@@ -63,10 +63,15 @@ function isIrregularHere(verb, pronoun, tense) {
 	return false;
 }
 
+function isReflexive(verb) {
+	return verb.endsWith('se');
+}
+
 function generateConjugation() {
 	const pronoun = choosePronoun();
 	const verb = chooseVerb();
 	const tense = chooseTense();
+	const reflexive = isReflexive(verb);
 	const question = {
 		pronoun: pronoun.name,
 		verb: verb,
@@ -75,6 +80,7 @@ function generateConjugation() {
 	question.mode = getMode(tense);
 	question.isIrregular = isIrregular(verb,
 		pronoun, tense, FILTER_BYCASE);
+	question.isReflexive = isReflexive(verb);
 	const key = generateKey(pronoun, tense);
 	const conjugation = conjugate(verb);
 	if (conjugation) {
