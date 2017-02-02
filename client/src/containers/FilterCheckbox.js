@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Checkbox } from 'react-bootstrap';
 import { setFilter } from '../actions';
 
-const FilterCheckbox = ({ dispatch, label, filter }) => {
+const FilterCheckbox = ({ dispatch, label, filter, defaultChecked }) => {
   let filterInput;
   return (
     <Checkbox
@@ -12,6 +12,7 @@ const FilterCheckbox = ({ dispatch, label, filter }) => {
         dispatch(setFilter(filter, filterInput.checked));
       }
       }
+      defaultChecked={defaultChecked}
     >
       {label}
     </Checkbox>
@@ -21,7 +22,12 @@ const FilterCheckbox = ({ dispatch, label, filter }) => {
 FilterCheckbox.propTypes = {
   dispatch: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
-  filter: PropTypes.string.isRequired
+  filter: PropTypes.string.isRequired,
+  defaultChecked: PropTypes.bool
+};
+
+FilterCheckbox.defaultProps = {
+  defaultChecked: false
 };
 
 export default connect()(FilterCheckbox);
