@@ -2,11 +2,11 @@
 
 	{
 		"name": "indicative", 
-		"tenses": ["present", "preterite", "imperfect", "conditional", "future"]
+		"tenses": ["present", "preterite", "imperfect", "future"]
 	},
 	{
 		"name": "subjunctive",
-		"tenses": ["present subjunctive", "imperfect subjunctive", "conditional subjunctive", "future subjunctive"]
+		"tenses": ["present subjunctive", "imperfect subjunctive", "future subjunctive"]
 	}
 
 ]
