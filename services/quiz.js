@@ -2,7 +2,7 @@ const conjugate = require('./conjugation');
 const verbs = require('../data/verbs.json');
 const pronouns = require('../data/pronouns.json');
 const tenses = require('../data/tenses.json');
-const modeMap = require('../data/mode-map.json');
+const moods = require('../data/moods.json');
 const irregularVerbs = require('../data/irregular-verbs.json');
 
 const FILTER_ALL = 1;
@@ -13,16 +13,21 @@ function chooseRandom(data) {
 	return data[Math.floor(Math.random() * data.length)];
 }
 
+function chooseMood() {
+	return chooseRandom(moods);
+}
+
+function chooseTense(mood) {
+	console.log(mood.tenses)
+	return chooseRandom(mood.tenses);
+}
+
 function chooseVerb() {
 	return chooseRandom(verbs);
 }
 
 function choosePronoun() {
 	return chooseRandom(pronouns);
-}
-
-function chooseTense() {
-	return chooseRandom(tenses);
 }
 
 function generateKey(pronoun, tense) {
@@ -67,15 +72,17 @@ function isReflexive(verb) {
 }
 
 function generateConjugation() {
+	const mood = chooseMood();
+	const tense = chooseTense(mood);
 	const pronoun = choosePronoun();
 	const verb = chooseVerb();
-	const tense = chooseTense();
 	const reflexive = isReflexive(verb);
 	const question = {
 		pronoun: pronoun.name,
 		verb: verb,
 		tense: tense.name
 	};
+
 	question.mode = getMode(tense);
 	question.isIrregular = isIrregular(verb,
 		pronoun, tense, FILTER_BYCASE);

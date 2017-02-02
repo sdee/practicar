@@ -23,9 +23,9 @@ function CustomOptions() {
 					<FormGroup>
 					</FormGroup>
 					<Panel header="Subjunctive">
-						<FilterCheckbox filter="ALLOW_PRESENT_SUBJ" label="present_subj" />
-						<FilterCheckbox filter="ALLOW_IMPERFECT_SUBJ" label="imperfect_subj" />						
-						<FilterCheckbox filter="ALLOW_FUTURE_SUBJ" label="future_subj" />
+						<FilterCheckbox filter="ALLOW_PRESENT_SUBJ" label="present" />
+						<FilterCheckbox filter="ALLOW_IMPERFECT_SUBJ" label="imperfect" />						
+						<FilterCheckbox filter="ALLOW_FUTURE_SUBJ" label="future" />
 					</Panel>
 				</FormGroup>
 			</Panel>

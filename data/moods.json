@@ -1,0 +1,12 @@
+[
+
+	{
+		"name": "indicative", 
+		"tenses": ["present", "preterite", "imperfect", "conditional", "future"]
+	},
+	{
+		"name": "subjunctive",
+		"tenses": ["present subjunctive", "imperfect subjunctive", "conditional subjunctive", "future subjunctive"]
+	}
+
+]
