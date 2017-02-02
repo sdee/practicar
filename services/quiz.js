@@ -30,7 +30,7 @@ function generateKey(pronoun, tense) {
 }
 
 function getMode(tense) {
-	return modeMap[tense.name];
+	return tense.mood;
 }
 
 function isIrregular(verb, pronoun, tense, filter) {

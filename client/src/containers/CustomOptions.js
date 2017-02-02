@@ -17,10 +17,15 @@ function CustomOptions() {
 				<FormGroup>
 					<Panel header="Indicative">
 						<FilterCheckbox filter="ALLOW_PRESENT" defaultChecked label="present" />
-						<FilterCheckbox filter="ALLOW_PRETERITE" label="preterite" />
 						<FilterCheckbox filter="ALLOW_IMPERFECT" label="imperfect" />
-						<FilterCheckbox filter="ALLOW_CONDITIONAL" label="conditional" />
 						<FilterCheckbox filter="ALLOW_FUTURE" label="future" />
+					</Panel>
+					<FormGroup>
+					</FormGroup>
+					<Panel header="Subjunctive">
+						<FilterCheckbox filter="ALLOW_PRESENT_SUBJ" label="present_subj" />
+						<FilterCheckbox filter="ALLOW_IMPERFECT_SUBJ" label="imperfect_subj" />						
+						<FilterCheckbox filter="ALLOW_FUTURE_SUBJ" label="future_subj" />
 					</Panel>
 				</FormGroup>
 			</Panel>
