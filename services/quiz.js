@@ -1,4 +1,5 @@
 const conjugate = require('./conjugation');
+const utils = require('./spanishUtils');
 const verbs = require('../data/verbs.json');
 const pronouns = require('../data/pronouns.json');
 const tenses = require('../data/tenses.json');
