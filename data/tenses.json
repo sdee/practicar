@@ -14,5 +14,22 @@
   {
     "name": "imperfect",
     "abbr": "cop"
+  },
+  {
+    "name": "present subjunctive",
+    "abbr": "pass"
+  },
+  {
+    "name": "imperfect subjunctive",
+    "abbr": "pass"
+  },
+  {
+    "name": "imperfect subjunctive 2",
+    "abbr": "pass2"
+  },
+  {
+    "name": "future subjunctive",
+    "abbr": "futs""
   }
+
 ]

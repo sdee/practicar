@@ -9,7 +9,6 @@ const FILTER_ALL = 1;
 const FILTER_NONE = 2;
 const FILTER_BYCASE = 3;
 
-
 function chooseRandom(data) {
 	return data[Math.floor(Math.random() * data.length)];
 }
