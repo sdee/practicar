@@ -34,9 +34,7 @@ function generateKey(pronoun, tense) {
 	return pronoun.code + tense.abbr;
 }
 
-function getMode(tense) {
-	return tense.mood;
-}
+
 
 function isIrregular(verb, pronoun, tense, filter) {
 	if (filter === FILTER_NONE) {
@@ -83,7 +81,6 @@ function generateConjugation() {
 		tense: tense.name
 	};
 
-	question.mode = getMode(tense);
 	question.isIrregular = isIrregular(verb,
 		pronoun, tense, FILTER_BYCASE);
 	question.isReflexive = isReflexive(verb);
