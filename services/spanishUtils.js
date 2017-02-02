@@ -123,6 +123,17 @@ var getRoot = function (verb) {
     return null;
 }
 
+
+var items = function(dict) {
+    var items = [];
+    for (var key in dict) {
+        if (dict.hasOwnProperty(key)) {
+            items.push([key, dict[key]]);
+        }
+    }
+    return items;
+}
+
 exports.conjugate2 = function (full_word) {
 	root = getRoot(full_word);
 	conjugations ={};
@@ -149,6 +160,27 @@ exports.conjugate2 = function (full_word) {
 	}
 	if (endsWith(base, "ar") || endsWith(base, "ár")) {
 		update(conjugations, addEndings(root, ar_endings));
-		return conjugations;
 	}
+
+	    if (isReflexive) {
+        var _items = items(conjugations);
+        for (var i = _items.length - 1; i >= 0; i--) {
+            var type = _items[i][0];
+            var form = _items[i][1];
+
+            if (type === "2imp") {
+                conjugations[type] = form + "te";
+                continue;
+            }
+
+            var index = +type.charAt(0);
+            if (isNaN(index)) {
+                continue;
+            }
+
+            conjugations[type] = [null, "me", "te", "se", "nos", "os", "se"][index] + " " + form;
+        }
+    }
+    return conjugations;	
+
 }

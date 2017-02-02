@@ -29,7 +29,6 @@ function getTenseByName(name) {
   	return correct_tense
 }
 
-
 function chooseTense(mood) {
 	tense_name = chooseRandom(mood.tenses);
 	tense = getTenseByName(tense_name);
@@ -93,15 +92,20 @@ function generateConjugation() {
 		tense: tense.name
 	};
 
-
 	question.isIrregular = isIrregular(verb,
 		pronoun, tense, FILTER_BYCASE);
 	question.isReflexive = isReflexive(verb);
 	const key = generateKey(pronoun, tense);
-
 	const conjugation = conjugate(verb);
 	if (conjugation) {
 		const answer = conjugation[key];
+		if (question.isIrregular) {
+		console.log("--------------");
+		console.log(verb);
+		c = utils.conjugate2(verb);
+		console.log("fake conj: "+c[key]);
+		console.log("answer: "+answer);
+	}
 		return {
 			question: question,
 			answer: answer
