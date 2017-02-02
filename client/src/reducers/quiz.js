@@ -73,7 +73,7 @@ const initialState = {
 	infinitive: '',
 	tense: '',
 	pronoun: '',
-	text: 'Get started by clicking \'next question\'!',
+	text: 'Get started by clicking \'Next Question\'!',
 	submittedAnswer: '',
 	showAnswer: false,
 	isCorrect: false,
