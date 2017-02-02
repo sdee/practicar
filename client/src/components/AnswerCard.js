@@ -3,8 +3,10 @@ import React, { PropTypes } from 'react';
 function AnswerCard({ answer }) {
 	return (
 		<div>
-			<section className="back">
-				{answer}
+			<section className="card back">
+        <div>
+          {answer}
+        </div>
 			</section>
 		</div>
 	);

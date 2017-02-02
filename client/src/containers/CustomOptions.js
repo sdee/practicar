@@ -7,41 +7,20 @@ function CustomOptions() {
 		<Panel header="">
 			<Panel header="Customize your lesson">
 				<FormGroup>
-					<FilterCheckbox filter="SET_IRREGULAR" inline>
-					allow irregular
-					</FilterCheckbox>
-					{' '}
-					<FilterCheckbox filter="SET_VOSOTROS" inline>
-					use vosotros
-					</FilterCheckbox>
-					{' '}
-					<FilterCheckbox filter="SET_REPEATS" inline>
-					allow repeats
-					</FilterCheckbox>
+					<FilterCheckbox filter="ALLOW_IRREGULAR" label="allow irregular" inline />
+					<FilterCheckbox filter="ALLOW_VOSOTROS" label="use vosotros" inline />
+					<FilterCheckbox filter="ALLOW_REPEATS" label="allow repeats" inline />
 				</FormGroup>
 			</Panel>
-			<Panel header="Choose tenses (advanced)">
+			<Panel header="Choose tenses">
 				<FormGroup>
-					<FilterCheckbox filter="SET_INDICATIVE">
-					indicative (all)
-					</FilterCheckbox>
-					{' '}
-					<FilterCheckbox filter="SET_PRESENT">
-					present
-					</FilterCheckbox>
-					{' '}
-					<FilterCheckbox filter="SET_PRETERITE">
-					preterite
-					</FilterCheckbox>
-					<FilterCheckbox filter="SET_IMPERFECT">
-					imperfect
-					</FilterCheckbox>
-					<FilterCheckbox filter="SET_CONDITIONAL">
-					conditional
-					</FilterCheckbox>
-					<FilterCheckbox filter="SET_FUTURE">
-					future
-					</FilterCheckbox>
+					<Panel header="Indicative">
+						<FilterCheckbox filter="ALLOW_PRESENT" defaultChecked label="present" />
+						<FilterCheckbox filter="ALLOW_PRETERITE" label="preterite" />
+						<FilterCheckbox filter="ALLOW_IMPERFECT" label="imperfect" />
+						<FilterCheckbox filter="ALLOW_CONDITIONAL" label="conditional" />
+						<FilterCheckbox filter="ALLOW_FUTURE" label="future" />
+					</Panel>
 				</FormGroup>
 			</Panel>
 		</Panel>

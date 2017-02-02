@@ -2,8 +2,10 @@ import React, { PropTypes } from 'react';
 
 function MessageCard({ msg }) {
 	return (<div>
-		<section className="front">
-			{msg}
+		<section className="card front">
+      <div>
+			 {msg}
+      </div>
 		</section>
 	</div>);
 }

@@ -30,8 +30,8 @@ export const Filters = {
 /*
  * action creators
  */
-export function setFilter(filter) {
-	return { type: SET_FILTER, filter };
+export function setFilter(filter, status) {
+	return { type: SET_FILTER, filter, status };
 }
 
 export function nextQuestion() {

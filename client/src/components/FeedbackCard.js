@@ -5,9 +5,11 @@ function FeedbackCard({ isCorrect, correctAnswer, submittedAnswer }) {
 	const displayAnswer = isCorrect ? correctAnswer : submittedAnswer;
 	return (
 		<div>
-			<section className="back">
-				<span className={userAnswerClass}>{displayAnswer}</span>
-				<span className="answer">{isCorrect ? '' : ` -> ${correctAnswer}`}</span>
+			<section className="card back">
+				<div>
+					<span className={userAnswerClass}>{displayAnswer}</span>
+					<span className="answer">{isCorrect ? '' : ` -> ${correctAnswer}`}</span>
+				</div>
 			</section>
 		</div>
 	);

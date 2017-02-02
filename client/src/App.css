@@ -53,22 +53,28 @@ article.flashcard label {
   width: 100%;
   height: 100%;
 }
-section {
+section.card {
   display: block;
   font: 30px 'Helvetica', sans-serif;
   text-align: center;
-  line-height: 200px;
   width: 100%;
   -webkit-transition: all 0.2s linear 0s;
   transition: all 0.2s linear 0s;
   overflow: hidden;
-    margin: 0px auto;
+  margin: 0 auto;
   border: 1px rgba(255, 255, 255, 0.03) solid;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   width: 100%;
-  max-width: 400px;
-  height: 100%;
-  max-height: 200px;
+  max-width: 500px;
+  max-height: 300px;
+  min-height: 300px;
+  position: relative;
+}
+section.card div {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 100%;
 }
 .front {
   color: #000000;

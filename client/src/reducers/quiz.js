@@ -1,5 +1,6 @@
-// import Immutable from 'immutable';
-import { NEXT_QUESTION, SHOW_ANSWER, SUBMIT_ANSWER, LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR } from '../actions';
+import { NEXT_QUESTION, SHOW_ANSWER, SUBMIT_ANSWER,
+	LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR,
+	SET_FILTER } from '../actions';
 
 // TODO: move this
 function accentsTidy(s) {
@@ -33,7 +34,37 @@ function checkUserAnswer(finalUserAnswer, finalCorrectAnswer) {
 	return finalUserAnswer === finalCorrectAnswer;
 }
 
-// const initialState = new Immutable.Map({
+function doesQuestionPassFilter(state, question) {
+	if (!question) {
+		return false;
+	}
+	if (!state.ALLOW_IRREGULAR && question.isIrregular) {
+		return false;
+	}
+	if (!state.ALLOW_VOSOTROS && question.pronoun === 'vosotros') {
+		return false;
+	}
+	if (!state.ALLOW_PRESENT && question.tense === 'present') {
+		return false;
+	}
+	if (!state.ALLOW_PRETERITE && question.tense === 'preterite') {
+		return false;
+	}
+	if (!state.ALLOW_IMPERFECT && question.tense === 'imperfect') {
+		return false;
+	}
+	if (!state.ALLOW_CONDITIONAL && question.tense === 'conditional') {
+		return false;
+	}
+	if (!state.ALLOW_FUTURE && question.tense === 'future') {
+		return false;
+	}
+	if (!state.ALLOW_REPEATS) {
+		// TODO: perform repeat check
+	}
+	return true;
+}
+
 const initialState = {
 	currentQuestionIndex: -1,
 	questions: [],
@@ -46,18 +77,30 @@ const initialState = {
 	submittedAnswer: '',
 	showAnswer: false,
 	isCorrect: false,
-	hasSubmittedAnswer: false
+	hasSubmittedAnswer: false,
+	ALLOW_PRESENT: true
 };
 
 const quiz = (state = initialState, action) => {
 	switch (action.type) {
 	case NEXT_QUESTION: {
-		let currQuestion = state.currentQuestionIndex + 1;
+		// TODO: do this somewhere better, not in reducer
 		const questions = state.questions;
-		if (currQuestion > questions.length) {
-			currQuestion = 0;
+		let currQuestion = state.currentQuestionIndex;
+		let question;
+		let numAttempts = 0;
+		while (!doesQuestionPassFilter(state, question)) {
+			currQuestion++;
+			if (currQuestion >= questions.length) {
+				currQuestion = 0;
+			}
+			question = questions[currQuestion].question;
+			numAttempts++;
+			if (numAttempts > questions.length) {
+				console.error('unable to generate a question with present filters');
+				return state;
+			}
 		}
-		const question = questions[currQuestion].question;
 		const answer = questions[currQuestion].answer;
 		console.log('NEXT_QUESTION');
 		return Object.assign({}, state, {
@@ -112,6 +155,11 @@ const quiz = (state = initialState, action) => {
 			finalAnswer: finalUserAnswer,
 			isCorrect: checkUserAnswer(finalUserAnswer, finalCorrectAnswer)
 		});
+	}
+	case SET_FILTER: {
+		const newState = Object.assign({}, state, {});
+		newState[action.filter] = action.status;
+		return newState;
 	}
 	default: {
 		return state;

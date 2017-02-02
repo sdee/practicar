@@ -3,10 +3,10 @@ import React, { PropTypes } from 'react';
 function VerbCard({ infinitive, pronoun, tense }) {
 	return (
 		<div>
-			<section className="front">
-				{pronoun},
-				<b>{infinitive}</b>
-				({tense})
+			<section className="card front">
+				<div>
+					{pronoun}, <b>{infinitive}</b> ({tense})
+				</div>
 			</section>
 		</div>
 	);
