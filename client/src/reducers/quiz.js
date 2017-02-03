@@ -113,6 +113,7 @@ function doesVerbPassSubjFilters(state, question) {
 		questions: [],
 		ignoreAccents: false,
 		correctAnswer: '',
+		irregularity: '',
 		infinitive: '',
 		tense: '',
 		pronoun: '',
@@ -156,7 +157,8 @@ function doesVerbPassSubjFilters(state, question) {
 			infinitive: question.verb,
 			tense: question.tense,
 			mode: question.mode,
-			correctAnswer: answer
+			correctAnswer: answer,
+			irregularity: question.irregularity
 		});
 	}
 	case SHOW_ANSWER: {
