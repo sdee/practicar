@@ -1,11 +1,12 @@
 const conjugate = require('./conjugation');
 const utils = require('./spanishUtils');
+var diff = require('fast-diff');
 const verbs = require('../data/verbs.json');
 const pronouns = require('../data/pronouns.json');
 const tenses = require('../data/tenses.json');
 const moods = require('../data/moods.json');
 const irregularVerbs = require('../data/irregular-verbs.json');
-
+var _ = require('underscore');
 
 const FILTER_ALL = 1;
 const FILTER_NONE = 2;
@@ -22,11 +23,11 @@ function chooseMood() {
 function getTenseByName(name) {
 	correct_tense = {};
 	tenses.forEach(function (tense) {
-  		if (tense.name===name) {
-  			correct_tense = tense;
-  		}
-  	});
-  	return correct_tense
+		if (tense.name===name) {
+			correct_tense = tense;
+		}
+	});
+	return correct_tense
 }
 
 function chooseTense(mood) {
@@ -76,6 +77,19 @@ function isIrregularHere(verb, pronoun, tense) {
 	return false;
 }
 
+function findIrregularity(verb, pronoun, tense, answer) {
+	const key = generateKey(pronoun, tense);
+	c = utils.conjugate2(verb);
+	var differences = diff(answer, c[key]);
+	var irregularity = _.find(differences, function(x) {return x[0]===-1;});
+	if (irregularity) {
+		return irregularity[1];
+	}
+	else {
+		return '';
+	}
+}
+
 function isReflexive(verb) {
 	return verb.endsWith('se');
 }
@@ -92,20 +106,18 @@ function generateConjugation() {
 		tense: tense.name
 	};
 
-	question.isIrregular = isIrregular(verb,
-		pronoun, tense, FILTER_BYCASE);
+	question.isIrregular = isIrregular(verb, pronoun, tense, FILTER_BYCASE);
 	question.isReflexive = isReflexive(verb);
 	const key = generateKey(pronoun, tense);
 	const conjugation = conjugate(verb);
 	if (conjugation) {
 		const answer = conjugation[key];
 		if (question.isIrregular) {
-		console.log("--------------");
-		console.log(verb);
-		c = utils.conjugate2(verb);
-		console.log("fake conj: "+c[key]);
-		console.log("answer: "+answer);
-	}
+			question.irregularity = findIrregularity(verb, pronoun, tense, answer);
+		}
+		else{
+			question.irregularity = '';
+		}
 		return {
 			question: question,
 			answer: answer
