@@ -52,6 +52,7 @@ QuizCard.propTypes = {
 	tense: PropTypes.string,
 	pronoun: PropTypes.string,
 	text: PropTypes.string,
+	mood: PropTypes.string,
 	irregularity: PropTypes.string
 };
 
@@ -65,6 +66,7 @@ QuizCard.defaultProps = {
 	tense: '',
 	pronoun: '',
 	text: '',
+	mood: '',
 	irregularity: ''
 };
 

@@ -49,13 +49,12 @@ function doesQuestionPassFilter(state, question) {
 	if (!state.ALLOW_REFLEXIVE && question.isReflexive) {
 		return false;
 	}
-	console.log(question);
 
-	if (question.mode === 'indicative' && !doesVerbPassIndicativeFilters(state, question)) {
+	if (question.mood === 'indicative' && !doesVerbPassIndicativeFilters(state, question)) {
 		return false;
 	}
 
-	if (question.mode === 'subjunctive' && !doesVerbPassSubjFilters(state, question)) {
+	if (question.mood === 'subjunctive' && !doesVerbPassSubjFilters(state, question)) {
 		return false;
 	}
 	
@@ -116,6 +115,7 @@ function doesVerbPassSubjFilters(state, question) {
 		irregularity: '',
 		infinitive: '',
 		tense: '',
+		mood: '',
 		pronoun: '',
 		text: 'Get started by clicking \'next question\'!',
 		submittedAnswer: '',
@@ -156,7 +156,7 @@ function doesVerbPassSubjFilters(state, question) {
 			pronoun: question.pronoun,
 			infinitive: question.verb,
 			tense: question.tense,
-			mode: question.mode,
+			mood: question.mood,
 			correctAnswer: answer,
 			irregularity: question.irregularity
 		});

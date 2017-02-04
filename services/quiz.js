@@ -103,6 +103,7 @@ function generateConjugation() {
 	const question = {
 		pronoun: pronoun.name,
 		verb: verb,
+		mood: mood.name,
 		tense: tense.name
 	};
 
