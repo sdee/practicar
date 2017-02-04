@@ -1,7 +1,7 @@
 [
 
 	{
-		"name": "indicative", 
+		"name": "indicative",
 		"tenses": ["present", "preterite", "imperfect", "future"]
 	},
 	{
