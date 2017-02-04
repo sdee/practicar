@@ -2,7 +2,7 @@ import { NEXT_QUESTION, SHOW_ANSWER, SUBMIT_ANSWER,
 	LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR,
 	SET_FILTER } from '../actions';
 
-	import _ from 'underscore';
+import _ from 'underscore';
 
 // TODO: move this
 function accentsTidy(s) {
@@ -40,7 +40,7 @@ function doesQuestionPassFilter(state, question) {
 	if (!question) {
 		return false;
 	}
-		if (!state.ALLOW_IRREGULAR && question.isIrregular) {
+	if (!state.ALLOW_IRREGULAR && question.isIrregular) {
 		return false;
 	}
 	if (!state.ALLOW_VOSOTROS && question.pronoun === 'vosotros') {
@@ -58,7 +58,7 @@ function doesQuestionPassFilter(state, question) {
 	if (question.mode === 'subjunctive' && !doesVerbPassSubjFilters(state, question)) {
 		return false;
 	}
-	
+
 	if (!state.ALLOW_REPEATS) {
 		// TODO: perform repeat check
 	}
@@ -90,44 +90,44 @@ function doesVerbPassIndicativeFilters(state, question) {
 
 function doesVerbPassSubjFilters(state, question) {
 	//should read this from data
-	console.log("subj fiter");
+	console.log("subj filter");
 	console.log(state);
 
 	if (!_.contains(['present subjunctive', 'imperfect subjunctive', 'future subjunctive'], question.tense)){
 		return false;
 	}
-		if (!state.ALLOW_PRESENT_SUBJ && question.tense === 'present subjunctive') {
-			return false;
-		}
-		if (!state.ALLOW_IMPERFECT_SUBJ && question.tense === 'imperfect subjunctive') {
-			return false;
-		}
-		if (!state.ALLOW_FUTURE_SUBJ && question.tense ==='future subjunctive') {
-			return false;
-		}
-		return true;
+	if (!state.ALLOW_PRESENT_SUBJ && question.tense === 'present subjunctive') {
+		return false;
 	}
+	if (!state.ALLOW_IMPERFECT_SUBJ && question.tense === 'imperfect subjunctive') {
+		return false;
+	}
+	if (!state.ALLOW_FUTURE_SUBJ && question.tense ==='future subjunctive') {
+		return false;
+	}
+	return true;
+}
 
-	const initialState = {
-		currentQuestionIndex: -1,
-		questions: [],
-		ignoreAccents: false,
-		correctAnswer: '',
-		irregularity: '',
-		infinitive: '',
-		tense: '',
-		pronoun: '',
-		text: 'Get started by clicking \'next question\'!',
-		submittedAnswer: '',
-		showAnswer: false,
-		isCorrect: false,
-		hasSubmittedAnswer: false,
-		ALLOW_PRESENT: true
-	};
+const initialState = {
+	currentQuestionIndex: -1,
+	questions: [],
+	ignoreAccents: false,
+	correctAnswer: '',
+	irregularity: '',
+	infinitive: '',
+	tense: '',
+	pronoun: '',
+	text: 'Get started by clicking \'next question\'!',
+	submittedAnswer: '',
+	showAnswer: false,
+	isCorrect: false,
+	hasSubmittedAnswer: false,
+	ALLOW_PRESENT: true
+};
 
-	const quiz = (state = initialState, action) => {
-		switch (action.type) {
-			case NEXT_QUESTION: {
+const quiz = (state = initialState, action) => {
+	switch (action.type) {
+	case NEXT_QUESTION: {
 		// TODO: do this somewhere better, not in reducer
 		const questions = state.questions;
 		let currQuestion = state.currentQuestionIndex;
@@ -204,7 +204,7 @@ function doesVerbPassSubjFilters(state, question) {
 	default: {
 		return state;
 	}
-}
+	}
 };
 
 export default quiz;
