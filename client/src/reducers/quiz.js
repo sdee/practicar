@@ -2,7 +2,7 @@ import { NEXT_QUESTION, SHOW_ANSWER, SUBMIT_ANSWER,
 	LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR,
 	SET_FILTER } from '../actions';
 
-	import _ from 'underscore';
+import _ from 'underscore';
 
 // TODO: move this
 function accentsTidy(s) {
@@ -40,7 +40,7 @@ function doesQuestionPassFilter(state, question) {
 	if (!question) {
 		return false;
 	}
-		if (!state.ALLOW_IRREGULAR && question.isIrregular) {
+	if (!state.ALLOW_IRREGULAR && question.isIrregular) {
 		return false;
 	}
 	if (!state.ALLOW_VOSOTROS && question.pronoun === 'vosotros') {
@@ -57,7 +57,7 @@ function doesQuestionPassFilter(state, question) {
 	if (question.mood === 'subjunctive' && !doesVerbPassSubjFilters(state, question)) {
 		return false;
 	}
-	
+
 	if (!state.ALLOW_REPEATS) {
 		// TODO: perform repeat check
 	}
@@ -89,7 +89,7 @@ function doesVerbPassIndicativeFilters(state, question) {
 
 function doesVerbPassSubjFilters(state, question) {
 	//should read this from data
-	console.log("subj fiter");
+	console.log("subj filter");
 	console.log(state);
 
 	if (!_.contains(['present subjunctive', 'imperfect subjunctive', 'future subjunctive'], question.tense)){
@@ -204,7 +204,7 @@ function doesVerbPassSubjFilters(state, question) {
 	default: {
 		return state;
 	}
-}
+	}
 };
 
 export default quiz;

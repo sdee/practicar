@@ -3,7 +3,7 @@ Utilities to supplement conjugation library.
 */
 
 
-/*shows what a verb would look like if it wasn't irregular. wraps the conjugation logic from the conjuation library 
+/*shows what a verb would look like if it wasn't irregular. wraps the conjugation logic from the conjuation library
 but decouples from irregularity.
 */
 
@@ -181,6 +181,6 @@ exports.conjugate2 = function (full_word) {
             conjugations[type] = [null, "me", "te", "se", "nos", "os", "se"][index] + " " + form;
         }
     }
-    return conjugations;	
+    return conjugations;
 
 }
