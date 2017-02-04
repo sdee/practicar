@@ -13,22 +13,6 @@ export const LOAD_QUIZ_ERROR = 'LOAD_QUIZ_ERROR';
 export const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
 
 /*
- * other constants
- */
-export const Filters = {
-	SET_REPEATS: 'SET_REPEATS',
-	SET_VOSOTROS: 'SET_VOSOTROS',
-	SET_REFLEXIVE: 'SET_REFLEXIVE',
-	SET_IRREGULAR: 'SET_IRREGULAR',
-	SET_INDICATIVE: 'SET_INDICATIVE',
-	SET_PRESENT: 'SET_PRESENT',
-	SET_PRETERITE: 'SET_PRETERITE',
-	SET_IMPERFECT: 'SET_IMPERFECT',
-	SET_CONDITIONAL: 'SET_CONDITIONAL',
-	SET_FUTURE: 'SET_FUTURE'
-};
-
-/*
  * action creators
  */
 export function setFilter(filter, status) {

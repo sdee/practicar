@@ -17,8 +17,7 @@ function shouldShowAnswerCard(props) {
 	return props.infinitive && props.showAnswer === true;
 }
 
-function QuizCard(props) {	
-
+function QuizCard(props) {
 	if (shouldShowFeedbackCard(props)) {
 		return (
 			<FeedbackCard
@@ -33,7 +32,6 @@ function QuizCard(props) {
 		);
 	} else if (shouldShowAnswerCard(props)) {
 		return (
-
 			<AnswerCard answer={props.correctAnswer} irregularity={props.irregularity} />
 		);
 	}

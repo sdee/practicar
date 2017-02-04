@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 function createMarkup(answer, irregularity) {
-	var msg = [];
+	let msg = [];
 	if (irregularity.length > 0) {
 		const i = answer.indexOf(irregularity);
 		const j = i+irregularity.length;
@@ -12,7 +12,7 @@ function createMarkup(answer, irregularity) {
 	else {
 		msg = [answer];
 	}
-	return {__html: msg.join("")};
+	return {__html: msg.join('')};
 }
 
 function AnswerCard({ answer, irregularity }) {

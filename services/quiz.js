@@ -1,12 +1,12 @@
 const conjugate = require('./conjugation');
 const utils = require('./spanishUtils');
-var diff = require('fast-diff');
+const diff = require('fast-diff');
 const verbs = require('../data/verbs.json');
 const pronouns = require('../data/pronouns.json');
 const tenses = require('../data/tenses.json');
 const moods = require('../data/moods.json');
 const irregularVerbs = require('../data/irregular-verbs.json');
-var _ = require('underscore');
+const _ = require('underscore');
 
 const FILTER_ALL = 1;
 const FILTER_NONE = 2;
@@ -21,18 +21,18 @@ function chooseMood() {
 }
 
 function getTenseByName(name) {
-	correct_tense = {};
+	let correctTense = {};
 	tenses.forEach(function (tense) {
 		if (tense.name === name) {
-			correct_tense = tense;
+			correctTense = tense;
 		}
 	});
-	return correct_tense
+	return correctTense
 }
 
 function chooseTense(mood) {
-	tense_name = chooseRandom(mood.tenses);
-	tense = getTenseByName(tense_name);
+	const tenseName = chooseRandom(mood.tenses);
+	tense = getTenseByName(tenseName);
 	return tense;
 }
 

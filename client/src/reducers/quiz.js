@@ -102,7 +102,7 @@ function doesVerbPassSubjFilters(state, question) {
 	if (!state.ALLOW_IMPERFECT_SUBJ && question.tense === 'imperfect subjunctive') {
 		return false;
 	}
-	if (!state.ALLOW_FUTURE_SUBJ && question.tense ==='future subjunctive') {
+	if (!state.ALLOW_FUTURE_SUBJ && question.tense === 'future subjunctive') {
 		return false;
 	}
 	return true;
