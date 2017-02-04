@@ -23,7 +23,7 @@ function chooseMood() {
 function getTenseByName(name) {
 	correct_tense = {};
 	tenses.forEach(function (tense) {
-		if (tense.name===name) {
+		if (tense.name === name) {
 			correct_tense = tense;
 		}
 	});
@@ -81,7 +81,7 @@ function findIrregularity(verb, pronoun, tense, answer) {
 	const key = generateKey(pronoun, tense);
 	c = utils.conjugate2(verb);
 	var differences = diff(answer, c[key]);
-	var irregularity = _.find(differences, function(x) {return x[0]===-1;});
+	var irregularity = _.find(differences, function(x) {return x[0] === -1;});
 	if (irregularity) {
 		return irregularity[1];
 	}
