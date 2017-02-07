@@ -32,7 +32,7 @@ function QuizCard(props) {
 		);
 	} else if (shouldShowAnswerCard(props)) {
 		return (
-			<AnswerCard answer={props.correctAnswer} />
+			<AnswerCard answer={props.correctAnswer} irregularity={props.irregularity} />
 		);
 	}
 	return (
@@ -49,7 +49,9 @@ QuizCard.propTypes = {
 	correctAnswer: PropTypes.string,
 	tense: PropTypes.string,
 	pronoun: PropTypes.string,
-	text: PropTypes.string
+	text: PropTypes.string,
+	mood: PropTypes.string,
+	irregularity: PropTypes.string
 };
 
 QuizCard.defaultProps = {
@@ -61,7 +63,9 @@ QuizCard.defaultProps = {
 	answer: '',
 	tense: '',
 	pronoun: '',
-	text: ''
+	text: '',
+	mood: '',
+	irregularity: ''
 };
 
 export default QuizCard;

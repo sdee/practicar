@@ -1,17 +1,39 @@
+const _ = require('underscore');
+const diff = require('fast-diff');
 const conjugate = require('./conjugation');
+const utils = require('./spanish-utils');
 const verbs = require('../data/verbs.json');
 const pronouns = require('../data/pronouns.json');
 const tenses = require('../data/tenses.json');
-const modeMap = require('../data/mode-map.json');
+const moods = require('../data/moods.json');
 const irregularVerbs = require('../data/irregular-verbs.json');
 
 const FILTER_ALL = 1;
 const FILTER_NONE = 2;
 const FILTER_BYCASE = 3;
 
-
 function chooseRandom(data) {
 	return data[Math.floor(Math.random() * data.length)];
+}
+
+function chooseMood() {
+	return chooseRandom(moods);
+}
+
+function getTenseByName(name) {
+	let correctTense = {};
+	tenses.forEach(function (tense) {
+		if (tense.name === name) {
+			correctTense = tense;
+		}
+	});
+	return correctTense
+}
+
+function chooseTense(mood) {
+	const tenseName = chooseRandom(mood.tenses);
+	tense = getTenseByName(tenseName);
+	return tense;
 }
 
 function chooseVerb() {
@@ -22,16 +44,8 @@ function choosePronoun() {
 	return chooseRandom(pronouns);
 }
 
-function chooseTense() {
-	return chooseRandom(tenses);
-}
-
 function generateKey(pronoun, tense) {
 	return pronoun.code + tense.abbr;
-}
-
-function getMode(tense) {
-	return modeMap[tense.name];
 }
 
 function isIrregular(verb, pronoun, tense, filter) {
@@ -63,22 +77,48 @@ function isIrregularHere(verb, pronoun, tense) {
 	return false;
 }
 
+function findIrregularity(verb, pronoun, tense, answer) {
+	const key = generateKey(pronoun, tense);
+	const c = utils.conjugate2(verb);
+	const differences = diff(answer, c[key]);
+	const irregularity = _.find(differences, function(x) {return x[0] === -1;});
+	if (irregularity) {
+		return irregularity[1];
+	}
+	else {
+		return '';
+	}
+}
+
+function isReflexive(verb) {
+	return verb.endsWith('se');
+}
+
 function generateConjugation() {
+	const mood = chooseMood();
+	const tense = chooseTense(mood);
 	const pronoun = choosePronoun();
 	const verb = chooseVerb();
-	const tense = chooseTense();
+	const reflexive = isReflexive(verb);
 	const question = {
 		pronoun: pronoun.name,
 		verb: verb,
+		mood: mood.name,
 		tense: tense.name
 	};
-	question.mode = getMode(tense);
-	question.isIrregular = isIrregular(verb,
-		pronoun, tense, FILTER_BYCASE);
+
+	question.isIrregular = isIrregular(verb, pronoun, tense, FILTER_BYCASE);
+	question.isReflexive = isReflexive(verb);
 	const key = generateKey(pronoun, tense);
 	const conjugation = conjugate(verb);
 	if (conjugation) {
 		const answer = conjugation[key];
+		if (question.isIrregular) {
+			question.irregularity = findIrregularity(verb, pronoun, tense, answer);
+		}
+		else{
+			question.irregularity = '';
+		}
 		return {
 			question: question,
 			answer: answer
@@ -93,7 +133,7 @@ function generateQuiz(numQuestions=100) {
 	};
 	while (quiz.questions.length < numQuestions) {
 		const question = generateConjugation();
-		// check uniqueness
+		// TODO: check uniqueness
 		if (question) {
 			quiz.questions.push(question);
 		}

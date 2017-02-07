@@ -95,4 +95,6 @@ section.card div {
 .answer {
   color: black;
 }
-
+.irregularity {
+  color: red;
+}

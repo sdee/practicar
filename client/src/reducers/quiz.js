@@ -2,6 +2,8 @@ import { NEXT_QUESTION, SHOW_ANSWER, SUBMIT_ANSWER,
 	LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR,
 	SET_FILTER } from '../actions';
 
+	import _ from 'underscore';
+
 // TODO: move this
 function accentsTidy(s) {
 	let r = s.toLowerCase();
@@ -44,6 +46,29 @@ function doesQuestionPassFilter(state, question) {
 	if (!state.ALLOW_VOSOTROS && question.pronoun === 'vosotros') {
 		return false;
 	}
+	if (!state.ALLOW_REFLEXIVE && question.isReflexive) {
+		return false;
+	}
+
+	if (question.mood === 'indicative' && !doesVerbPassIndicativeFilters(state, question)) {
+		return false;
+	}
+
+	if (question.mood === 'subjunctive' && !doesVerbPassSubjFilters(state, question)) {
+		return false;
+	}
+
+	if (!state.ALLOW_REPEATS) {
+		// TODO: perform repeat check
+	}
+	return true;
+}
+
+function doesVerbPassIndicativeFilters(state, question) {
+	if (!_.contains(['present', 'preterite', 'imperfect', 'conditional', 'future'], question.tense)){
+		return false;
+	}
+
 	if (!state.ALLOW_PRESENT && question.tense === 'present') {
 		return false;
 	}
@@ -59,8 +84,25 @@ function doesQuestionPassFilter(state, question) {
 	if (!state.ALLOW_FUTURE && question.tense === 'future') {
 		return false;
 	}
-	if (!state.ALLOW_REPEATS) {
-		// TODO: perform repeat check
+	return true;
+}
+
+function doesVerbPassSubjFilters(state, question) {
+	//should read this from data
+	console.log("subj filter");
+	console.log(state);
+
+	if (!_.contains(['present subjunctive', 'imperfect subjunctive', 'future subjunctive'], question.tense)){
+		return false;
+	}
+	if (!state.ALLOW_PRESENT_SUBJ && question.tense === 'present subjunctive') {
+		return false;
+	}
+	if (!state.ALLOW_IMPERFECT_SUBJ && question.tense === 'imperfect subjunctive') {
+		return false;
+	}
+	if (!state.ALLOW_FUTURE_SUBJ && question.tense ==='future subjunctive') {
+		return false;
 	}
 	return true;
 }
@@ -70,10 +112,12 @@ const initialState = {
 	questions: [],
 	ignoreAccents: false,
 	correctAnswer: '',
+	irregularity: '',
 	infinitive: '',
 	tense: '',
+	mood: '',
 	pronoun: '',
-	text: 'Get started by clicking \'Next Question\'!',
+	text: 'Get started by clicking \'next question\'!',
 	submittedAnswer: '',
 	showAnswer: false,
 	isCorrect: false,
@@ -102,7 +146,6 @@ const quiz = (state = initialState, action) => {
 			}
 		}
 		const answer = questions[currQuestion].answer;
-		console.log('NEXT_QUESTION');
 		return Object.assign({}, state, {
 			currentQuestionIndex: currQuestion,
 			hasSubmittedAnswer: false,
@@ -113,23 +156,21 @@ const quiz = (state = initialState, action) => {
 			pronoun: question.pronoun,
 			infinitive: question.verb,
 			tense: question.tense,
-			mode: question.mode,
-			correctAnswer: answer
+			mood: question.mood,
+			correctAnswer: answer,
+			irregularity: question.irregularity
 		});
 	}
 	case SHOW_ANSWER: {
-		console.log('SHOW_ANSWER');
 		return Object.assign({}, state, { showAnswer: true });
 	}
 	case LOAD_QUIZ: {
-		console.log('LOAD_QUIZ');
 		return Object.assign({}, state, {
 			isLoadingQuiz: true,
 			isQuizLoaded: false,
 		});
 	}
 	case LOAD_QUIZ_SUCCESS: {
-		console.log('LOAD_QUIZ_SUCCESS');
 		return Object.assign({}, state, {
 			questions: action.quiz.questions,
 			currentQuestionIndex: -1,
@@ -138,7 +179,6 @@ const quiz = (state = initialState, action) => {
 		});
 	}
 	case LOAD_QUIZ_ERROR: {
-		console.log('LOAD_QUIZ_ERROR');
 		return Object.assign({}, state, {
 			isLoadingQuiz: false,
 			isQuizLoaded: false,
@@ -164,7 +204,7 @@ const quiz = (state = initialState, action) => {
 	default: {
 		return state;
 	}
-	}
+}
 };
 
 export default quiz;

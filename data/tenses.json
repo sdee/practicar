@@ -1,18 +1,43 @@
 [
   {
     "name": "present",
-    "abbr": "pre"
+    "abbr": "pre",
+    "mood": "indicative"
   },
   {
     "name": "preterite",
-    "abbr": "pas"
+    "abbr": "pas",
+    "mood": "indicative"
   },
   {
     "name": "future",
-    "abbr": "fut"
+    "abbr": "fut",
+    "mood": "indicative"
   },
   {
     "name": "imperfect",
-    "abbr": "cop"
+    "abbr": "cop",
+    "mood": "indicative"
+  },
+  {
+    "name": "present subjunctive",
+    "abbr": "pass",
+    "mood": "subjunctive"
+  },
+  {
+    "name": "imperfect subjunctive",
+    "abbr": "pass",
+    "mood": "subjunctive"
+  },
+  {
+    "name": "imperfect subjunctive 2",
+    "abbr": "pass2",
+    "mood": "subjunctive"
+  },
+  {
+    "name": "future subjunctive",
+    "abbr": "futs",
+    "mood": "subjunctive"
   }
+
 ]
