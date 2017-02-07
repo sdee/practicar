@@ -1,12 +1,12 @@
-const conjugate = require('./conjugation');
-const utils = require('./spanishUtils');
+const _ = require('underscore');
 const diff = require('fast-diff');
+const conjugate = require('./conjugation');
+const utils = require('./spanish-utils');
 const verbs = require('../data/verbs.json');
 const pronouns = require('../data/pronouns.json');
 const tenses = require('../data/tenses.json');
 const moods = require('../data/moods.json');
 const irregularVerbs = require('../data/irregular-verbs.json');
-const _ = require('underscore');
 
 const FILTER_ALL = 1;
 const FILTER_NONE = 2;
@@ -133,7 +133,7 @@ function generateQuiz(numQuestions=100) {
 	};
 	while (quiz.questions.length < numQuestions) {
 		const question = generateConjugation();
-		// check uniqueness
+		// TODO: check uniqueness
 		if (question) {
 			quiz.questions.push(question);
 		}
