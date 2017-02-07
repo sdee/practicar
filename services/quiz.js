@@ -48,6 +48,15 @@ function generateKey(pronoun, tense) {
 	return pronoun.code + tense.abbr;
 }
 
+function generateKeyByName(pronounName, tenseName) {
+	const pronoun = _.findWhere(pronouns, { name: pronounName });
+	const tense = _.findWhere(tenses, { name: tenseName });
+	if (pronoun && tense) {
+		return generateKey(pronoun, tense);
+	}
+	return null;
+}
+
 function isIrregular(verb, pronoun, tense, filter) {
 	if (filter === FILTER_NONE) {
 		return isIrregularEver(verb);
@@ -94,7 +103,27 @@ function isReflexive(verb) {
 	return verb.endsWith('se');
 }
 
-function generateConjugation() {
+function generateConjugationByName(verb, pronounName, tenseName) {
+	const key = generateKeyByName(pronounName, tenseName);
+	if (key) {
+		const conjugation = conjugate(verb);
+		if (conjugation) {
+			return conjugation[key];
+		}
+	}
+	return null;
+}
+
+function generateConjugation(verb, pronoun, tense) {
+	const key = generateKey(pronoun, tense);
+	const conjugation = conjugate(verb);
+	if (conjugation) {
+		return conjugation[key];
+	}
+	return null;
+}
+
+function generateQuestion() {
 	const mood = chooseMood();
 	const tense = chooseTense(mood);
 	const pronoun = choosePronoun();
@@ -104,20 +133,16 @@ function generateConjugation() {
 		pronoun: pronoun.name,
 		verb: verb,
 		mood: mood.name,
-		tense: tense.name
+		tense: tense.name,
+		reflexive: reflexive,
+		isIrregular: isIrregular(verb, pronoun, tense, FILTER_BYCASE),
+		irregularity: ''
 	};
 
-	question.isIrregular = isIrregular(verb, pronoun, tense, FILTER_BYCASE);
-	question.isReflexive = isReflexive(verb);
-	const key = generateKey(pronoun, tense);
-	const conjugation = conjugate(verb);
-	if (conjugation) {
-		const answer = conjugation[key];
+	const answer = generateConjugation(verb, pronoun, tense);
+	if (answer) {
 		if (question.isIrregular) {
 			question.irregularity = findIrregularity(verb, pronoun, tense, answer);
-		}
-		else{
-			question.irregularity = '';
 		}
 		return {
 			question: question,
@@ -132,7 +157,7 @@ function generateQuiz(numQuestions=100) {
 		questions: []
 	};
 	while (quiz.questions.length < numQuestions) {
-		const question = generateConjugation();
+		const question = generateQuestion();
 		// TODO: check uniqueness
 		if (question) {
 			quiz.questions.push(question);
@@ -142,3 +167,4 @@ function generateQuiz(numQuestions=100) {
 }
 
 module.exports.generateQuiz = generateQuiz;
+module.exports.generateConjugationByName = generateConjugationByName;
