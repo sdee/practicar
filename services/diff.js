@@ -37,8 +37,8 @@ for(let i = 0; i < ITERATIONS; ++i) {
 
 console.log('Running tests *with* cursor information');
 for(let i = 0; i < ITERATIONS; ++i) {
-  const cursor_pos = Math.floor(random() * strings[i].length + 1);
-  const diffs = diff(strings[i], strings[i+1], cursor_pos);
+  const cursorPos = Math.floor(random() * strings[i].length + 1);
+  const diffs = diff(strings[i], strings[i+1], cursorPos);
   const patch = gdiff.patch_make(strings[i], strings[i+1], diffs);
   const expected = gdiff.patch_apply(patch, strings[i])[0];
   if (expected !== strings[i+1]) {
