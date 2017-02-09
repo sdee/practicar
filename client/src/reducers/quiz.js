@@ -1,8 +1,7 @@
+import _ from 'underscore';
 import { NEXT_QUESTION, SHOW_ANSWER, SUBMIT_ANSWER,
 	LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR,
 	SET_FILTER } from '../actions';
-
-	import _ from 'underscore';
 
 // TODO: move this
 function accentsTidy(s) {
