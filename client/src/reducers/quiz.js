@@ -50,10 +50,6 @@ function doesQuestionPassFilter(state, question) {
 		return false;
 	}
 
-	if (!state.ALLOW_IMPERATIVE && question.mood === 'imperative') {
-		return false;
-	}
-
 	if (question.mood === 'indicative' && !doesVerbPassIndicativeFilters(state, question)) {
 		return false;
 	}
