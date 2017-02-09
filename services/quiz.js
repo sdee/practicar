@@ -119,7 +119,7 @@ function generateQuestion() {
 		verb: verb,
 		mood: moodTense.mood,
 		tense: moodTense.tense,
-		reflexive: reflexive,
+		isReflexive: reflexive,
 		isIrregular: isIrregular(verb, pronoun, moodTense, FILTER_BYCASE),
 		irregularity: ''
 	};

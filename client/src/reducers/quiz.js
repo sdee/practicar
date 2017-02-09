@@ -128,6 +128,10 @@ const quiz = (state = initialState, action) => {
 	case NEXT_QUESTION: {
 		// TODO: do this somewhere better, not in reducer
 		const questions = state.questions;
+		if (questions.length === 0) {
+			console.error('cannot fetch next question, questions not loaded');
+			return state;
+		}
 		let currQuestion = state.currentQuestionIndex;
 		let question;
 		let numAttempts = 0;
@@ -150,13 +154,14 @@ const quiz = (state = initialState, action) => {
 			submittedAnswer: '',
 			isCorrect: false,
 			showAnswer: false,
-			irregular: question.isIrregular,
+			isIrregular: question.isIrregular,
 			pronoun: question.pronoun,
 			infinitive: question.verb,
 			tense: question.tense,
 			mood: question.mood,
 			correctAnswer: answer,
-			irregularity: question.irregularity
+			irregularity: question.irregularity,
+			isReflexive: question.isReflexive
 		});
 	}
 	case SHOW_ANSWER: {
