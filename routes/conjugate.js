@@ -6,8 +6,13 @@ router.get('/:verb', function(req, res, next) {
   const verb = req.params.verb;
   const pronoun = req.query.pronoun;
   const tense = req.query.tense;
+  let mood = req.query.mood;
   if (verb && pronoun && tense) {
-    const conj = quiz.generateConjugationByName(verb, pronoun, tense);
+    if (!mood) {
+      // mood defaults to indicative when not included
+      mood = 'indicative';
+    }
+    const conj = quiz.generateConjugationByName(verb, pronoun, tense, mood);
     if (conj) {
       return res.json(conj);
     }

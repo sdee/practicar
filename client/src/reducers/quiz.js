@@ -50,6 +50,10 @@ function doesQuestionPassFilter(state, question) {
 		return false;
 	}
 
+	if (!state.ALLOW_IMPERATIVE && question.mood === 'imperative') {
+		return false;
+	}
+
 	if (question.mood === 'indicative' && !doesVerbPassIndicativeFilters(state, question)) {
 		return false;
 	}
@@ -65,43 +69,42 @@ function doesQuestionPassFilter(state, question) {
 }
 
 function doesVerbPassIndicativeFilters(state, question) {
-	if (!_.contains(['present', 'preterite', 'imperfect', 'conditional', 'future'], question.tense)){
+	if (question.mood !== 'indicative') {
 		return false;
 	}
 
-	if (!state.ALLOW_PRESENT && question.tense === 'present') {
+	if (!state.ALLOW_PRESENT_IND && question.tense === 'present') {
 		return false;
 	}
-	if (!state.ALLOW_PRETERITE && question.tense === 'preterite') {
+	if (!state.ALLOW_PRETERITE_IND && question.tense === 'preterite') {
 		return false;
 	}
-	if (!state.ALLOW_IMPERFECT && question.tense === 'imperfect') {
+	if (!state.ALLOW_IMPERFECT_IND && question.tense === 'imperfect') {
 		return false;
 	}
-	if (!state.ALLOW_CONDITIONAL && question.tense === 'conditional') {
+	if (!state.ALLOW_CONDITIONAL_IND && question.tense === 'conditional') {
 		return false;
 	}
-	if (!state.ALLOW_FUTURE && question.tense === 'future') {
+	if (!state.ALLOW_FUTURE_IND && question.tense === 'future') {
 		return false;
 	}
 	return true;
 }
 
 function doesVerbPassSubjFilters(state, question) {
-	//should read this from data
-	console.log("subj filter");
-	console.log(state);
-
-	if (!_.contains(['present subjunctive', 'imperfect subjunctive', 'future subjunctive'], question.tense)){
+	if (question.mood !== 'subjunctive') {
 		return false;
 	}
-	if (!state.ALLOW_PRESENT_SUBJ && question.tense === 'present subjunctive') {
+	if (!state.ALLOW_PRESENT_SUBJ && question.tense === 'present') {
 		return false;
 	}
-	if (!state.ALLOW_IMPERFECT_SUBJ && question.tense === 'imperfect subjunctive') {
+	if (!state.ALLOW_IMPERFECT_SUBJ && question.tense === 'imperfect') {
 		return false;
 	}
-	if (!state.ALLOW_FUTURE_SUBJ && question.tense ==='future subjunctive') {
+	if (!state.ALLOW_IMPERFECT_SUBJ && question.tense === 'imperfect2') {
+		return false;
+	}
+	if (!state.ALLOW_FUTURE_SUBJ && question.tense ==='future') {
 		return false;
 	}
 	return true;
@@ -122,7 +125,7 @@ const initialState = {
 	showAnswer: false,
 	isCorrect: false,
 	hasSubmittedAnswer: false,
-	ALLOW_PRESENT: true
+	ALLOW_PRESENT_IND: true
 };
 
 const quiz = (state = initialState, action) => {

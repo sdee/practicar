@@ -28,7 +28,12 @@ function QuizCard(props) {
 		);
 	} else if (shouldShowVerbCard(props)) {
 		return (
-			<VerbCard pronoun={props.pronoun} infinitive={props.infinitive} tense={props.tense} />
+			<VerbCard
+				pronoun={props.pronoun}
+				infinitive={props.infinitive}
+				tense={props.tense}
+				mood={props.mood}
+			/>
 		);
 	} else if (shouldShowAnswerCard(props)) {
 		return (

@@ -1,0 +1,47 @@
+[
+  {
+    "tense": "present",
+    "mood": "indicative",
+    "code": "pre"
+  },
+  {
+    "tense": "preterite",
+    "mood": "indicative",
+    "code": "pas"
+  },
+  {
+    "tense": "imperfect",
+    "mood": "indicative",
+    "code": "cop"
+  },
+  {
+    "tense": "conditional",
+    "mood": "indicative",
+    "code": "pos"
+  },
+  {
+    "tense": "future",
+    "mood": "indicative",
+    "code": "fut"
+  },
+  {
+    "tense": "present",
+    "mood": "subjunctive",
+    "code": "pres"
+  },
+  {
+    "tense": "imperfect",
+    "mood": "subjunctive",
+    "code": "pass"
+  },
+  {
+    "tense": "imperfect2",
+    "mood": "subjunctive",
+    "code": "passb"
+  },
+  {
+    "tense": "future",
+    "mood": "subjunctive",
+    "code": "futs"
+  }
+]
