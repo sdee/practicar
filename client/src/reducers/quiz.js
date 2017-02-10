@@ -1,8 +1,7 @@
+import _ from 'underscore';
 import { NEXT_QUESTION, SHOW_ANSWER, SUBMIT_ANSWER,
 	LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR,
 	SET_FILTER } from '../actions';
-
-	import _ from 'underscore';
 
 // TODO: move this
 function accentsTidy(s) {
@@ -65,43 +64,42 @@ function doesQuestionPassFilter(state, question) {
 }
 
 function doesVerbPassIndicativeFilters(state, question) {
-	if (!_.contains(['present', 'preterite', 'imperfect', 'conditional', 'future'], question.tense)){
+	if (question.mood !== 'indicative') {
 		return false;
 	}
 
-	if (!state.ALLOW_PRESENT && question.tense === 'present') {
+	if (!state.ALLOW_PRESENT_IND && question.tense === 'present') {
 		return false;
 	}
-	if (!state.ALLOW_PRETERITE && question.tense === 'preterite') {
+	if (!state.ALLOW_PRETERITE_IND && question.tense === 'preterite') {
 		return false;
 	}
-	if (!state.ALLOW_IMPERFECT && question.tense === 'imperfect') {
+	if (!state.ALLOW_IMPERFECT_IND && question.tense === 'imperfect') {
 		return false;
 	}
-	if (!state.ALLOW_CONDITIONAL && question.tense === 'conditional') {
+	if (!state.ALLOW_CONDITIONAL_IND && question.tense === 'conditional') {
 		return false;
 	}
-	if (!state.ALLOW_FUTURE && question.tense === 'future') {
+	if (!state.ALLOW_FUTURE_IND && question.tense === 'future') {
 		return false;
 	}
 	return true;
 }
 
 function doesVerbPassSubjFilters(state, question) {
-	//should read this from data
-	console.log("subj filter");
-	console.log(state);
-
-	if (!_.contains(['present subjunctive', 'imperfect subjunctive', 'future subjunctive'], question.tense)){
+	if (question.mood !== 'subjunctive') {
 		return false;
 	}
-	if (!state.ALLOW_PRESENT_SUBJ && question.tense === 'present subjunctive') {
+	if (!state.ALLOW_PRESENT_SUBJ && question.tense === 'present') {
 		return false;
 	}
-	if (!state.ALLOW_IMPERFECT_SUBJ && question.tense === 'imperfect subjunctive') {
+	if (!state.ALLOW_IMPERFECT_SUBJ && question.tense === 'imperfect') {
 		return false;
 	}
-	if (!state.ALLOW_FUTURE_SUBJ && question.tense ==='future subjunctive') {
+	if (!state.ALLOW_IMPERFECT_SUBJ && question.tense === 'imperfect2') {
+		return false;
+	}
+	if (!state.ALLOW_FUTURE_SUBJ && question.tense ==='future') {
 		return false;
 	}
 	return true;
@@ -122,7 +120,7 @@ const initialState = {
 	showAnswer: false,
 	isCorrect: false,
 	hasSubmittedAnswer: false,
-	ALLOW_PRESENT: true
+	ALLOW_PRESENT_IND: true
 };
 
 const quiz = (state = initialState, action) => {
@@ -130,6 +128,10 @@ const quiz = (state = initialState, action) => {
 	case NEXT_QUESTION: {
 		// TODO: do this somewhere better, not in reducer
 		const questions = state.questions;
+		if (questions.length === 0) {
+			console.error('cannot fetch next question, questions not loaded');
+			return state;
+		}
 		let currQuestion = state.currentQuestionIndex;
 		let question;
 		let numAttempts = 0;
@@ -152,13 +154,14 @@ const quiz = (state = initialState, action) => {
 			submittedAnswer: '',
 			isCorrect: false,
 			showAnswer: false,
-			irregular: question.isIrregular,
+			isIrregular: question.isIrregular,
 			pronoun: question.pronoun,
 			infinitive: question.verb,
 			tense: question.tense,
 			mood: question.mood,
 			correctAnswer: answer,
-			irregularity: question.irregularity
+			irregularity: question.irregularity,
+			isReflexive: question.isReflexive
 		});
 	}
 	case SHOW_ANSWER: {
