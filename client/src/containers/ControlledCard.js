@@ -5,14 +5,14 @@ import { loadQuiz } from '../actions'
 
 class ControlledCard extends Component {
 
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(loadQuiz());
-  }
+	componentDidMount() {
+		const { dispatch } = this.props;
+		dispatch(loadQuiz());
+	}
 
-  render() {
-  	return <QuizCard {...this.props.quiz} questionNo={this.props.user.questionNo} />;
-  }
+	render() {
+		return <QuizCard {...this.props.quiz} questionNo={this.props.user.questionNo} />;
+	}
 
 }
 
@@ -21,10 +21,10 @@ ControlledCard.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    quiz: state.quiz,
-    user: state.user
-  };
+	return {
+		quiz: state.quiz,
+		user: state.user
+	};
 };
 
 export default connect(mapStateToProps)(ControlledCard);
