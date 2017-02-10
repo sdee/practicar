@@ -11,7 +11,7 @@ class ControlledCard extends Component {
   }
 
   render() {
-  	return <QuizCard {...this.props} />;
+  	return <QuizCard {...this.props.quiz} questionNo={this.props.user.questionNo} />;
   }
 
 }
@@ -20,4 +20,11 @@ ControlledCard.propTypes = {
 	dispatch: PropTypes.func.isRequired
 }
 
-export default connect(state => state.quiz)(ControlledCard);
+const mapStateToProps = (state) => {
+  return {
+    quiz: state.quiz,
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(ControlledCard);

@@ -98,3 +98,6 @@ section.card div {
 .irregularity {
   color: red;
 }
+.questionNo {
+  font: 50px 'Helvetica', sans-serif;
+}
