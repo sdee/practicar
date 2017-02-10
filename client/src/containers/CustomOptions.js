@@ -14,20 +14,22 @@ function CustomOptions() {
 				</FormGroup>
 			</Panel>
 			<Panel header="Choose tenses">
-				<FormGroup>
-					<Panel header="Indicative">
-						<FilterCheckbox filter="ALLOW_PRESENT" defaultChecked label="present" />
-						<FilterCheckbox filter="ALLOW_IMPERFECT" label="imperfect" />
-						<FilterCheckbox filter="ALLOW_FUTURE" label="future" />
-					</Panel>
+				<Panel header="Indicative">
 					<FormGroup>
+						<FilterCheckbox filter="ALLOW_PRESENT_IND" defaultChecked label="present" />
+						<FilterCheckbox filter="ALLOW_PRETERITE_IND" label="preterite" />
+						<FilterCheckbox filter="ALLOW_IMPERFECT_IND" label="imperfect" />
+						<FilterCheckbox filter="ALLOW_CONDITIONAL_IND" label="conditional" />
+						<FilterCheckbox filter="ALLOW_FUTURE_IND" label="future" />
 					</FormGroup>
-					<Panel header="Subjunctive">
+				</Panel>
+				<Panel header="Subjunctive">
+					<FormGroup>
 						<FilterCheckbox filter="ALLOW_PRESENT_SUBJ" label="present" />
 						<FilterCheckbox filter="ALLOW_IMPERFECT_SUBJ" label="imperfect" />
 						<FilterCheckbox filter="ALLOW_FUTURE_SUBJ" label="future" />
-					</Panel>
-				</FormGroup>
+					</FormGroup>
+				</Panel>
 			</Panel>
 		</Panel>
 	);
