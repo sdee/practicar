@@ -11,7 +11,7 @@ class ControlledCard extends Component {
 	}
 
 	render() {
-		return <QuizCard {...this.props.quiz} questionNo={this.props.user.questionNo} />;
+		return <QuizCard {...this.props.quiz} questionNum={this.props.user.questionNum} />;
 	}
 
 }

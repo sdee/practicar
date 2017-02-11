@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 
-function VerbCard({ infinitive, pronoun, tense, mood, questionNo }) {
+function VerbCard({ infinitive, pronoun, tense, mood, questionNum }) {
 	return (
 		<div>
 			<section className="card front">
 				<div>
-					<span className="questionNo">{questionNo}</span><br />
+					<span className="questionNum">{questionNum}</span><br />
 					<br />
 					{pronoun}, <b>{infinitive}</b><br />
 					({tense} {mood})
@@ -20,7 +20,7 @@ VerbCard.propTypes = {
 	pronoun: PropTypes.string.isRequired,
 	tense: PropTypes.string.isRequired,
 	mood: PropTypes.string.isRequired,
-	questionNo: PropTypes.number.isRequired
+	questionNum: PropTypes.number.isRequired
 };
 
 export default VerbCard;
