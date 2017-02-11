@@ -6,6 +6,7 @@ import LinkControls from './containers/LinkControls';
 import CustomOptions from './containers/CustomOptions';
 import ControlledCard from './containers/ControlledCard';
 import UserAnswer from './containers/UserAnswer';
+import KeyboardMouseControls from './containers/KeyboardMouseControls'
 
 function App() {
 	return (
@@ -33,6 +34,7 @@ function App() {
 				</Grid>
 			</Panel>
 			<Readme />
+			<KeyboardMouseControls />
 		</div>
 	);
 }

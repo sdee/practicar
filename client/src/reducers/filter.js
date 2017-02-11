@@ -5,7 +5,7 @@ const filter = (state = {}, action) => {
 	case SET_FILTER: {
 		const newState = Object.assign({}, state, {});
 		newState[action.filter] = action.status;
-		return newState;
+		return state;
 	}
 	default: {
 		return state;
