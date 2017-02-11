@@ -16,7 +16,9 @@ function App() {
 					<Row className="show-grid">
 						<Col md={7}>
 							<Row className="show-grid">
+							<KeyboardMouseControls>
 								<ControlledCard />
+								</KeyboardMouseControls>
 							</Row>
 							<Row className="card ctrl">
 								<br />
@@ -34,7 +36,6 @@ function App() {
 				</Grid>
 			</Panel>
 			<Readme />
-			<KeyboardMouseControls />
 		</div>
 	);
 }

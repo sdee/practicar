@@ -2,8 +2,11 @@ import {nextQuestion, showAnswer} from '../actions';
 import KeyboardMouseListener from '../components/KeyboardMouseListener';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state, ownProps) => ({
-});
+const mapStateToProps = (state, ownProps) => {
+	return {
+		cn: ownProps.children
+	}
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onNextClick: () => {

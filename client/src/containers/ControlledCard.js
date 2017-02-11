@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import QuizCard from '../components/QuizCard';
-import { loadQuiz } from '../actions'
+import { loadQuiz } from '../actions';
+import KeyboardMouseControls from './KeyboardMouseControls';
 
 class ControlledCard extends Component {
 
@@ -11,7 +12,8 @@ class ControlledCard extends Component {
   }
 
   render() {
-  	return <QuizCard {...this.props} />;
+
+  	return <KeyboardMouseControls><QuizCard {...this.props} /></KeyboardMouseControls>;
   }
 
 }
