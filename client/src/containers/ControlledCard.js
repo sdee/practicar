@@ -9,11 +9,11 @@ class ControlledCard extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(loadQuiz());
+    this.card.focus();
   }
 
   render() {
-
-  	return <KeyboardMouseControls><QuizCard {...this.props} /></KeyboardMouseControls>;
+  	return <KeyboardMouseControls><div id="card" tabIndex="1" ref={(div) => { this.card = div; }}><QuizCard {...this.props}/></div></KeyboardMouseControls>;
   }
 
 }

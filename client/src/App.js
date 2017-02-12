@@ -10,15 +10,14 @@ import KeyboardMouseControls from './containers/KeyboardMouseControls'
 
 function App() {
 	return (
+		<KeyboardMouseControls>
 		<div className="App">
 			<Panel header="practice your verbs, eat your vegetables">
 				<Grid>
 					<Row className="show-grid">
 						<Col md={7}>
 							<Row className="show-grid">
-							<KeyboardMouseControls>
-								<ControlledCard />
-								</KeyboardMouseControls>
+								<ControlledCard/>
 							</Row>
 							<Row className="card ctrl">
 								<br />
@@ -37,6 +36,7 @@ function App() {
 			</Panel>
 			<Readme />
 		</div>
+		</KeyboardMouseControls>
 	);
 }
 

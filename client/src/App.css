@@ -98,3 +98,7 @@ section.card div {
 .irregularity {
   color: red;
 }
+
+#card {
+    outline-width: 0;
+}
