@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import QuizCard from '../components/QuizCard';
 import { loadQuiz } from '../actions';
-import KeyboardMouseControls from './KeyboardMouseControls';
+import KeyboardControls from './KeyboardControls';
 
 class ControlledCard extends Component {
 
@@ -13,7 +13,7 @@ class ControlledCard extends Component {
   }
 
   render() {
-  	return <KeyboardMouseControls><div id="card" tabIndex="1" ref={(div) => { this.card = div; }}><QuizCard {...this.props}/></div></KeyboardMouseControls>;
+  	return <KeyboardControls><div id="card" tabIndex="1" ref={(div) => { this.card = div; }}><QuizCard {...this.props}/></div></KeyboardControls>;
   }
 
 }

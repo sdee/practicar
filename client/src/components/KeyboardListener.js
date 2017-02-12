@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import {HotKeys} from 'react-hotkeys';
 
-function KeyboardMouseListener({cn, onNextClick, onShowClick}) {
+function KeyboardListener({cn, onNextClick, onShowClick}) {
 	const keyMap = {
 	'left': 'left',
 	'right': 'right'
@@ -17,10 +17,10 @@ const handlers = {
 		);
 }
 
-KeyboardMouseListener.propTypes = {
+KeyboardListener.propTypes = {
 	onNextClick: PropTypes.func.isRequired,
 	onShowClick: PropTypes.func.isRequired,
 	cn: PropTypes.node.isRequired
 };
 
-export default KeyboardMouseListener;
+export default KeyboardListener;

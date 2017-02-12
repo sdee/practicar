@@ -1,5 +1,5 @@
 import {nextQuestion, showAnswer} from '../actions';
-import KeyboardMouseListener from '../components/KeyboardMouseListener';
+import KeyboardListener from '../components/KeyboardListener';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
@@ -17,9 +17,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	}
 });
 
-const KeyboardMouseControls = connect(
+const KeyboardControls = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(KeyboardMouseListener);
+)(KeyboardListener);
 
-export default KeyboardMouseControls;
+export default KeyboardControls;

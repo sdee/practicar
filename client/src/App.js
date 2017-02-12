@@ -6,11 +6,11 @@ import LinkControls from './containers/LinkControls';
 import CustomOptions from './containers/CustomOptions';
 import ControlledCard from './containers/ControlledCard';
 import UserAnswer from './containers/UserAnswer';
-import KeyboardMouseControls from './containers/KeyboardMouseControls'
+import KeyboardControls from './containers/KeyboardControls'
 
 function App() {
 	return (
-		<KeyboardMouseControls>
+		<KeyboardControls>
 		<div className="App">
 			<Panel header="practice your verbs, eat your vegetables">
 				<Grid>
@@ -36,7 +36,7 @@ function App() {
 			</Panel>
 			<Readme />
 		</div>
-		</KeyboardMouseControls>
+		</KeyboardControls>
 	);
 }
 
