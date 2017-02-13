@@ -1,25 +1,27 @@
 import { connect } from 'react-redux';
 import { nextQuestion, flipCard } from '../actions';
-import Controls from '../components/Controls';
+import KeyboardListener from '../components/KeyboardListener';
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		showAnswer: state.quiz.showAnswer
-	}
+		cn: ownProps.children
+	};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	onNextClick: () => {
+	onRightKeyClick: (e) => {
+		e.preventDefault();
 		dispatch(nextQuestion());
 	},
-	onShowClick: () => {
+	onUpKeyClick: (e) => {
+		e.preventDefault();
 		dispatch(flipCard());
 	}
 });
 
-const LinkControls = connect(
+const KeyboardControls = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Controls);
+)(KeyboardListener);
 
-export default LinkControls;
+export default KeyboardControls;

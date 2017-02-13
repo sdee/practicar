@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import { NEXT_QUESTION, SHOW_ANSWER, SUBMIT_ANSWER,
+import { NEXT_QUESTION, FLIP_CARD, SUBMIT_ANSWER,
 	LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR,
 	SET_FILTER } from '../actions';
 
@@ -33,34 +33,6 @@ function getFinalCorrectAnswer(correctAnswer, ignoreAccents) {
 
 function checkUserAnswer(finalUserAnswer, finalCorrectAnswer) {
 	return finalUserAnswer === finalCorrectAnswer;
-}
-
-function doesQuestionPassFilter(state, question) {
-	if (!question) {
-		return false;
-	}
-	if (!state.ALLOW_IRREGULAR && question.isIrregular) {
-		return false;
-	}
-	if (!state.ALLOW_VOSOTROS && question.pronoun === 'vosotros') {
-		return false;
-	}
-	if (!state.ALLOW_REFLEXIVE && question.isReflexive) {
-		return false;
-	}
-
-	if (question.mood === 'indicative' && !doesVerbPassIndicativeFilters(state, question)) {
-		return false;
-	}
-
-	if (question.mood === 'subjunctive' && !doesVerbPassSubjFilters(state, question)) {
-		return false;
-	}
-
-	if (!state.ALLOW_REPEATS) {
-		// TODO: perform repeat check
-	}
-	return true;
 }
 
 function doesVerbPassIndicativeFilters(state, question) {
@@ -99,8 +71,36 @@ function doesVerbPassSubjFilters(state, question) {
 	if (!state.ALLOW_IMPERFECT_SUBJ && question.tense === 'imperfect2') {
 		return false;
 	}
-	if (!state.ALLOW_FUTURE_SUBJ && question.tense ==='future') {
+	if (!state.ALLOW_FUTURE_SUBJ && question.tense === 'future') {
 		return false;
+	}
+	return true;
+}
+
+function doesQuestionPassFilter(state, question) {
+	if (!question) {
+		return false;
+	}
+	if (!state.ALLOW_IRREGULAR && question.isIrregular) {
+		return false;
+	}
+	if (!state.ALLOW_VOSOTROS && question.pronoun === 'vosotros') {
+		return false;
+	}
+	if (!state.ALLOW_REFLEXIVE && question.isReflexive) {
+		return false;
+	}
+
+	if (question.mood === 'indicative' && !doesVerbPassIndicativeFilters(state, question)) {
+		return false;
+	}
+
+	if (question.mood === 'subjunctive' && !doesVerbPassSubjFilters(state, question)) {
+		return false;
+	}
+
+	if (!state.ALLOW_REPEATS) {
+		// TODO: perform repeat check
 	}
 	return true;
 }
@@ -164,8 +164,11 @@ const quiz = (state = initialState, action) => {
 			isReflexive: question.isReflexive
 		});
 	}
-	case SHOW_ANSWER: {
-		return Object.assign({}, state, { showAnswer: true });
+	case FLIP_CARD: {
+		return Object.assign({}, state, {
+			showAnswer: !state.showAnswer,
+			hasSubmittedAnswer: false
+		});
 	}
 	case LOAD_QUIZ: {
 		return Object.assign({}, state, {
@@ -196,7 +199,8 @@ const quiz = (state = initialState, action) => {
 			hasSubmittedAnswer: true,
 			submittedAnswer: action.userAnswer,
 			finalAnswer: finalUserAnswer,
-			isCorrect: checkUserAnswer(finalUserAnswer, finalCorrectAnswer)
+			isCorrect: checkUserAnswer(finalUserAnswer, finalCorrectAnswer),
+			showAnswer: true
 		});
 	}
 	case SET_FILTER: {
@@ -207,7 +211,7 @@ const quiz = (state = initialState, action) => {
 	default: {
 		return state;
 	}
-}
+	}
 };
 
 export default quiz;
