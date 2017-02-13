@@ -13,7 +13,11 @@ class ControlledCard extends Component {
   }
 
   render() {
-  	return <KeyboardControls><div id="card" tabIndex="1" ref={(div) => { this.card = div; }}><QuizCard {...this.props}/></div></KeyboardControls>;
+        
+  	return <KeyboardControls><div id="card" tabIndex="1" ref={(div) => { this.card = div; }} onClick={(e) => {
+        console.log("CLICKED!!!!!!!!");
+      }}>
+      <QuizCard {...this.props}/></div></KeyboardControls>;
   }
 
 }
