@@ -35,34 +35,6 @@ function checkUserAnswer(finalUserAnswer, finalCorrectAnswer) {
 	return finalUserAnswer === finalCorrectAnswer;
 }
 
-function doesQuestionPassFilter(state, question) {
-	if (!question) {
-		return false;
-	}
-	if (!state.ALLOW_IRREGULAR && question.isIrregular) {
-		return false;
-	}
-	if (!state.ALLOW_VOSOTROS && question.pronoun === 'vosotros') {
-		return false;
-	}
-	if (!state.ALLOW_REFLEXIVE && question.isReflexive) {
-		return false;
-	}
-
-	if (question.mood === 'indicative' && !doesVerbPassIndicativeFilters(state, question)) {
-		return false;
-	}
-
-	if (question.mood === 'subjunctive' && !doesVerbPassSubjFilters(state, question)) {
-		return false;
-	}
-
-	if (!state.ALLOW_REPEATS) {
-		// TODO: perform repeat check
-	}
-	return true;
-}
-
 function doesVerbPassIndicativeFilters(state, question) {
 	if (question.mood !== 'indicative') {
 		return false;
@@ -99,8 +71,36 @@ function doesVerbPassSubjFilters(state, question) {
 	if (!state.ALLOW_IMPERFECT_SUBJ && question.tense === 'imperfect2') {
 		return false;
 	}
-	if (!state.ALLOW_FUTURE_SUBJ && question.tense ==='future') {
+	if (!state.ALLOW_FUTURE_SUBJ && question.tense === 'future') {
 		return false;
+	}
+	return true;
+}
+
+function doesQuestionPassFilter(state, question) {
+	if (!question) {
+		return false;
+	}
+	if (!state.ALLOW_IRREGULAR && question.isIrregular) {
+		return false;
+	}
+	if (!state.ALLOW_VOSOTROS && question.pronoun === 'vosotros') {
+		return false;
+	}
+	if (!state.ALLOW_REFLEXIVE && question.isReflexive) {
+		return false;
+	}
+
+	if (question.mood === 'indicative' && !doesVerbPassIndicativeFilters(state, question)) {
+		return false;
+	}
+
+	if (question.mood === 'subjunctive' && !doesVerbPassSubjFilters(state, question)) {
+		return false;
+	}
+
+	if (!state.ALLOW_REPEATS) {
+		// TODO: perform repeat check
 	}
 	return true;
 }
@@ -168,10 +168,10 @@ const quiz = (state = initialState, action) => {
 		return Object.assign({}, state, { showAnswer: true });
 	}
 	case SHOW_QUESTION: {
-		return Object.assign({}, state, { showAnswer: false});
+		return Object.assign({}, state, { showAnswer: false });
 	}
 	case FLIP_CARD: {
-		return Object.assign({}, state, { showAnswer: !state.showAnswer});
+		return Object.assign({}, state, { showAnswer: !state.showAnswer });
 	}
 	case LOAD_QUIZ: {
 		return Object.assign({}, state, {
@@ -213,7 +213,7 @@ const quiz = (state = initialState, action) => {
 	default: {
 		return state;
 	}
-}
+	}
 };
 
 export default quiz;

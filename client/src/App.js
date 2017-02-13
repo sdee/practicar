@@ -6,7 +6,7 @@ import LinkControls from './containers/LinkControls';
 import CustomOptions from './containers/CustomOptions';
 import ControlledCard from './containers/ControlledCard';
 import UserAnswer from './containers/UserAnswer';
-import KeyboardControls from './containers/KeyboardControls'
+import KeyboardControls from './containers/KeyboardControls';
 
 function App() {
 	return (
@@ -17,7 +17,7 @@ function App() {
 						<Row className="show-grid">
 							<Col md={7}>
 								<Row className="show-grid">
-									<ControlledCard/>
+									<ControlledCard />
 								</Row>
 								<Row className="card ctrl">
 									<br />

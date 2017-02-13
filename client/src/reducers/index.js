@@ -4,9 +4,9 @@ import quiz from './quiz';
 import user from './user';
 
 const practicar = combineReducers({
-  filter,
-  quiz,
-  user
+	filter,
+	quiz,
+	user
 });
 
 export default practicar;

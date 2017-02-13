@@ -42,25 +42,26 @@ export function submitAnswer(userAnswer, ignoreAccents) {
 }
 
 export function loadQuizError(error) {
-  return { error, type: LOAD_QUIZ_ERROR };
+	return { error, type: LOAD_QUIZ_ERROR };
 }
 
 export function loadQuizSuccess(quiz) {
-  return dispatch => {
-    dispatch({ type: LOAD_QUIZ_SUCCESS, quiz });
-  };
+	return (dispatch) => {
+		dispatch({ type: LOAD_QUIZ_SUCCESS, quiz });
+	};
 }
 
 export function loadQuizRequest() {
-  return { type: LOAD_QUIZ };
+	return { type: LOAD_QUIZ };
 }
 
 export function loadQuiz() {
-	return (dispatch) =>
+	return (dispatch) => {
 		fetch(`api/quiz`, {
 			accept: 'application/json',
 		})
-    .then(response => response.json())
-    .then(json => dispatch(loadQuizSuccess(json)))
-		.catch(error => { console.log('request failed', error); });
+		.then(response => response.json())
+		.then(json => dispatch(loadQuizSuccess(json)))
+		.catch((error) => { console.log('request failed', error); });
+	};
 }

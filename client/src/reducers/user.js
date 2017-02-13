@@ -4,7 +4,7 @@ const user = (state = { questionNum: 0 }, action) => {
 	switch (action.type) {
 	case NEXT_QUESTION: {
 		return {
-			questionNum: state.questionNum+1
+			questionNum: state.questionNum + 1
 		};
 	}
 	default:

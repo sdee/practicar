@@ -67,6 +67,7 @@ QuizCard.defaultProps = {
 	showAnswer: false,
 	submittedAnswer: '',
 	infinitive: '',
+	correctAnswer: '',
 	answer: '',
 	tense: '',
 	pronoun: '',

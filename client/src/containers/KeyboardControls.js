@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import {nextQuestion, showAnswer} from '../actions';
+import { nextQuestion, showAnswer } from '../actions';
 import KeyboardListener from '../components/KeyboardListener';
 
 const mapStateToProps = (state, ownProps) => {
