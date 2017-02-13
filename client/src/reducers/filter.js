@@ -1,6 +1,6 @@
 import { SET_FILTER } from '../actions';
 
-const filter = (state = {}, action) => {
+const filter = (state = { ALLOW_PRESENT_IND: true }, action) => {
 	switch (action.type) {
 	case SET_FILTER: {
 		const newState = Object.assign({}, state, {});
