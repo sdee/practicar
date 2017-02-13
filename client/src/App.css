@@ -98,7 +98,9 @@ section.card div {
 .irregularity {
   color: red;
 }
-
 #card {
   outline-width: 0;
+}
+.questionNum {
+  font: 50px 'Helvetica', sans-serif;
 }

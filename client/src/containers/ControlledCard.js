@@ -28,4 +28,11 @@ ControlledCard.propTypes = {
 	dispatch: PropTypes.func.isRequired
 }
 
-export default connect(state => state.quiz)(ControlledCard);
+const mapStateToProps = (state) => {
+	return {
+		quiz: state.quiz,
+		user: state.user
+	};
+};
+
+export default connect(mapStateToProps)(ControlledCard);
