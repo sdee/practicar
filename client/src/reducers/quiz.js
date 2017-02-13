@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import { NEXT_QUESTION, SHOW_ANSWER, SUBMIT_ANSWER,
+import { NEXT_QUESTION, SHOW_ANSWER, SHOW_QUESTION, FLIP_CARD, SUBMIT_ANSWER,
 	LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR,
 	SET_FILTER } from '../actions';
 
@@ -167,6 +167,14 @@ const quiz = (state = initialState, action) => {
 	case SHOW_ANSWER: {
 		return Object.assign({}, state, { showAnswer: true });
 	}
+	case SHOW_QUESTION: {
+		return Object.assign({}, state, { showAnswer: false});
+	}
+
+	case FLIP_CARD: {
+		return Object.assign({}, state, { showAnswer: !state.showAnswer});
+	}
+
 	case LOAD_QUIZ: {
 		return Object.assign({}, state, {
 			isLoadingQuiz: true,

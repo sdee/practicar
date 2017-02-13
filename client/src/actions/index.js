@@ -5,6 +5,8 @@ export const SET_FILTER = 'SET_FILTER';
 
 export const NEXT_QUESTION = 'NEXT_QUESTION';
 export const SHOW_ANSWER = 'SHOW_ANSWER';
+export const SHOW_QUESTION = 'SHOW_QUESTION';
+export const FLIP_CARD = 'FLIP_CARD';
 
 export const LOAD_QUIZ = 'LOAD_QUIZ';
 export const LOAD_QUIZ_SUCCESS = 'LOAD_QUIZ_SUCCESS';
@@ -26,6 +28,15 @@ export function nextQuestion() {
 export function showAnswer() {
 	return { type: SHOW_ANSWER };
 }
+
+export function showQuestion() {
+	return { type: SHOW_QUESTION };
+}
+
+export function flipCard() {
+	return { type: FLIP_CARD };
+}
+
 
 export function submitAnswer(userAnswer, ignoreAccents) {
 	return { type: SUBMIT_ANSWER, userAnswer, ignoreAccents };

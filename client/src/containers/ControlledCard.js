@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import QuizCard from '../components/QuizCard';
 import { loadQuiz } from '../actions';
 import KeyboardControls from './KeyboardControls';
+import { flipCard } from '../actions';
 
 class ControlledCard extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
+    this.dispatch = dispatch;
     dispatch(loadQuiz());
     this.card.focus();
   }
@@ -15,7 +17,7 @@ class ControlledCard extends Component {
   render() {
         
   	return <KeyboardControls><div id="card" tabIndex="1" ref={(div) => { this.card = div; }} onClick={(e) => {
-        console.log("CLICKED!!!!!!!!");
+        this.dispatch(flipCard());
       }}>
       <QuizCard {...this.props}/></div></KeyboardControls>;
   }
