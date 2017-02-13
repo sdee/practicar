@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react';
 import { HotKeys } from 'react-hotkeys';
 
-function KeyboardListener({ cn, onNextClick, onShowClick }) {
+function KeyboardListener({ cn, onRightKeyClick, onUpKeyClick }) {
 	const keyMap = {
 		left: 'left',
 		right: 'right'
 	};
 	const handlers = {
-		right: event => onNextClick(event),
-		up: event => onShowClick(event)
+		right: event => onRightKeyClick(event),
+		up: event => onUpKeyClick(event)
 	};
 	return (
 		<HotKeys keyMap={keyMap} handlers={handlers}>
@@ -18,8 +18,8 @@ function KeyboardListener({ cn, onNextClick, onShowClick }) {
 }
 
 KeyboardListener.propTypes = {
-	onNextClick: PropTypes.func.isRequired,
-	onShowClick: PropTypes.func.isRequired,
+	onRightKeyClick: PropTypes.func.isRequired,
+	onUpKeyClick: PropTypes.func.isRequired,
 	cn: PropTypes.node.isRequired
 };
 

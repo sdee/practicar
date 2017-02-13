@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { nextQuestion, showAnswer } from '../actions';
+import { nextQuestion, flipCard } from '../actions';
 import KeyboardListener from '../components/KeyboardListener';
 
 const mapStateToProps = (state, ownProps) => {
@@ -9,13 +9,13 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	onNextClick: (e) => {
+	onRightKeyClick: (e) => {
 		e.preventDefault();
 		dispatch(nextQuestion());
 	},
-	onShowClick: (e) => {
+	onUpKeyClick: (e) => {
 		e.preventDefault();
-		dispatch(showAnswer());
+		dispatch(flipCard());
 	}
 });
 

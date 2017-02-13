@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import { NEXT_QUESTION, SHOW_ANSWER, SHOW_QUESTION, FLIP_CARD, SUBMIT_ANSWER,
+import { NEXT_QUESTION, FLIP_CARD, SUBMIT_ANSWER,
 	LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR,
 	SET_FILTER } from '../actions';
 
@@ -164,14 +164,11 @@ const quiz = (state = initialState, action) => {
 			isReflexive: question.isReflexive
 		});
 	}
-	case SHOW_ANSWER: {
-		return Object.assign({}, state, { showAnswer: true });
-	}
-	case SHOW_QUESTION: {
-		return Object.assign({}, state, { showAnswer: false });
-	}
 	case FLIP_CARD: {
-		return Object.assign({}, state, { showAnswer: !state.showAnswer });
+		return Object.assign({}, state, {
+			showAnswer: !state.showAnswer,
+			hasSubmittedAnswer: false
+		});
 	}
 	case LOAD_QUIZ: {
 		return Object.assign({}, state, {
@@ -202,7 +199,8 @@ const quiz = (state = initialState, action) => {
 			hasSubmittedAnswer: true,
 			submittedAnswer: action.userAnswer,
 			finalAnswer: finalUserAnswer,
-			isCorrect: checkUserAnswer(finalUserAnswer, finalCorrectAnswer)
+			isCorrect: checkUserAnswer(finalUserAnswer, finalCorrectAnswer),
+			showAnswer: true
 		});
 	}
 	case SET_FILTER: {
