@@ -1,11 +1,11 @@
+import { connect } from 'react-redux';
 import {nextQuestion, showAnswer} from '../actions';
 import KeyboardListener from '../components/KeyboardListener';
-import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
 	return {
 		cn: ownProps.children
-	}
+	};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

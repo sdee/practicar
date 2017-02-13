@@ -37,7 +37,6 @@ export function flipCard() {
 	return { type: FLIP_CARD };
 }
 
-
 export function submitAnswer(userAnswer, ignoreAccents) {
 	return { type: SUBMIT_ANSWER, userAnswer, ignoreAccents };
 }

@@ -1,20 +1,20 @@
 import React, { PropTypes } from 'react';
-import {HotKeys} from 'react-hotkeys';
+import { HotKeys } from 'react-hotkeys';
 
 function KeyboardListener({cn, onNextClick, onShowClick}) {
 	const keyMap = {
-	'left': 'left',
-	'right': 'right'
-};
-const handlers = {
-	'right': (event) => onNextClick(),
-	'up': (event) => onShowClick() 
-};
+		'left': 'left',
+		'right': 'right'
+	};
+	const handlers = {
+		'right': (event) => onNextClick(),
+		'up': (event) => onShowClick()
+	};
 	return (
-      <HotKeys keyMap={keyMap} handlers={handlers}>
-                           {cn}
-                            </HotKeys>
-		);
+		<HotKeys keyMap={keyMap} handlers={handlers}>
+			{cn}
+		</HotKeys>
+	);
 }
 
 KeyboardListener.propTypes = {
