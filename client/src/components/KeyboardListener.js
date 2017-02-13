@@ -7,8 +7,8 @@ function KeyboardListener({cn, onNextClick, onShowClick}) {
 		'right': 'right'
 	};
 	const handlers = {
-		'right': (event) => onNextClick(),
-		'up': (event) => onShowClick()
+		'right': (event) => onNextClick(event),
+		'up': (event) => onShowClick(event)
 	};
 	return (
 		<HotKeys keyMap={keyMap} handlers={handlers}>

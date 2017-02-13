@@ -9,10 +9,12 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	onNextClick: () => {
+	onNextClick: (e) => {
+		e.preventDefault();
 		dispatch(nextQuestion());
 	},
-	onShowClick: () => {
+	onShowClick: (e) => {
+		e.preventDefault();
 		dispatch(showAnswer());
 	}
 });
