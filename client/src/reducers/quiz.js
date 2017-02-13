@@ -170,11 +170,9 @@ const quiz = (state = initialState, action) => {
 	case SHOW_QUESTION: {
 		return Object.assign({}, state, { showAnswer: false});
 	}
-
 	case FLIP_CARD: {
 		return Object.assign({}, state, { showAnswer: !state.showAnswer});
 	}
-
 	case LOAD_QUIZ: {
 		return Object.assign({}, state, {
 			isLoadingQuiz: true,
