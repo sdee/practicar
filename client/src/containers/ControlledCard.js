@@ -15,9 +15,12 @@ class ControlledCard extends Component {
 		const { dispatch } = this.props;
 		return (
 			<KeyboardControls>
-				<div id="card" tabIndex="1" ref={(div) => { this.card = div; }} onClick={(e) => {
-					dispatch(flipCard());}}>
-					<QuizCard {...this.props}/>
+				<div
+					id="card"
+					tabIndex="0"
+					ref={(div) => { this.card = div; }}
+					onClick={(e) => { dispatch(flipCard()); }}>
+					<QuizCard {...this.props.quiz} questionNum={this.props.user.questionNum} />
 				</div>
 			</KeyboardControls>
 		);
@@ -26,7 +29,7 @@ class ControlledCard extends Component {
 
 ControlledCard.propTypes = {
 	dispatch: PropTypes.func.isRequired
-}
+};
 
 const mapStateToProps = (state) => {
 	return {
