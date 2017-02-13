@@ -1,7 +1,12 @@
-// import { SUBMIT_ANSWER } from '../actions';
+import { NEXT_QUESTION } from '../actions';
 
-const user = (state = '', action) => {
+const user = (state = { questionNum: 0 }, action) => {
 	switch (action.type) {
+	case NEXT_QUESTION: {
+		return {
+			questionNum: state.questionNum+1
+		};
+	}
 	default:
 		return state;
 	}
