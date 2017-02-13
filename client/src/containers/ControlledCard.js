@@ -7,16 +7,16 @@ import KeyboardControls from './KeyboardControls';
 class ControlledCard extends Component {
 	componentDidMount() {
 		const { dispatch } = this.props;
-		this.dispatch = dispatch;
 		dispatch(loadQuiz());
 		this.card.focus();
 	}
 
 	render() {
+		const { dispatch } = this.props;
 		return (
 			<KeyboardControls>
 				<div id="card" tabIndex="1" ref={(div) => { this.card = div; }} onClick={(e) => {
-					this.dispatch(flipCard());}}>
+					dispatch(flipCard());}}>
 					<QuizCard {...this.props}/>
 				</div>
 			</KeyboardControls>
