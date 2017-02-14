@@ -7,26 +7,22 @@ import { setFilter } from '../actions';
 const mapStateToProps = (state, ownProps) => {
 	const filter = ownProps.filter;
 	const checked = state.filter[filter] ? true : false;
-	console.log("-------");
-	console.log(filter);
-	console.log(checked);
 	return {
 		checked: checked
 	};
 };
 
-const FilterCheckbox = ({checked, dispatch, label, filter, defaultChecked }) => {// where do these other props come from??
-	let filterInput;
-	console.log("CHECKED");
-	console.log(checked);
+  
+const FilterCheckbox = ({checked, dispatch, label, filter, defaultChecked }) => {//don't need chcked where do these other props come from??
+	function handleChange() {
+    	dispatch(setFilter(filter, !checked));
+  };
+  	let filterInput;
 	return (
 		<Checkbox
-			inputRef={(ref) => { filterInput = ref; }}
-			onClick={(e) => {
-				dispatch(setFilter(filter, filterInput.checked));
-			}
-			}
+			inputRef={(ref) => { filterInput=ref; }}
 			checked={checked}
+			onChange={handleChange}
 		>
 			{label}
 		</Checkbox>

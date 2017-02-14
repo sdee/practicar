@@ -10,7 +10,7 @@ function MoodLink({ mood, onClick }) {
          onClick()
        }}
     >
-    {mood}
+    all on
     </a>
 
 		</div>

@@ -4,8 +4,6 @@ import MoodLink from '../components/MoodLink';
 
 
 const mapStateToProps = (state, ownProps) => {
-	console.log("inside mood trigger");
-	console.log(ownProps);
 	//need an on or off inside this, does it have to be in state???
 	return {
 		mood: ownProps.mood
@@ -19,8 +17,7 @@ function turnOnFiltersForMood (mood, dispatch) {
 		"INDICATIVE": indicatives,
 		"SUBJUNCTIVE": subjunctives
 	};
-	
-	console.log("M--------");
+
 	const filters = moodToFilters[mood];
 	filters.forEach(function (f) {
 		dispatch(setFilter(f, true));
@@ -30,10 +27,7 @@ function turnOnFiltersForMood (mood, dispatch) {
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onClick: (e) => {
 		//set all filters here
-		console.log("clicked mood trigger!!!!");
-		console.log(ownProps);
 		turnOnFiltersForMood(ownProps.mood, dispatch);
-		//dispatch(setFilter("ALLOW_FUTURE_IND", true)); //need to reverse
 	}
 });
 
