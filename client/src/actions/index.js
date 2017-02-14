@@ -16,6 +16,7 @@ export const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
  * action creators
  */
 export function setFilter(filter, status) {
+	console.log("FILTER SET");
 	return { type: SET_FILTER, filter, status };
 }
 

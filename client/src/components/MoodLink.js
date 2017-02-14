@@ -1,18 +1,24 @@
 import React, { PropTypes } from 'react';
 
-/*
-Component for toggling all checkboxes for a mood ie indicative, subjunctive, or imperative
-*/
-
-function MoodLink({ onLinkClick }) {
+function MoodLink({ mood, onClick }) {
 	
 	return (
-		
+		<div>
+		<a href="#"
+       onClick={e => {
+         e.preventDefault()
+         onClick()
+       }}
+    >
+    {mood}
+    </a>
+
+		</div>
 	);
 }
 
 MoodLink.propTypes = {
-	onLinkClick: PropTypes.func.isRequired,
+	onClick: PropTypes.func.isRequired
 };
 
 export default MoodLink;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Panel, FormGroup } from 'react-bootstrap';
 import FilterCheckbox from './FilterCheckbox';
+import MoodTrigger from './MoodTrigger';
 
 function CustomOptions() {
 	return (
@@ -15,6 +16,7 @@ function CustomOptions() {
 			</Panel>
 			<Panel header="Choose tenses">
 				<Panel header="Indicative">
+					<MoodTrigger mood="INDICATIVE" />
 					<FormGroup>
 						<FilterCheckbox filter="ALLOW_PRESENT_IND" defaultChecked label="present" />
 						<FilterCheckbox filter="ALLOW_PRETERITE_IND" label="preterite" />
