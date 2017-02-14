@@ -26,6 +26,7 @@ function CustomOptions() {
 					</FormGroup>
 				</Panel>
 				<Panel header="Subjunctive">
+				<MoodTrigger mood="SUBJUNCTIVE" />
 					<FormGroup>
 						<FilterCheckbox filter="ALLOW_PRESENT_SUBJ" label="present" />
 						<FilterCheckbox filter="ALLOW_IMPERFECT_SUBJ" label="imperfect" />

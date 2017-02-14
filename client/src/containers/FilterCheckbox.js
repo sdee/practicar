@@ -3,8 +3,22 @@ import { connect } from 'react-redux';
 import { Checkbox } from 'react-bootstrap';
 import { setFilter } from '../actions';
 
-const FilterCheckbox = ({ dispatch, label, filter, defaultChecked }) => {
+
+const mapStateToProps = (state, ownProps) => {
+	const filter = ownProps.filter;
+	const checked = state.filter[filter] ? true : false;
+	console.log("-------");
+	console.log(filter);
+	console.log(checked);
+	return {
+		checked: checked
+	};
+};
+
+const FilterCheckbox = ({checked, dispatch, label, filter, defaultChecked }) => {// where do these other props come from??
 	let filterInput;
+	console.log("CHECKED");
+	console.log(checked);
 	return (
 		<Checkbox
 			inputRef={(ref) => { filterInput = ref; }}
@@ -12,7 +26,7 @@ const FilterCheckbox = ({ dispatch, label, filter, defaultChecked }) => {
 				dispatch(setFilter(filter, filterInput.checked));
 			}
 			}
-			defaultChecked={defaultChecked}
+			checked={checked}
 		>
 			{label}
 		</Checkbox>
@@ -30,4 +44,4 @@ FilterCheckbox.defaultProps = {
 	defaultChecked: false
 };
 
-export default connect()(FilterCheckbox);
+export default connect(mapStateToProps)(FilterCheckbox);
