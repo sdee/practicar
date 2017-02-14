@@ -5,16 +5,16 @@ function MoodLink({ mood, onClick }) {
 	return (
 		<div>
 		<a href="#"
-       onClick={e => {
-         e.preventDefault()
-         onClick()
-       }}
-    >
-    all on
-    </a>
+		onClick={e => {
+			e.preventDefault()
+			onClick()
+		}}
+		>
+		all on
+		</a>
 
 		</div>
-	);
+		);
 }
 
 MoodLink.propTypes = {

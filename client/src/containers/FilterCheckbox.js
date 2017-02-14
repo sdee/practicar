@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Checkbox } from 'react-bootstrap';
 import { setFilter } from '../actions';
 
-
 const mapStateToProps = (state, ownProps) => {
 	const filter = ownProps.filter;
 	const checked = state.filter[filter] ? true : false;
@@ -13,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
   
-const FilterCheckbox = ({checked, dispatch, label, filter, defaultChecked }) => {//don't need chcked where do these other props come from??
+const FilterCheckbox = ({checked, dispatch, label, filter, defaultChecked}) => {
 	function handleChange() {
     	dispatch(setFilter(filter, !checked));
   };
