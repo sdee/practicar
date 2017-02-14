@@ -47,7 +47,7 @@ export function loadQuizRequest() {
 
 export function loadQuiz() {
 	return (dispatch) => {
-		fetch(`api/quiz`, {
+		fetch('api/quiz', {
 			accept: 'application/json',
 		})
 		.then(response => response.json())
