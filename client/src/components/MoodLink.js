@@ -1,15 +1,14 @@
 import React, { PropTypes } from 'react';
+import {Button} from 'react-bootstrap';
 
-function MoodLink({ onClick }) {
+function MoodLink({ label, onClick }) {
 	return (
-		<div>
-			<a
+			<Button bsClass="btn btn-default btn-xs"
 				href="#toggleMood"
 				onClick={onClick}
 			>
-				turn all on
-			</a>
-		</div>
+				{label}
+			</Button>
 	);
 }
 
