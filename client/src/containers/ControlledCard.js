@@ -1,30 +1,41 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import QuizCard from '../components/QuizCard';
-import { loadQuiz } from '../actions'
+import { loadQuiz, flipCard } from '../actions';
+import KeyboardControls from './KeyboardControls';
 
 class ControlledCard extends Component {
+	componentDidMount() {
+		const { dispatch } = this.props;
+		dispatch(loadQuiz());
+		this.card.focus();
+	}
 
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(loadQuiz());
-  }
-
-  render() {
-  	return <QuizCard {...this.props.quiz} questionNo={this.props.user.questionNo} />;
-  }
-
+	render() {
+		const { dispatch } = this.props;
+		return (
+			<KeyboardControls>
+				<div
+					id="card"
+					tabIndex="0"
+					ref={(div) => { this.card = div; }}
+					onClick={(e) => { dispatch(flipCard()); }}>
+					<QuizCard {...this.props.quiz} questionNum={this.props.user.questionNum} />
+				</div>
+			</KeyboardControls>
+		);
+	}
 }
 
 ControlledCard.propTypes = {
 	dispatch: PropTypes.func.isRequired
-}
+};
 
 const mapStateToProps = (state) => {
-  return {
-    quiz: state.quiz,
-    user: state.user
-  };
+	return {
+		quiz: state.quiz,
+		user: state.user
+	};
 };
 
 export default connect(mapStateToProps)(ControlledCard);

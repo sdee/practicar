@@ -3,9 +3,9 @@ import React, { PropTypes } from 'react';
 function MessageCard({ msg }) {
 	return (<div>
 		<section className="card front">
-      <div>
-			 {msg}
-      </div>
+			<div>
+				{msg}
+			</div>
 		</section>
 	</div>);
 }
