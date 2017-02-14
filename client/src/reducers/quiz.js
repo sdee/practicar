@@ -138,13 +138,12 @@ const quiz = (state = initialState, action) => {
 		let newQuestionSequence = state.questionSequence;
 		let question;
 		let answer;
-		if (state.sequenceIndex < state.questionSequence.length - 1) {
-			// on and old question, just move forward
+		if (state.sequenceIndex < state.questionSequence.length - 1) { // on an old question, just move forward
 			newSequenceIndex = state.sequenceIndex + 1;
 			newQuestionIndex = state.questionSequence[newSequenceIndex];
 			question = questions[newQuestionIndex].question;
 			answer = questions[newQuestionIndex].answer;
-		} else {
+		} else { //select new question
 			// TODO: do this somewhere better, not in reducer
 			newQuestionIndex = state.questionIndex;
 			let numAttempts = 0;
