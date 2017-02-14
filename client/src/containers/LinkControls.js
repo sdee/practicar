@@ -2,11 +2,9 @@ import { connect } from 'react-redux';
 import { nextQuestion, flipCard } from '../actions';
 import Controls from '../components/Controls';
 
-const mapStateToProps = (state, ownProps) => {
-	return {
-		showAnswer: state.quiz.showAnswer
-	}
-};
+const mapStateToProps = (state, ownProps) => ({
+	showAnswer: state.quiz.showAnswer
+});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onNextClick: () => {

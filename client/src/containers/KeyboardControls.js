@@ -2,11 +2,9 @@ import { connect } from 'react-redux';
 import { nextQuestion, flipCard } from '../actions';
 import KeyboardListener from '../components/KeyboardListener';
 
-const mapStateToProps = (state, ownProps) => {
-	return {
-		cn: ownProps.children
-	};
-};
+const mapStateToProps = (state, ownProps) => ({
+	cn: ownProps.children
+});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onRightKeyClick: (e) => {
