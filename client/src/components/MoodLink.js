@@ -1,14 +1,11 @@
 import React, { PropTypes } from 'react';
 
-function MoodLink({ mood, onClick }) {
+function MoodLink({ onClick }) {
 	return (
 		<div>
 			<a
 				href="#toggleMood"
-				onClick={(e) => {
-					e.preventDefault();
-					onClick();
-				}}
+				onClick={onClick}
 			>
 				turn all on
 			</a>
@@ -17,7 +14,6 @@ function MoodLink({ mood, onClick }) {
 }
 
 MoodLink.propTypes = {
-	mood: PropTypes.string.isRequired,
 	onClick: PropTypes.func.isRequired
 };
 

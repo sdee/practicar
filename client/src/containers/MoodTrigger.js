@@ -25,6 +25,7 @@ function turnOnFiltersForMood(mood, dispatch) {
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onClick: (e) => {
 		// set all filters here
+		e.preventDefault();
 		turnOnFiltersForMood(ownProps.mood, dispatch);
 	}
 });
