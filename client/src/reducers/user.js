@@ -1,4 +1,4 @@
-import { NEXT_QUESTION } from '../actions';
+import { NEXT_QUESTION, PREV_QUESTION } from '../actions';
 
 const user = (state = { questionNum: 0 }, action) => {
 	switch (action.type) {
@@ -6,6 +6,14 @@ const user = (state = { questionNum: 0 }, action) => {
 		return {
 			questionNum: state.questionNum + 1
 		};
+	}
+	case PREV_QUESTION: {
+		if (state.questionNum > 1) {
+			return {
+				questionNum: state.questionNum - 1
+			};
+		}
+		return state;
 	}
 	default:
 		return state;

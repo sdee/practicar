@@ -4,6 +4,7 @@
 export const SET_FILTER = 'SET_FILTER';
 
 export const NEXT_QUESTION = 'NEXT_QUESTION';
+export const PREV_QUESTION = 'PREV_QUESTION';
 export const FLIP_CARD = 'FLIP_CARD';
 
 export const LOAD_QUIZ = 'LOAD_QUIZ';
@@ -21,6 +22,10 @@ export function setFilter(filter, status) {
 
 export function nextQuestion() {
 	return { type: NEXT_QUESTION };
+}
+
+export function prevQuestion() {
+	return { type: PREV_QUESTION };
 }
 
 export function flipCard() {
