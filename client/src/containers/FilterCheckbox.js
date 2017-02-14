@@ -10,7 +10,6 @@ const mapStateToProps = (state, ownProps) => {
 		checked: checked
 	};
 };
-
   
 const FilterCheckbox = ({checked, dispatch, label, filter, defaultChecked}) => {
 	function handleChange() {
