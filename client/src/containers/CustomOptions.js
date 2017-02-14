@@ -18,7 +18,7 @@ function CustomOptions() {
 				<Panel header="Indicative">
 					<MoodTrigger mood="INDICATIVE" />
 					<FormGroup>
-						<FilterCheckbox filter="ALLOW_PRESENT_IND" defaultChecked label="present" />
+						<FilterCheckbox filter="ALLOW_PRESENT_IND" label="present" />
 						<FilterCheckbox filter="ALLOW_PRETERITE_IND" label="preterite" />
 						<FilterCheckbox filter="ALLOW_IMPERFECT_IND" label="imperfect" />
 						<FilterCheckbox filter="ALLOW_CONDITIONAL_IND" label="conditional" />

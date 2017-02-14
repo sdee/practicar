@@ -9,14 +9,12 @@ const mapStateToProps = (state, ownProps) => {
 	return { checked };
 };
 
-const FilterCheckbox = ({ checked, dispatch, label, filter, defaultChecked }) => {
+const FilterCheckbox = ({ checked, dispatch, label, filter }) => {
 	function handleChange() {
 		dispatch(setFilter(filter, !checked));
 	}
-	// let filterInput;
 	return (
 		<Checkbox
-			// inputRef={(ref) => { filterInput = ref; }}
 			checked={checked}
 			onChange={handleChange}
 		>
@@ -29,12 +27,7 @@ FilterCheckbox.propTypes = {
 	dispatch: PropTypes.func.isRequired,
 	label: PropTypes.string.isRequired,
 	filter: PropTypes.string.isRequired,
-	defaultChecked: PropTypes.bool,
 	checked: PropTypes.bool.isRequired
-};
-
-FilterCheckbox.defaultProps = {
-	defaultChecked: false
 };
 
 export default connect(mapStateToProps)(FilterCheckbox);
