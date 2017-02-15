@@ -1,20 +1,21 @@
 import React, { PropTypes } from 'react';
+import { Button } from 'react-bootstrap';
 
-function MoodLink({ onClick }) {
+function MoodLink({ label, onClick }) {
 	return (
-		<div>
-			<a
-				href="#toggleMood"
-				onClick={onClick}
-			>
-				turn all on
-			</a>
-		</div>
+		<Button
+			bsClass="btn btn-default btn-xs"
+			href="#toggleMood"
+			onClick={onClick}
+		>
+			{label}
+		</Button>
 	);
 }
 
 MoodLink.propTypes = {
-	onClick: PropTypes.func.isRequired
+	onClick: PropTypes.func.isRequired,
+	label: PropTypes.string.isRequired
 };
 
 export default MoodLink;

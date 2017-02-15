@@ -16,7 +16,8 @@ function CustomOptions() {
 			</Panel>
 			<Panel header="Choose tenses">
 				<Panel header="Indicative">
-					<MoodTrigger mood="INDICATIVE" />
+					<MoodTrigger mood="INDICATIVE" label="all on" trigger="on" />
+					<MoodTrigger mood="INDICATIVE" label="all off" trigger="off" />
 					<FormGroup>
 						<FilterCheckbox filter="ALLOW_PRESENT_IND" label="present" />
 						<FilterCheckbox filter="ALLOW_PRETERITE_IND" label="preterite" />
@@ -26,7 +27,8 @@ function CustomOptions() {
 					</FormGroup>
 				</Panel>
 				<Panel header="Subjunctive">
-					<MoodTrigger mood="SUBJUNCTIVE" />
+					<MoodTrigger mood="SUBJUNCTIVE" label="all on" trigger="on" />
+					<MoodTrigger mood="SUBJUNCTIVE" label="all off" trigger="off" />
 					<FormGroup>
 						<FilterCheckbox filter="ALLOW_PRESENT_SUBJ" label="present" />
 						<FilterCheckbox filter="ALLOW_IMPERFECT_SUBJ" label="imperfect" />
