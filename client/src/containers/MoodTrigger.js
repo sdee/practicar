@@ -17,7 +17,7 @@ function turnOnFiltersForMood(mood, trigger, dispatch) {
 		SUBJUNCTIVE: subjunctives
 	};
 	const filters = moodToFilters[mood];
-	const newValue = trigger === "on" ? true : false;
+	const newValue = trigger === 'on';
 	filters.forEach((f) => {
 		dispatch(setFilter(f, newValue));
 	});
