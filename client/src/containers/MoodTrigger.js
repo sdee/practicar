@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => ({
 	label: ownProps.label
 });
 
-function turnOnFiltersForMood(mood, trigger, dispatch) {
+function toggleFiltersForMood(mood, trigger, dispatch) {
 	const indicatives = ['ALLOW_PRESENT_IND', 'ALLOW_PRETERITE_IND', 'ALLOW_IMPERFECT_IND', 'ALLOW_CONDITIONAL_IND', 'ALLOW_FUTURE_IND'];
 	const subjunctives = ['ALLOW_PRESENT_SUBJ', 'ALLOW_IMPERFECT_SUBJ', 'ALLOW_FUTURE_SUBJ'];
 	const moodToFilters = {
@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	onClick: (e) => {
 		// set all filters here
 		e.preventDefault();
-		turnOnFiltersForMood(ownProps.mood, ownProps.trigger, dispatch);
+		toggleFiltersForMood(ownProps.mood, ownProps.trigger, dispatch);
 	}
 });
 
