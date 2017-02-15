@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import { NEXT_QUESTION, FLIP_CARD, SUBMIT_ANSWER,
+import { NEXT_QUESTION, PREV_QUESTION, FLIP_CARD, SUBMIT_ANSWER,
 	LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR,
 	SET_FILTER } from '../actions';
 
@@ -106,7 +106,7 @@ function doesQuestionPassFilter(state, question) {
 }
 
 const initialState = {
-	currentQuestionIndex: -1,
+	questionIndex: -1,
 	questions: [],
 	ignoreAccents: false,
 	correctAnswer: '',
@@ -120,36 +120,51 @@ const initialState = {
 	showAnswer: false,
 	isCorrect: false,
 	hasSubmittedAnswer: false,
+	questionSequence: [],
+	sequenceIndex: -1,
 	ALLOW_PRESENT_IND: true
 };
 
 const quiz = (state = initialState, action) => {
 	switch (action.type) {
 	case NEXT_QUESTION: {
-		// TODO: do this somewhere better, not in reducer
 		const questions = state.questions;
 		if (questions.length === 0) {
 			console.error('cannot fetch next question, questions not loaded');
 			return state;
 		}
-		let currQuestion = state.currentQuestionIndex;
+		let newSequenceIndex;
+		let newQuestionIndex;
+		let newQuestionSequence = state.questionSequence;
 		let question;
-		let numAttempts = 0;
-		while (!doesQuestionPassFilter(state, question)) {
-			currQuestion++;
-			if (currQuestion >= questions.length) {
-				currQuestion = 0;
+		let answer;
+		if (state.sequenceIndex < state.questionSequence.length - 1) { // on an old question, just move forward
+			newSequenceIndex = state.sequenceIndex + 1;
+			newQuestionIndex = state.questionSequence[newSequenceIndex];
+			question = questions[newQuestionIndex].question;
+			answer = questions[newQuestionIndex].answer;
+		} else { //select new question
+			// TODO: do this somewhere better, not in reducer
+			newQuestionIndex = state.questionIndex;
+			let numAttempts = 0;
+			while (!doesQuestionPassFilter(state, question)) {
+				newQuestionIndex++;
+				if (newQuestionIndex >= questions.length) {
+					newQuestionIndex = 0;
+				}
+				question = questions[newQuestionIndex].question;
+				numAttempts++;
+				if (numAttempts > questions.length) {
+					console.error('unable to generate a question with present filters');
+					return state;
+				}
 			}
-			question = questions[currQuestion].question;
-			numAttempts++;
-			if (numAttempts > questions.length) {
-				console.error('unable to generate a question with present filters');
-				return state;
-			}
+			answer = questions[newQuestionIndex].answer;
+			newQuestionSequence = [...state.questionSequence, newQuestionIndex];
+			newSequenceIndex = state.sequenceIndex + 1;
 		}
-		const answer = questions[currQuestion].answer;
 		return Object.assign({}, state, {
-			currentQuestionIndex: currQuestion,
+			questionIndex: newQuestionIndex,
 			hasSubmittedAnswer: false,
 			submittedAnswer: '',
 			isCorrect: false,
@@ -161,8 +176,37 @@ const quiz = (state = initialState, action) => {
 			mood: question.mood,
 			correctAnswer: answer,
 			irregularity: question.irregularity,
-			isReflexive: question.isReflexive
+			isReflexive: question.isReflexive,
+			sequenceIndex: newSequenceIndex,
+			questionSequence: newQuestionSequence
 		});
+	}
+	case PREV_QUESTION: {
+		if (state.sequenceIndex > 0) {
+			const questions = state.questions;
+			const newSequenceIndex = state.sequenceIndex - 1;
+			const newQuestionIndex = state.questionSequence[newSequenceIndex];
+			const question = questions[newQuestionIndex].question;
+			const answer = questions[newQuestionIndex].answer;
+			return Object.assign({}, state, {
+				questionIndex: newQuestionIndex,
+				hasSubmittedAnswer: false,
+				submittedAnswer: '',
+				isCorrect: false,
+				showAnswer: false,
+				isIrregular: question.isIrregular,
+				pronoun: question.pronoun,
+				infinitive: question.verb,
+				tense: question.tense,
+				mood: question.mood,
+				correctAnswer: answer,
+				irregularity: question.irregularity,
+				isReflexive: question.isReflexive,
+				sequenceIndex: newSequenceIndex,
+				questionSequence: state.questionSequence
+			});
+		}
+		return state;
 	}
 	case FLIP_CARD: {
 		return Object.assign({}, state, {
