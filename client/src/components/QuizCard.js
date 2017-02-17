@@ -45,6 +45,8 @@ function QuizCard(props) {
 				correctAnswer={props.correctAnswer}
 				submittedAnswer={props.submittedAnswer}
 				irregularity={props.irregularity}
+				before={before}
+				after={after}
 			/>
 		);
 	} else if (shouldShowVerbCard(props)) {

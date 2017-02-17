@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-function FeedbackCard({ isCorrect, correctAnswer, submittedAnswer }) {
+function FeedbackCard({ isCorrect, correctAnswer, submittedAnswer, irregularity, before, after }) {
 	const userAnswerClass = isCorrect ? 'correctAnswer' : 'incorrectAnswer';
 	const displayAnswer = isCorrect ? correctAnswer : submittedAnswer;
 	return (
@@ -8,7 +8,9 @@ function FeedbackCard({ isCorrect, correctAnswer, submittedAnswer }) {
 			<section className="card back">
 				<div>
 					<span className={userAnswerClass}>{displayAnswer}</span>
-					<span className="answer">{isCorrect ? '' : ` -> ${correctAnswer}`}</span>
+					{!isCorrect ? (
+						<span className="answer"> {'-> '}{before}<span className="irregularity">{irregularity}</span>{after}</span>
+					) : ('')}
 				</div>
 			</section>
 		</div>
