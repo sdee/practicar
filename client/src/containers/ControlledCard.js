@@ -10,7 +10,6 @@ class ControlledCard extends Component {
 		dispatch(loadQuiz());
 		this.card.focus();
 	}
-
 	render() {
 		const { dispatch } = this.props;
 		return (
