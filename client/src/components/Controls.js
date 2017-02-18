@@ -1,12 +1,18 @@
 import React, { PropTypes } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, ButtonGroup } from 'react-bootstrap';
 
-function Controls({ onNextClick, onShowClick, showAnswer }) {
+function Controls({ onNextClick, onPrevClick, onShowClick, showAnswer }) {
 	const showButtonText = showAnswer ? 'See Question' : 'See Answer';
 	return (
 		<div>
+		<div>
+		<Button bsStyle="success" onClick={onPrevClick}>Previous Question</Button>
 			<Button bsStyle="success" onClick={onNextClick}>Next Question</Button>
-			<Button bsStyle="primary" onClick={onShowClick}>{showButtonText}</Button>
+		</div>
+		<br/>
+		<div>
+		<Button bsStyle="primary" onClick={onShowClick}>{showButtonText}</Button>
+		</div>
 		</div>
 	);
 }
