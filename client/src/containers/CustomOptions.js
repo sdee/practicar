@@ -15,10 +15,10 @@ function CustomOptions() {
 			</Panel>
 			<Panel header="Choose pronouns">
 				<FormGroup>
-					<FilterCheckbox filter ="ALLOW_PRONOUN_YO" label="yo" inline />
-					<FilterCheckbox filter ="ALLOW_PRONOUN_TU" label="tú" inline />
-					<FilterCheckbox filter ="ALLOW_PRONOUN_EL" label="él/ella/Ud." inline />
-					<FilterCheckbox filter ="ALLOW_PRONOUN_NOSOTROS" label="nosotros" inline />
+					<FilterCheckbox filter="ALLOW_PRONOUN_YO" label="yo" inline />
+					<FilterCheckbox filter="ALLOW_PRONOUN_TU" label="tú" inline />
+					<FilterCheckbox filter="ALLOW_PRONOUN_EL" label="él/ella/Ud." inline />
+					<FilterCheckbox filter="ALLOW_PRONOUN_NOSOTROS" label="nosotros" inline />
 					<FilterCheckbox filter="ALLOW_PRONOUN_VOSOTROS" label="vosotros" inline />
 					<FilterCheckbox filter="ALLOW_PRONOUN_ELLOS" label="ellos/ellas/Uds." inline />
 				</FormGroup>

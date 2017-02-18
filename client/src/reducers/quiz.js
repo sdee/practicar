@@ -81,14 +81,37 @@ function doesQuestionPassFilter(state, question) {
 	if (!question) {
 		return false;
 	}
+
 	if (!state.ALLOW_IRREGULAR && question.isIrregular) {
 		return false;
 	}
+	console.log("STATE");
+	console.log(state);
+	console.log(question.pronoun);
+	if (!state.ALLOW_PRONOUN_YO && question.pronoun === 'yo') {
+		return false;
+	}
+
+	if (!state.ALLOW_PRONOUN_TU && question.pronoun === 'tú') {
+		return false;
+	}
+
+	if (!state.ALLOW_PRONOUN_EL && question.pronoun === 'él') {
+		console.log("failed el!!!!!!!!!");
+		return false;
+	}
+
+	if (!state.ALLOW_PRONOUN_NOSOTROS && question.pronoun === 'nosotros') {
+		return false;
+	}
+
 	if (!state.ALLOW_PRONOUN_VOSOTROS && question.pronoun === 'vosotros') {
 		return false;
 	}
 
-	//filter pronoun here
+	if (!state.ALLOW_PRONOUN_ELLOS && question.pronoun === 'ellos') {
+		return false;
+	}
 
 	if (!state.ALLOW_REFLEXIVE && question.isReflexive) {
 		return false;
@@ -125,7 +148,12 @@ const initialState = {
 	hasSubmittedAnswer: false,
 	questionSequence: [],
 	sequenceIndex: -1,
-	ALLOW_PRESENT_IND: true
+	ALLOW_PRESENT_IND: true,
+	ALLOW_PRONOUN_YO: true,
+	ALLOW_PRONOUN_TU: true,
+	ALLOW_PRONOUN_EL: true,
+	ALLOW_PRONOUN_NOSOTROS: true,
+	ALLOW_PRONOUN_ELLOS: true
 };
 
 const quiz = (state = initialState, action) => {
