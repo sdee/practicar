@@ -2,32 +2,27 @@
   {
     "tense": "present",
     "mood": "indicative",
-    "code": "pre",
-    "example": "I walk"
+    "code": "pre"
   },
   {
     "tense": "preterite",
     "mood": "indicative",
-    "code": "pas",
-    "example": "I walked"
+    "code": "pas"
   },
   {
     "tense": "imperfect",
     "mood": "indicative",
-    "code": "cop",
-    "example": "When I was a kid, I used to walk home from school everyday"
+    "code": "cop"
   },
   {
     "tense": "conditional",
     "mood": "indicative",
-    "code": "pos",
-    "example": "I would walk if it weren't for the rain."
+    "code": "pos"
   },
   {
     "tense": "future",
     "mood": "indicative",
-    "code": "fut",
-    "example": "I will walk tomorrow."
+    "code": "fut"
   },
   {
     "tense": "present",

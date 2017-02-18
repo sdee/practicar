@@ -9,6 +9,7 @@
   padding: 3px;
 }
 
+/* makes target for accordion expand whole length of header*/
 .panel-title a {
     display: block;
     padding: 10px 15px;
@@ -109,9 +110,4 @@ section.card div {
 }
 .questionNum {
   font: 50px 'Helvetica', sans-serif;
-}
-
-.btn-primary-outline {
-  background-color: transparent;
-  border-color: transparent;
 }

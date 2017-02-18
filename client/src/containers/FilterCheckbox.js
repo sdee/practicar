@@ -13,10 +13,8 @@ const FilterCheckbox = ({ checked, dispatch, label, filter, explanation }) => {
 	function handleChange() {
 		dispatch(setFilter(filter, !checked));
 	}
-	console.log(explanation);
 	let description = null;
 	if (explanation) {
-
 		const tooltip = (
 			<Tooltip id="tooltip">{explanation}</Tooltip>
 		);
