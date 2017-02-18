@@ -6,8 +6,8 @@ function Readme(props) {
 		<Panel>
 			<h2>About</h2>
 			<Accordion defaultActiveKey="1">
-				<Panel header="Concept" eventKey="1">
-					<p>This app ensures that you get enough practice with your verbs.
+				<Panel header="Concept" eventKey="1" data-toggle="collapse" data-target="#parag">
+					<p id="paragraph1">This app ensures that you get enough practice with your verbs.
 					The app automatically generates flashcards to give you practice with
 					many diverse combinations of pronouns, tenses, and verbs. The best
 					way to learn verb endings is not to memorize conjugation tables but
@@ -55,13 +55,11 @@ function Readme(props) {
 					<p>This app was written partially as as way for me to familiarize
 					myself with React. I used Fluxxor to implement the Flux architectural
 					pattern. The layout is powered by Twitter Bootstrap and the React
-					Bootstrap library</p><p>For the conjugations, I rely heavily this
-					<a href="https://github.com/voldmar/conjugation">library</a> by Github
+					Bootstrap library</p><p>For the conjugations, I rely heavily on this <a href="https://github.com/voldmar/conjugation">library</a> by Github
 					user, voldmar (which is based on Pythoñol). I used Flask to wrap the
 					conjugation library into a nice api.
 					</p>
-					<p>All of the code for this app can be found on
-						<a href="https://github.com/voldmar/conjugation">github</a>
+					<p>All of the code for this app can be found on <a href="https://github.com/voldmar/conjugation">github</a>
 					</p>
 				</Panel>
 			</Accordion>
