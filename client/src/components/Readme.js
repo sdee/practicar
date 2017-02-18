@@ -40,7 +40,7 @@ function Readme(props) {
 					<p>This tool is built around my personal learning style so it might
 					not be ideal for everyone. I quit my software job and started to
 					travel the world to learn about food. I started in Peru and quickly
-					realized how important expanding my language skill was to
+					realized how important expanding my language skills was to
 					understanding the rich stories people were telling me.</p>
 					<p>In the second part of my trip, I found myself on the other side
 					of the world in Thailand where I couldn&#39;t find any Spanish classes
