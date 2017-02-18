@@ -9,9 +9,18 @@ function CustomOptions() {
 			<Panel header="Customize your lesson">
 				<FormGroup>
 					<FilterCheckbox filter="ALLOW_IRREGULAR" label="allow irregular" inline />
-					<FilterCheckbox filter="ALLOW_VOSOTROS" label="use vosotros" inline />
 					<FilterCheckbox filter="ALLOW_REPEATS" label="allow repeats" inline />
 					<FilterCheckbox filter="ALLOW_REFLEXIVE" label="allow reflexive" inline />
+				</FormGroup>
+			</Panel>
+			<Panel header="Choose pronouns">
+				<FormGroup>
+					<FilterCheckbox filter ="ALLOW_PRONOUN_YO" label="yo" inline />
+					<FilterCheckbox filter ="ALLOW_PRONOUN_TU" label="tú" inline />
+					<FilterCheckbox filter ="ALLOW_PRONOUN_EL" label="él/ella/Ud." inline />
+					<FilterCheckbox filter ="ALLOW_PRONOUN_NOSOTROS" label="nosotros" inline />
+					<FilterCheckbox filter="ALLOW_PRONOUN_VOSOTROS" label="vosotros" inline />
+					<FilterCheckbox filter="ALLOW_PRONOUN_ELLOS" label="ellos/ellas/Uds." inline />
 				</FormGroup>
 			</Panel>
 			<Panel header="Choose tenses">

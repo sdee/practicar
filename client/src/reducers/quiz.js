@@ -84,9 +84,12 @@ function doesQuestionPassFilter(state, question) {
 	if (!state.ALLOW_IRREGULAR && question.isIrregular) {
 		return false;
 	}
-	if (!state.ALLOW_VOSOTROS && question.pronoun === 'vosotros') {
+	if (!state.ALLOW_PRONOUN_VOSOTROS && question.pronoun === 'vosotros') {
 		return false;
 	}
+
+	//filter pronoun here
+
 	if (!state.ALLOW_REFLEXIVE && question.isReflexive) {
 		return false;
 	}
