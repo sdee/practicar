@@ -85,9 +85,7 @@ function doesQuestionPassFilter(state, question) {
 	if (!state.ALLOW_IRREGULAR && question.isIrregular) {
 		return false;
 	}
-	console.log("STATE");
-	console.log(state);
-	console.log(question.pronoun);
+	
 	if (!state.ALLOW_PRONOUN_YO && question.pronoun === 'yo') {
 		return false;
 	}
