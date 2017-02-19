@@ -9,6 +9,13 @@
   padding: 3px;
 }
 
+/* makes target for accordion expand whole length of header*/
+.panel-title a {
+  display: block;
+  padding: 10px 15px;
+  margin: -10px -15px;
+}
+
 @import url(http://fonts.googleapis.com/css?family=Oswald);
 * {
   margin: 0px;
@@ -103,4 +110,8 @@ section.card div {
 }
 .questionNum {
   font: 50px 'Helvetica', sans-serif;
+}
+.overlay {
+  color: #bfbfbf;
+  padding-left: 2px;
 }

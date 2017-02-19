@@ -19,20 +19,48 @@ function CustomOptions() {
 					<MoodTrigger mood="INDICATIVE" label="all on" trigger="on" />
 					<MoodTrigger mood="INDICATIVE" label="all off" trigger="off" />
 					<FormGroup>
-						<FilterCheckbox filter="ALLOW_PRESENT_IND" label="present" />
-						<FilterCheckbox filter="ALLOW_PRETERITE_IND" label="preterite" />
-						<FilterCheckbox filter="ALLOW_IMPERFECT_IND" label="imperfect" />
-						<FilterCheckbox filter="ALLOW_CONDITIONAL_IND" label="conditional" />
-						<FilterCheckbox filter="ALLOW_FUTURE_IND" label="future" />
+						<FilterCheckbox filter="ALLOW_PRESENT_IND" label="present" explanation="I walk." />
+						<FilterCheckbox
+							filter="ALLOW_PRETERITE_IND"
+							label="preterite"
+							explanation="I walked home last night."
+						/>
+						<FilterCheckbox
+							filter="ALLOW_IMPERFECT_IND"
+							label="imperfect"
+							explanation="When I was a kid, I used to walk home from school everyday."
+						/>
+						<FilterCheckbox
+							filter="ALLOW_CONDITIONAL_IND"
+							label="conditional"
+							explanation="I would walk if it weren't for the rain."
+						/>
+						<FilterCheckbox
+							filter="ALLOW_FUTURE_IND"
+							label="future"
+							explanation="I will walk tomorrow."
+						/>
 					</FormGroup>
 				</Panel>
 				<Panel header="Subjunctive">
 					<MoodTrigger mood="SUBJUNCTIVE" label="all on" trigger="on" />
 					<MoodTrigger mood="SUBJUNCTIVE" label="all off" trigger="off" />
 					<FormGroup>
-						<FilterCheckbox filter="ALLOW_PRESENT_SUBJ" label="present" />
-						<FilterCheckbox filter="ALLOW_IMPERFECT_SUBJ" label="imperfect" />
-						<FilterCheckbox filter="ALLOW_FUTURE_SUBJ" label="future" />
+						<FilterCheckbox
+							filter="ALLOW_PRESENT_SUBJ"
+							label="present"
+							explanation="I doubt that he walks in this weather."
+						/>
+						<FilterCheckbox
+							filter="ALLOW_IMPERFECT_SUBJ"
+							label="imperfect"
+							explanation="I hoped that you had walked yesterday. It was so nice outside."
+						/>
+						<FilterCheckbox
+							filter="ALLOW_FUTURE_SUBJ"
+							label="future"
+							explanation="I don't think they will have walked all day without water."
+						/>
 					</FormGroup>
 				</Panel>
 			</Panel>

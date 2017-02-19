@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Checkbox } from 'react-bootstrap';
+import { Checkbox, OverlayTrigger, Glyphicon, Tooltip } from 'react-bootstrap';
 import { setFilter } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -9,17 +9,37 @@ const mapStateToProps = (state, ownProps) => {
 	return { checked };
 };
 
-const FilterCheckbox = ({ checked, dispatch, label, filter }) => {
+const FilterCheckbox = ({ checked, dispatch, label, filter, explanation }) => {
 	function handleChange() {
 		dispatch(setFilter(filter, !checked));
 	}
+	let description = '';
+	if (explanation) {
+		const tooltip = (
+			<Tooltip id="tooltip">{explanation}</Tooltip>
+		);
+		description = (
+			<OverlayTrigger
+				placement="right"
+				overlay={tooltip}
+			>
+				<Glyphicon
+					className="overlay"
+					glyph="info-sign"
+				/>
+			</OverlayTrigger>
+		);
+	}
 	return (
-		<Checkbox
-			checked={checked}
-			onChange={handleChange}
-		>
-			{label}
-		</Checkbox>
+		<div>
+			<Checkbox
+				checked={checked}
+				onChange={handleChange}
+			>
+				{label}
+				{description}
+			</Checkbox>
+		</div>
 	);
 };
 
@@ -27,7 +47,8 @@ FilterCheckbox.propTypes = {
 	dispatch: PropTypes.func.isRequired,
 	label: PropTypes.string.isRequired,
 	filter: PropTypes.string.isRequired,
-	checked: PropTypes.bool.isRequired
+	checked: PropTypes.bool.isRequired,
+	explanation: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps)(FilterCheckbox);
