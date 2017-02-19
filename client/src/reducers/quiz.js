@@ -32,7 +32,7 @@ function getFinalCorrectAnswer(correctAnswer, ignoreAccents) {
 }
 
 function checkUserAnswer(finalUserAnswer, finalCorrectAnswer) {
-	return finalUserAnswer === finalCorrectAnswer;
+	return finalUserAnswer.toLowerCase() === finalCorrectAnswer.toLowerCase();
 }
 
 function doesVerbPassIndicativeFilters(state, question) {
@@ -85,7 +85,7 @@ function doesQuestionPassFilter(state, question) {
 	if (!state.ALLOW_IRREGULAR && question.isIrregular) {
 		return false;
 	}
-	
+
 	if (!state.ALLOW_PRONOUN_YO && question.pronoun === 'yo') {
 		return false;
 	}
