@@ -77,11 +77,7 @@ function doesVerbPassSubjFilters(state, question) {
 	return true;
 }
 
-function doesQuestionPassFilter(state, question) {
-	if (!question) {
-		return false;
-	}
-
+function doesPronounPassFilter(state, question) {
 	if (!state.ALLOW_IRREGULAR && question.isIrregular) {
 		return false;
 	}
@@ -95,7 +91,6 @@ function doesQuestionPassFilter(state, question) {
 	}
 
 	if (!state.ALLOW_PRONOUN_EL && question.pronoun === 'él') {
-		console.log("failed el!!!!!!!!!");
 		return false;
 	}
 
@@ -108,6 +103,17 @@ function doesQuestionPassFilter(state, question) {
 	}
 
 	if (!state.ALLOW_PRONOUN_ELLOS && question.pronoun === 'ellos') {
+		return false;
+	}
+	return true;
+}
+
+function doesQuestionPassFilter(state, question) {
+	if (!question) {
+		return false;
+	}
+
+	if (!doesPronounPassFilter(state, question)) {
 		return false;
 	}
 

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Button, ButtonGroup, Glyphicon } from 'react-bootstrap';
+import { Button, Glyphicon } from 'react-bootstrap';
 
 function Controls({ onNextClick, onPrevClick, onShowClick, showAnswer }) {
 	const showButtonText = showAnswer ? 'See Question' : 'See Answer';
