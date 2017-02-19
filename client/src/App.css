@@ -90,7 +90,7 @@ section.card div {
   color: green;
 }
 .incorrectAnswer {
-  color: red;
+  text-decoration: line-through;
 }
 .answer {
   color: black;
