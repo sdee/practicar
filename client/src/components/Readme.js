@@ -13,20 +13,21 @@ function Readme(props) {
 					in a conversation. The app automatically generates flashcards to give you practice with
 					many diverse combinations of pronouns, tenses, and verbs. </p>
 				</Panel>
-			 <Panel header="Why use this app?" eventKey="2">
-			 <p>Don&#39;t let the many tenses in Spanish intimidate you or limit you
-			 to what you can say in your new favorite language. Verbar is ideal
-			 for expanding your knowledge of tenses as well as improving your speed and confidence.</p>
-			 </Panel>
+				<Panel header="Why use this app?" eventKey="2">
+					<p>Don&#39;t let the many tenses in Spanish intimidate you or limit you
+					to what you can say in your new favorite language. Verbar is ideal
+					for expanding your knowledge of tenses as well as improving your speed and confidence.</p>
+				</Panel>
 				<Panel header="Key difference" eventKey="3">
-					<p><b>Unlimited practice: </b>Workbooks and other apps feature curated exercises. This approach is good
-					for certain kinds of skills such as complex sentence formation but is limited in the sheer
-					amount of practice they can provide. For example, Duolingo will
-					introduce a new tense and at best you&#39;ll get a dozen of practice
-					questions for that tense. Even when using a 350-page workbook focused on verbs,
-					I sometimes felt like I did not have enough practice since the book was spread over many concepts. Because Practicar
-					generates questions combinatorially by combining verbs, tenses, and
-					pronouns, you'll never run out of practice.</p>
+					<p><b>Unlimited practice: </b>Workbooks and other apps feature curated
+					exercises. This approach is good for certain kinds of skills such as
+					complex sentence formation but is limited in the sheer amount of practice
+					they can provide. For example, Duolingo will introduce a new tense and
+					at best you&#39;ll get a dozen of practice questions for that tense. Even
+					when using a 350-page workbook focused on verbs, I sometimes felt like
+					I did not have enough practice since the book was spread over many concepts.
+					Because Practicar generates questions combinatorially by combining verbs,
+					tenses, and pronouns, you&#39;ll never run out of practice.</p>
 					<p><b>Customization: </b>The best part of this app is that it allows you to customize
 					each practice session. You can use the app to focus on weak spots,
 					help you keep up with a class, or to help improve
@@ -34,7 +35,10 @@ function Readme(props) {
 					whether you&#39;re ready to tackle irregulars. You only need to
 					practice &#39;vosotros&#39; if you&#39;re practicing for a trip
 					to Spain.</p>
-					<p><b>Focus: </b>This app won&#39;t teach you all of Spanish. In my own personal experience, I have found it helpful to isolate and focus on one skill within a language at a time and then combine them all in frequent, conversation practice. </p>
+					<p><b>Focus: </b>This app won&#39;t teach you all of Spanish. In my
+					own personal experience, I have found it helpful to isolate and focus
+					on one skill within a language at a time and then combine them all in
+					frequent, conversation practice.</p>
 				</Panel>
 				<Panel header="Story" eventKey="4">
 					<p>This tool is built around my personal learning style so it might
@@ -54,12 +58,14 @@ function Readme(props) {
 					weeks while bouncing around various co-working spaces in Chiang Mai.</p>
 					<p>Then, a year later, I joined forces with a friend and we rebuilt the app
 					while sharing an Airbnb in Ecuador. Together, we were able to build something
-					that was faster and actually useful. Without Jake's enthusiasm and expertise, this app would have just been a forgotten, weekend project. </p>
+					that was faster and actually useful. Without Jake&#39;s enthusiasm and
+					expertise, this app would have just been a forgotten, weekend project.</p>
 				</Panel>
 				<Panel header="Code" eventKey="5">
 					<p>This app was written partially as as way for me to familiarize
-					myself with React and Flux. The core of the app uses Redux and Express.js. The layout is powered by Twitter Bootstrap and the React
-					Bootstrap library</p><p>For the conjugations, we rely heavily on this <a href="https://github.com/voldmar/conjugation">library</a> by Github
+					myself with React and Flux. The core of the app uses Redux and Express.js.
+					The layout is powered by Twitter Bootstrap and the React Bootstrap library</p>
+					<p>For the conjugations, we rely heavily on this <a href="https://github.com/voldmar/conjugation">library</a> by Github
 					user, voldmar (which is based on Pythoñol).
 					</p>
 					<p>All of the code for this app can be found on <a href="https://github.com/sdee/practicar">Github</a>
