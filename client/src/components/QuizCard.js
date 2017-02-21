@@ -4,7 +4,6 @@ import VerbCard from './VerbCard';
 import AnswerCard from './AnswerCard';
 import MessageCard from './MessageCard';
 
-
 function shouldShowFeedbackCard(props) {
 	return props.hasSubmittedAnswer && props.infinitive;
 }
@@ -17,13 +16,35 @@ function shouldShowAnswerCard(props) {
 	return props.infinitive && props.showAnswer === true;
 }
 
+function getBeforeAfter(answer, irregularity) {
+	const beforeAfter = {};
+	beforeAfter.before = '';
+	beforeAfter.after = '';
+	if (irregularity.length > 0) {
+		const iStartIndex = answer.indexOf(irregularity);
+		const iEndIndex = iStartIndex + irregularity.length;
+		beforeAfter.before = answer.slice(0, iStartIndex).trim();
+		beforeAfter.after = answer.slice(iEndIndex, answer.length).trim();
+	} else {
+		beforeAfter.before = answer;
+	}
+	return beforeAfter;
+}
+
 function QuizCard(props) {
+	const beforeAfter = getBeforeAfter(props.correctAnswer, props.irregularity);
+	const before = beforeAfter.before;
+	const after = beforeAfter.after;
+
 	if (shouldShowFeedbackCard(props)) {
 		return (
 			<FeedbackCard
 				isCorrect={props.isCorrect}
 				correctAnswer={props.correctAnswer}
 				submittedAnswer={props.submittedAnswer}
+				irregularity={props.irregularity}
+				before={before}
+				after={after}
 			/>
 		);
 	} else if (shouldShowVerbCard(props)) {
@@ -38,7 +59,12 @@ function QuizCard(props) {
 		);
 	} else if (shouldShowAnswerCard(props)) {
 		return (
-			<AnswerCard answer={props.correctAnswer} irregularity={props.irregularity} />
+			<AnswerCard
+				answer={props.correctAnswer}
+				irregularity={props.irregularity}
+				before={before}
+				after={after}
+			/>
 		);
 	}
 	return (

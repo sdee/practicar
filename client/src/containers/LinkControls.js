@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { nextQuestion, flipCard } from '../actions';
+import { nextQuestion, prevQuestion, flipCard } from '../actions';
 import Controls from '../components/Controls';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -9,6 +9,9 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onNextClick: () => {
 		dispatch(nextQuestion());
+	},
+	onPrevClick: () => {
+		dispatch(prevQuestion());
 	},
 	onShowClick: () => {
 		dispatch(flipCard());

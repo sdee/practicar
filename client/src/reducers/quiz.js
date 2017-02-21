@@ -32,7 +32,7 @@ function getFinalCorrectAnswer(correctAnswer, ignoreAccents) {
 }
 
 function checkUserAnswer(finalUserAnswer, finalCorrectAnswer) {
-	return finalUserAnswer === finalCorrectAnswer;
+	return finalUserAnswer.toLowerCase() === finalCorrectAnswer.toLowerCase();
 }
 
 function doesVerbPassIndicativeFilters(state, question) {
@@ -77,16 +77,46 @@ function doesVerbPassSubjFilters(state, question) {
 	return true;
 }
 
+function doesPronounPassFilter(state, question) {
+	if (!state.ALLOW_IRREGULAR && question.isIrregular) {
+		return false;
+	}
+
+	if (!state.ALLOW_PRONOUN_YO && question.pronoun === 'yo') {
+		return false;
+	}
+
+	if (!state.ALLOW_PRONOUN_TU && question.pronoun === 'tú') {
+		return false;
+	}
+
+	if (!state.ALLOW_PRONOUN_EL && question.pronoun === 'él') {
+		return false;
+	}
+
+	if (!state.ALLOW_PRONOUN_NOSOTROS && question.pronoun === 'nosotros') {
+		return false;
+	}
+
+	if (!state.ALLOW_PRONOUN_VOSOTROS && question.pronoun === 'vosotros') {
+		return false;
+	}
+
+	if (!state.ALLOW_PRONOUN_ELLOS && question.pronoun === 'ellos') {
+		return false;
+	}
+	return true;
+}
+
 function doesQuestionPassFilter(state, question) {
 	if (!question) {
 		return false;
 	}
-	if (!state.ALLOW_IRREGULAR && question.isIrregular) {
+
+	if (!doesPronounPassFilter(state, question)) {
 		return false;
 	}
-	if (!state.ALLOW_VOSOTROS && question.pronoun === 'vosotros') {
-		return false;
-	}
+
 	if (!state.ALLOW_REFLEXIVE && question.isReflexive) {
 		return false;
 	}
@@ -122,7 +152,12 @@ const initialState = {
 	hasSubmittedAnswer: false,
 	questionSequence: [],
 	sequenceIndex: -1,
-	ALLOW_PRESENT_IND: true
+	ALLOW_PRESENT_IND: true,
+	ALLOW_PRONOUN_YO: true,
+	ALLOW_PRONOUN_TU: true,
+	ALLOW_PRONOUN_EL: true,
+	ALLOW_PRONOUN_NOSOTROS: true,
+	ALLOW_PRONOUN_ELLOS: true
 };
 
 const quiz = (state = initialState, action) => {

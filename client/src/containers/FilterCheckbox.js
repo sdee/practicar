@@ -48,7 +48,11 @@ FilterCheckbox.propTypes = {
 	label: PropTypes.string.isRequired,
 	filter: PropTypes.string.isRequired,
 	checked: PropTypes.bool.isRequired,
-	explanation: PropTypes.string.isRequired
+	explanation: PropTypes.string
+};
+
+FilterCheckbox.defaultProps = {
+	explanation: ''
 };
 
 export default connect(mapStateToProps)(FilterCheckbox);
