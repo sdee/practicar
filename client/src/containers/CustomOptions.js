@@ -28,7 +28,11 @@ function CustomOptions() {
 					<MoodTrigger mood="INDICATIVE" label="all on" trigger="on" />
 					<MoodTrigger mood="INDICATIVE" label="all off" trigger="off" />
 					<FormGroup>
-						<FilterCheckbox filter="ALLOW_PRESENT_IND" label="present" explanation="I walk." />
+						<FilterCheckbox
+							filter="ALLOW_PRESENT_IND"
+							label="present"
+							explanation="I walk."
+						/>
 						<FilterCheckbox
 							filter="ALLOW_PRETERITE_IND"
 							label="preterite"

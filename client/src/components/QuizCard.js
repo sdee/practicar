@@ -17,7 +17,6 @@ function shouldShowAnswerCard(props) {
 }
 
 function getBeforeAfter(answer, irregularity) {
-	console.log(answer);
 	const beforeAfter = {};
 	beforeAfter.before = '';
 	beforeAfter.after = '';
@@ -29,7 +28,6 @@ function getBeforeAfter(answer, irregularity) {
 	} else {
 		beforeAfter.before = answer;
 	}
-	console.log(beforeAfter)
 	return beforeAfter;
 }
 
@@ -61,7 +59,12 @@ function QuizCard(props) {
 		);
 	} else if (shouldShowAnswerCard(props)) {
 		return (
-			<AnswerCard answer={props.correctAnswer} irregularity={props.irregularity} before={before} after={after} />
+			<AnswerCard
+				answer={props.correctAnswer}
+				irregularity={props.irregularity}
+				before={before}
+				after={after}
+			/>
 		);
 	}
 	return (

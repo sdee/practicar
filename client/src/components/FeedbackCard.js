@@ -20,7 +20,10 @@ function FeedbackCard({ isCorrect, correctAnswer, submittedAnswer, irregularity,
 FeedbackCard.propTypes = {
 	isCorrect: PropTypes.bool.isRequired,
 	correctAnswer: PropTypes.string.isRequired,
-	submittedAnswer: PropTypes.string.isRequired
+	submittedAnswer: PropTypes.string.isRequired,
+	irregularity: PropTypes.string.isRequired,
+	before: PropTypes.string.isRequired,
+	after: PropTypes.string.isRequired
 };
 
 export default FeedbackCard;

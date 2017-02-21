@@ -14,7 +14,9 @@ function AnswerCard({ answer, irregularity, before, after }) {
 
 AnswerCard.propTypes = {
 	answer: PropTypes.string.isRequired,
-	irregularity: PropTypes.string.isRequired
+	irregularity: PropTypes.string.isRequired,
+	before: PropTypes.string.isRequired,
+	after: PropTypes.string.isRequired
 };
 
 export default AnswerCard;

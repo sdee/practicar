@@ -1,11 +1,14 @@
 import { SET_FILTER } from '../actions';
-const defaultProps = {ALLOW_PRESENT_IND: true,
-	 										ALLOW_PRONOUN_YO: true,
-											ALLOW_PRONOUN_TU: true,
-											ALLOW_PRONOUN_NOSOTROS: true,
-											ALLOW_PRONOUN_EL: true,
-											ALLOW_PRONOUN_ELLOS: true }
-const filter = (state = defaultProps, action) => {
+
+const initialState = {
+	ALLOW_PRESENT_IND: true,
+	ALLOW_PRONOUN_YO: true,
+	ALLOW_PRONOUN_TU: true,
+	ALLOW_PRONOUN_NOSOTROS: true,
+	ALLOW_PRONOUN_EL: true,
+	ALLOW_PRONOUN_ELLOS: true
+};
+const filter = (state = initialState, action) => {
 	switch (action.type) {
 	case SET_FILTER: {
 		const newState = Object.assign({}, state, {});
