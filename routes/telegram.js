@@ -1,14 +1,15 @@
-const Telegraf = require('telegraf');
+var express = require('express');
+var router = express.Router();
 
-const app = new Telegraf(process.env.TELEGRAM_TOKEN);
+module.exports = function(bot) {
+	bot.command('start', (ctx) => {
+		console.log('start', ctx.from);
+		ctx.reply('Welcome!');
+	});
 
-app.command('start', (ctx) => {
-  console.log('start', ctx.from);
-  ctx.reply('Welcome!');
-});
+	bot.hears('hi', (ctx) => ctx.reply('Hey there!'));
 
-app.hears('hi', (ctx) => ctx.reply('Hey there!'));
+	bot.on('sticker', (ctx) => ctx.reply('👍'));
 
-app.on('sticker', (ctx) => ctx.reply('👍'));
-
-app.startPolling();
+	return router;
+};
