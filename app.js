@@ -1,5 +1,3 @@
-var env = require('node-env-file');
-env(__dirname + '/.env');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -10,10 +8,6 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var quiz = require('./routes/quiz');
 var conjugate = require('./routes/conjugate');
-
-const Telegraf = require('telegraf');
-const telegrafBot = new Telegraf(process.env.TELEGRAM_TOKEN);
-const telegram = require('./routes/telegram')(telegrafBot);
 
 var app = express();
 
@@ -32,7 +26,6 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.use('/', index);
 app.use('/api/quiz', quiz);
 app.use('/api/conjugate', conjugate);
-app.use(telegrafBot.webhookCallback('/' + process.env.TELEGRAM_TOKEN), telegram);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
