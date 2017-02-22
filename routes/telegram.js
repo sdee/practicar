@@ -21,7 +21,6 @@ router.post('/practicarhook', function (req, res) {
 	const chat = message.chat;
 	const mDate = message.date;
 	const text = message.text;
-	const entities = message.entities;
 	let back = {
 		ok: true,
 		method: 'sendMessage',
@@ -30,23 +29,22 @@ router.post('/practicarhook', function (req, res) {
 	};
 
 	if (text.startsWith('/')) {
-		const cmdEntity = _.find(entities, function(entity) { return entity.type === 'bot_command'; });
-		if (cmdEntity) {
-			const cmd = text.substr(cmdEntity.offset, cmdEntity.length);
-			switch (cmd) {
-				case 'start':
-					back.text = 'hello, ' + chat.username + ', I am PracticarBot! Send me a command like /conj';
-					break;
-				case 'conj': {
-					const verbOffset = cmdEntity.offset + cmdEntity.length + 1;
-					const verb = text.substr(verbOffset, text.length - verbOffset);
+		const words = text.split(' ');
+		const cmd = words[0].substr(1);
+		switch (cmd) {
+			case 'start':
+				back.text = 'hello, ' + chat.username + ', I am PracticarBot! Send me a command like /conj';
+				break;
+			case 'conj': {
+				if (words.length > 1) {
+					const verb = words[1];
 					back.text = 'you want to conjugate ' + verb;
-					break;
 				}
-				case 'help':
-					back.text = 'help text coming soon';
-					break;
+				break;
 			}
+			case 'help':
+				back.text = 'help text coming soon';
+				break;
 		}
 	}
 
