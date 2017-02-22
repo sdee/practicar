@@ -1,6 +1,7 @@
 const _ = require('underscore');
 const express = require('express');
 const router = express.Router();
+const quiz = require('../services/quiz');
 
 const token = process.env.TELEGRAM_TOKEN;
 
@@ -36,9 +37,19 @@ router.post('/practicarhook', function (req, res) {
 				back.text = 'hello, ' + chat.username + ', I am PracticarBot! Send me a command like /conj';
 				break;
 			case 'conj': {
-				if (words.length > 1) {
+				if (words.length === 5) {
 					const verb = words[1];
-					back.text = 'you want to conjugate ' + verb;
+					const pronoun = words[2];
+					const tense = words[3];
+					const mood = words[4];
+					const conj = quiz.generateConjugationByName(verb, pronoun, tense, mood);
+					if (conj) {
+						back.text = pronoun + ' ' + conj;
+					} else {
+						back.text = 'unable to conjugate with those options';
+					}
+				} else {
+					back.text = '/conj requires verb pronoun tense mood'
 				}
 				break;
 			}
