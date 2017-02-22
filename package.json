@@ -27,9 +27,11 @@
     "express": "~4.14.0",
     "fast-diff": "^1.1.1",
     "morgan": "~1.7.0",
+    "node-env-file": "^0.1.8",
     "redux-thunk": "^2.2.0",
     "redux-undo": "^0.6.1",
     "serve-favicon": "~2.3.0",
+    "telegraf": "^3.6.6",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
