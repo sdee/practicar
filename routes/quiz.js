@@ -3,7 +3,7 @@ var router = express.Router();
 const quizService = require('../services/quiz');
 
 router.get('/', function(req, res, next) {
-  res.json(quizService.generateQuiz(500));
+	res.json(quizService.generateQuiz(500));
 });
 
 module.exports = router;
