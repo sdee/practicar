@@ -56,9 +56,10 @@ export function reloadQuiz() {
 	return { type: RELOAD_QUIZ };
 }
 
-export function loadQuiz() {
+export function loadQuiz(verbSet='default') {
+	let url = 'api/quiz?verbs='+verbSet;
 	return (dispatch) => {
-		fetch('api/quiz', {
+		fetch(url, {
 			accept: 'application/json',
 		})
 		.then(response => response.json())
