@@ -3,7 +3,7 @@ var router = express.Router();
 const quizService = require('../services/quiz');
 
 router.get('/', function(req, res, next) {
-  let verbSet = req.params.verbs;
+  let verbSet = req.query.verbs;
   if (!verbSet) {
     verbSet = 'default';
   }
