@@ -3,6 +3,7 @@ const diff = require('fast-diff');
 const conjugate = require('./conjugation');
 const utils = require('./spanish-utils');
 const verbs = require('../data/verbs.json');
+const topTwentyVerbs = require('../data/verbs-top-twenty.json');
 const pronouns = require('../data/pronouns.json');
 const moodsTenses = require('../data/moods-tenses.json');
 const irregularVerbs = require('../data/irregular-verbs.json');
@@ -10,6 +11,11 @@ const irregularVerbs = require('../data/irregular-verbs.json');
 const FILTER_ALL = 1;
 const FILTER_NONE = 2;
 const FILTER_BYCASE = 3;
+
+const verbSets = {
+	"default": verbs,
+	"topTwenty": topTwentyVerbs
+}
 
 function getByName(all, name) {
 	return _.findWhere(all, { name: name });
@@ -23,7 +29,8 @@ function chooseMoodTense() {
 	return chooseRandom(moodsTenses);
 }
 
-function chooseVerb() {
+function chooseVerb(verbSet) {
+	const verbs = verbSets[verbSet]
 	return chooseRandom(verbs);
 }
 
@@ -109,10 +116,10 @@ function generateConjugation(verb, pronoun, moodTense) {
 	return null;
 }
 
-function generateQuestion() {
+function generateQuestion(verbSet) {
 	const moodTense = chooseMoodTense();
 	const pronoun = choosePronoun();
-	const verb = chooseVerb();
+	const verb = chooseVerb(verbSet);
 	const reflexive = isReflexive(verb);
 	const question = {
 		pronoun: pronoun.name,
@@ -137,12 +144,12 @@ function generateQuestion() {
 	return null;
 }
 
-function generateQuiz(numQuestions=100) {
+function generateQuiz(numQuestions=100, verbSet='default') {
 	const quiz = {
 		questions: []
 	};
 	while (quiz.questions.length < numQuestions) {
-		const question = generateQuestion();
+		const question = generateQuestion(verbSet);
 		// TODO: check uniqueness
 		if (question) {
 			quiz.questions.push(question);
