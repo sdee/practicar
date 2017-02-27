@@ -11,7 +11,7 @@ export const LOAD_QUIZ = 'LOAD_QUIZ';
 export const LOAD_QUIZ_SUCCESS = 'LOAD_QUIZ_SUCCESS';
 export const LOAD_QUIZ_ERROR = 'LOAD_QUIZ_ERROR';
 
-export const RELOAD_QUIZ = 'RELOAD_QUIZ';
+export const SET_VERBSET = 'SET_VERBSET';
 
 export const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
 
@@ -52,11 +52,13 @@ export function loadQuizRequest() {
 	return { type: LOAD_QUIZ };
 }
 
-export function reloadQuiz() {
-	return { type: RELOAD_QUIZ };
+export function setVerbSet(verbSet) {
+	return { type: SET_VERBSET, verbSet };
 }
 
 export function loadQuiz(verbSet='default') {
+	console.log("load quiz");
+	console.log(verbSet);
 	let url = 'api/quiz?verbs='+verbSet;
 	return (dispatch) => {
 		fetch(url, {
