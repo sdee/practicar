@@ -30,10 +30,11 @@ const UserAnswer = ({ dispatch }) => {
 						input = ref;
 					}}
 				/>
+				{' '}
 				<Button
 					type="submit"
 					bsStyle="success"
-					bsSize="small"
+					bsSize="medium"
 				>
 					post
 				</Button>

@@ -9,6 +9,7 @@ function Controls({ onNextClick, onPrevClick, onShowClick, showAnswer }) {
 				<Button bsStyle="success" onClick={onPrevClick}>
 					<Glyphicon glyph="chevron-left" />Back
 				</Button>
+				{' '}
 				<Button bsStyle="success" onClick={onNextClick}>Next
 					<Glyphicon glyph="chevron-right" />
 				</Button>
