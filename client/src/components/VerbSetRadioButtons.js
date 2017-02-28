@@ -9,7 +9,11 @@ function VerbSetSelector({currVerbSet="default", onSelect}) {
 	</Radio>
 	{' '}
 	<Radio inline onChange={onSelect} value="topTwenty" checked={currVerbSet==="topTwenty"}>
-		20 Most Frequent Verbs
+		20 Most Common
+	</Radio>
+	{' '}
+	<Radio inline onChange={onSelect} value="topHundred" checked={currVerbSet==="topHundred"}>
+		100 Most Common
 	</Radio>
 </FormGroup>
 	);
