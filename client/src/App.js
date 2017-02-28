@@ -12,7 +12,7 @@ function App() {
 	return (
 		<KeyboardControls>
 			<div className="App">
-				<Panel header="practice your verbs, eat your vegetables">
+				<Panel header="Yo practico, tú practicas, nosotros practicamos">
 					<Grid>
 						<Row className="show-grid">
 							<Col md={7}>
