@@ -215,6 +215,7 @@ const quiz = (state = initialState, action) => {
 			correctAnswer: answer,
 			irregularity: question.irregularity,
 			isReflexive: question.isReflexive,
+			definition: question.definition,
 			sequenceIndex: newSequenceIndex,
 			questionSequence: newQuestionSequence
 		});
@@ -240,6 +241,7 @@ const quiz = (state = initialState, action) => {
 				correctAnswer: answer,
 				irregularity: question.irregularity,
 				isReflexive: question.isReflexive,
+				definition: question.definition,
 				sequenceIndex: newSequenceIndex,
 				questionSequence: state.questionSequence
 			});

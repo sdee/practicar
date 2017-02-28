@@ -55,6 +55,7 @@ function QuizCard(props) {
 				tense={props.tense}
 				mood={props.mood}
 				questionNum={props.questionNum}
+				definition={props.definition}
 			/>
 		);
 	} else if (shouldShowAnswerCard(props)) {
