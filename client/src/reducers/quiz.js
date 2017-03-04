@@ -217,7 +217,7 @@ const quiz = (state = initialState, action) => {
 			isReflexive: question.isReflexive,
 			sequenceIndex: newSequenceIndex,
 			questionSequence: newQuestionSequence,
-			focus: state.focus
+			focus: "userAnswer"
 		});
 	}
 	case PREV_QUESTION: {
@@ -243,7 +243,7 @@ const quiz = (state = initialState, action) => {
 				isReflexive: question.isReflexive,
 				sequenceIndex: newSequenceIndex,
 				questionSequence: state.questionSequence,
-				focus: state.focus
+				focus: "userAnswer"
 			});
 		}
 		return state;
