@@ -43,7 +43,7 @@ class UserAnswer extends Component {
 						bsStyle="success"
 						bsSize="medium"
 					>
-						post
+						Post
 					</Button>
 				</FormGroup>
 				<Row>
