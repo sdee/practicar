@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
 	return { checked };
 };
 
-const FilterCheckbox = ({ checked, dispatch, label, filter, explanation }) => {
+const FilterCheckbox = ({ checked, dispatch, label, filter, explanation, disable }) => {
 	function handleChange() {
 		dispatch(setFilter(filter, !checked));
 	}
@@ -35,6 +35,7 @@ const FilterCheckbox = ({ checked, dispatch, label, filter, explanation }) => {
 			<Checkbox
 				checked={checked}
 				onChange={handleChange}
+				disabled={disable}
 			>
 				{label}
 				{description}

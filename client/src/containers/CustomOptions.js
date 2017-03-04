@@ -6,11 +6,10 @@ import VerbSetSelector from './VerbSetSelector';
 
 function CustomOptions() {
 	return (
-
 		<div>
 		<Panel header="Customize your lesson">
 			<FormGroup>
-				<FilterCheckbox filter="ALLOW_REPEATS" label="allow repeats" inline />
+				<FilterCheckbox filter="ALLOW_REPEATS" label="allow repeats (coming soon)" disable={true} inline />
 			</FormGroup>
 		</Panel>
 		<Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
@@ -96,7 +95,6 @@ function CustomOptions() {
 		</Panel>
 		</Tab>
 		</Tabs>
-
 		</div>
 	);
 }
