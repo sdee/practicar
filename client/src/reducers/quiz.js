@@ -217,7 +217,7 @@ const quiz = (state = initialState, action) => {
 			isReflexive: question.isReflexive,
 			sequenceIndex: newSequenceIndex,
 			questionSequence: newQuestionSequence,
-			focus: "userAnswer"
+			focus: 'userAnswer'
 		});
 	}
 	case PREV_QUESTION: {
@@ -243,7 +243,7 @@ const quiz = (state = initialState, action) => {
 				isReflexive: question.isReflexive,
 				sequenceIndex: newSequenceIndex,
 				questionSequence: state.questionSequence,
-				focus: "userAnswer"
+				focus: 'userAnswer'
 			});
 		}
 		return state;
@@ -295,12 +295,11 @@ const quiz = (state = initialState, action) => {
 	case TOGGLE_FOCUS: {
 		console.log("TOGGLE_FOCUS");
 		console.log(state.focus);
-		const newState = Object.assign({}, state, {})
-		if (state.focus==='card') {
+		const newState = Object.assign({}, state, {});
+		if (state.focus === 'card') {
 			newState.focus = 'userAnswer';
 			console.log("focus->userAnswer");
-		}
-		else if (state.focus==='userAnswer'){
+		} else if (state.focus === 'userAnswer') {
 			newState.focus = 'card';
 			console.log("focus->card");
 		}

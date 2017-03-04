@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import QuizCard from '../components/QuizCard';
 import { loadQuiz, flipCard } from '../actions';
-import KeyboardControls from './KeyboardControls';
 
 class ControlledCard extends Component {
 	componentDidMount() {
@@ -10,8 +9,8 @@ class ControlledCard extends Component {
 		dispatch(loadQuiz());
 	}
 
-	componentDidUpdate(){
-		if (this.props.quiz.focus==='card'){
+	componentDidUpdate() {
+		if (this.props.quiz.focus === 'card') {
 			this.card.focus();
 		}
 	}
@@ -19,15 +18,13 @@ class ControlledCard extends Component {
 	render() {
 		const { dispatch } = this.props;
 		return (
-			<KeyboardControls>
-				<div
-					id="card"
-					tabIndex="0"
-					ref={(div) => { this.card = div; }}
-					onClick={(e) => { dispatch(flipCard()); }}>
-					<QuizCard {...this.props.quiz} questionNum={this.props.user.questionNum} />
-				</div>
-			</KeyboardControls>
+			<div
+				id="card"
+				tabIndex="0"
+				ref={(div) => { this.card = div; }}
+				onClick={(e) => { dispatch(flipCard()); }}>
+				<QuizCard {...this.props.quiz} questionNum={this.props.user.questionNum} />
+			</div>
 		);
 	}
 }

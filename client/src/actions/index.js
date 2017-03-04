@@ -66,5 +66,5 @@ export function loadQuiz() {
 
 export function toggleFocus() {
 	console.log("toggleFocus");
-	return {type: TOGGLE_FOCUS};
+	return { type: TOGGLE_FOCUS };
 }
