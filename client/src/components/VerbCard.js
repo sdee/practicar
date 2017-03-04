@@ -39,7 +39,7 @@ VerbCard.propTypes = {
 	tense: PropTypes.string.isRequired,
 	mood: PropTypes.string.isRequired,
 	questionNum: PropTypes.number.isRequired,
-	definition: PropTypes.string.isRequired
+	definition: PropTypes.string
 };
 
 export default VerbCard;
