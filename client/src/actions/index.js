@@ -13,6 +13,8 @@ export const LOAD_QUIZ_ERROR = 'LOAD_QUIZ_ERROR';
 
 export const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
 
+export const TOGGLE_FOCUS = 'TOGGLE_FOCUS';
+
 /*
  * action creators
  */
@@ -51,6 +53,7 @@ export function loadQuizRequest() {
 }
 
 export function loadQuiz() {
+	console.log("LOAD QUIZ>>>>>>>>");
 	return (dispatch) => {
 		fetch('api/quiz', {
 			accept: 'application/json',
@@ -59,4 +62,9 @@ export function loadQuiz() {
 		.then(json => dispatch(loadQuizSuccess(json)))
 		.catch((error) => { console.log('request failed', error); });
 	};
+}
+
+export function toggleFocus() {
+	console.log("toggleFocus");
+	return {type: TOGGLE_FOCUS};
 }

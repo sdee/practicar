@@ -8,8 +8,14 @@ class ControlledCard extends Component {
 	componentDidMount() {
 		const { dispatch } = this.props;
 		dispatch(loadQuiz());
-		this.card.focus();
 	}
+
+	componentDidUpdate(){
+		if (this.props.quiz.focus==='card'){
+			this.card.focus();
+		}
+	}
+
 	render() {
 		const { dispatch } = this.props;
 		return (

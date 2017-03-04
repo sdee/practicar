@@ -1,7 +1,7 @@
 import _ from 'underscore';
 import { NEXT_QUESTION, PREV_QUESTION, FLIP_CARD, SUBMIT_ANSWER,
 	LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR,
-	SET_FILTER } from '../actions';
+	SET_FILTER, TOGGLE_FOCUS } from '../actions';
 
 // TODO: move this
 function accentsTidy(s) {
@@ -157,7 +157,8 @@ const initialState = {
 	ALLOW_PRONOUN_TU: true,
 	ALLOW_PRONOUN_EL: true,
 	ALLOW_PRONOUN_NOSOTROS: true,
-	ALLOW_PRONOUN_ELLOS: true
+	ALLOW_PRONOUN_ELLOS: true,
+	focus: 'card'
 };
 
 const quiz = (state = initialState, action) => {
@@ -215,7 +216,8 @@ const quiz = (state = initialState, action) => {
 			irregularity: question.irregularity,
 			isReflexive: question.isReflexive,
 			sequenceIndex: newSequenceIndex,
-			questionSequence: newQuestionSequence
+			questionSequence: newQuestionSequence,
+			focus: state.focus
 		});
 	}
 	case PREV_QUESTION: {
@@ -240,7 +242,8 @@ const quiz = (state = initialState, action) => {
 				irregularity: question.irregularity,
 				isReflexive: question.isReflexive,
 				sequenceIndex: newSequenceIndex,
-				questionSequence: state.questionSequence
+				questionSequence: state.questionSequence,
+				focus: state.focus
 			});
 		}
 		return state;
@@ -287,6 +290,20 @@ const quiz = (state = initialState, action) => {
 	case SET_FILTER: {
 		const newState = Object.assign({}, state, {});
 		newState[action.filter] = action.status;
+		return newState;
+	}
+	case TOGGLE_FOCUS: {
+		console.log("TOGGLE_FOCUS");
+		console.log(state.focus);
+		const newState = Object.assign({}, state, {})
+		if (state.focus==='card') {
+			newState['focus'] = 'userAnswer';
+			console.log("focus->userAnswer");
+		}
+		else if (state.focus==='userAnswer'){
+			newState['focus'] = 'card';
+			console.log("focus->card");
+		}
 		return newState;
 	}
 	default: {
