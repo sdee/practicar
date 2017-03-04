@@ -18,10 +18,9 @@ class UserAnswer extends Component {
 
 	render() {
 		const { dispatch } = this.props;
-		let input;
 		let userAnswer;
 		let ignoreAccents;
-
+		let input;
 		return(
 			<form
 			className="userInput form-inline ctrl"
@@ -44,8 +43,11 @@ class UserAnswer extends Component {
 		type="text"
 		placeholder="Your Answer"
 		ref={(FormControl) => {
-			this.answerField = FormControl;
+			this.answerField= FormControl;
 		}}
+		inputRef={(ref) => {
+						input = ref;
+					}}
 		/>
 		{' '}
 		<Button
