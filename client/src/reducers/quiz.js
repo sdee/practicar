@@ -145,7 +145,7 @@ const initialState = {
 	tense: '',
 	mood: '',
 	pronoun: '',
-	text: 'Get started by clicking \'next question\'!',
+	text: 'Let\'s learn some Spanish verb conjugations! Get started by clicking \'next\'',
 	submittedAnswer: '',
 	showAnswer: false,
 	isCorrect: false,
