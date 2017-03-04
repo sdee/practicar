@@ -1,7 +1,6 @@
 import _ from 'underscore';
-import { NEXT_QUESTION, PREV_QUESTION, FLIP_CARD, SUBMIT_ANSWER,
-	LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR,
-	SET_FILTER, TOGGLE_FOCUS } from '../actions';
+import { NEXT_QUESTION, PREV_QUESTION, FLIP_CARD, SUBMIT_ANSWER, LOAD_QUIZ,
+	LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR, SET_FILTER, TOGGLE_FOCUS, SET_VERBSET } from '../actions';
 
 // TODO: move this
 function accentsTidy(s) {
@@ -158,7 +157,8 @@ const initialState = {
 	ALLOW_PRONOUN_EL: true,
 	ALLOW_PRONOUN_NOSOTROS: true,
 	ALLOW_PRONOUN_ELLOS: true,
-	focus: 'card'
+	focus: 'card',
+	verbSet: 'default'
 };
 
 const quiz = (state = initialState, action) => {
@@ -215,6 +215,7 @@ const quiz = (state = initialState, action) => {
 			correctAnswer: answer,
 			irregularity: question.irregularity,
 			isReflexive: question.isReflexive,
+			definition: question.definition,
 			sequenceIndex: newSequenceIndex,
 			questionSequence: newQuestionSequence,
 			focus: 'userAnswer'
@@ -241,6 +242,7 @@ const quiz = (state = initialState, action) => {
 				correctAnswer: answer,
 				irregularity: question.irregularity,
 				isReflexive: question.isReflexive,
+				definition: question.definition,
 				sequenceIndex: newSequenceIndex,
 				questionSequence: state.questionSequence,
 				focus: 'userAnswer'
@@ -266,6 +268,11 @@ const quiz = (state = initialState, action) => {
 			currentQuestionIndex: -1,
 			isLoadingQuiz: false,
 			isQuizLoaded: true,
+		});
+	}
+	case SET_VERBSET: {
+		return Object.assign({}, state, {
+			verbSet: action.verbSet
 		});
 	}
 	case LOAD_QUIZ_ERROR: {

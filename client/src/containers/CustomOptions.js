@@ -2,6 +2,7 @@ import React from 'react';
 import { Panel, FormGroup } from 'react-bootstrap';
 import FilterCheckbox from './FilterCheckbox';
 import MoodTrigger from './MoodTrigger';
+import VerbSetSelector from './VerbSetSelector';
 
 function CustomOptions() {
 	return (
@@ -22,6 +23,9 @@ function CustomOptions() {
 					<FilterCheckbox filter="ALLOW_PRONOUN_VOSOTROS" label="vosotros" inline />
 					<FilterCheckbox filter="ALLOW_PRONOUN_ELLOS" label="ellos/ellas/Uds." inline />
 				</FormGroup>
+			</Panel>
+			<Panel header="Choose verbs">
+				<VerbSetSelector />
 			</Panel>
 			<Panel header="Choose tenses">
 				<Panel header="Indicative">

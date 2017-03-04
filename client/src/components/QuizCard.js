@@ -55,6 +55,7 @@ function QuizCard(props) {
 				tense={props.tense}
 				mood={props.mood}
 				questionNum={props.questionNum}
+				definition={props.definition}
 			/>
 		);
 	} else if (shouldShowAnswerCard(props)) {
@@ -84,7 +85,8 @@ QuizCard.propTypes = {
 	text: PropTypes.string,
 	mood: PropTypes.string,
 	irregularity: PropTypes.string,
-	questionNum: PropTypes.number
+	questionNum: PropTypes.number,
+	definition: PropTypes.string
 };
 
 QuizCard.defaultProps = {
@@ -100,7 +102,8 @@ QuizCard.defaultProps = {
 	text: '',
 	mood: '',
 	irregularity: '',
-	questionNum: 0
+	questionNum: 0,
+	definition: ''
 };
 
 export default QuizCard;

@@ -3,6 +3,8 @@ const diff = require('fast-diff');
 const conjugate = require('./conjugation');
 const utils = require('./spanish-utils');
 const verbs = require('../data/verbs.json');
+const topTwentyVerbs = require('../data/verbs-top-twenty.json');
+const topHundredVerbs = require('../data/verbs-top-hundred.json');
 const pronouns = require('../data/pronouns.json');
 const moodsTenses = require('../data/moods-tenses.json');
 const irregularVerbs = require('../data/irregular-verbs.json');
@@ -10,6 +12,12 @@ const irregularVerbs = require('../data/irregular-verbs.json');
 const FILTER_ALL = 1;
 const FILTER_NONE = 2;
 const FILTER_BYCASE = 3;
+
+const verbSets = {
+	default: verbs,
+	topTwenty: topTwentyVerbs,
+	topHundred: topHundredVerbs
+}
 
 function getByName(all, name) {
 	return _.findWhere(all, { name: name });
@@ -23,7 +31,7 @@ function chooseMoodTense() {
 	return chooseRandom(moodsTenses);
 }
 
-function chooseVerb() {
+function chooseVerb(verbs) {
 	return chooseRandom(verbs);
 }
 
@@ -109,14 +117,25 @@ function generateConjugation(verb, pronoun, moodTense) {
 	return null;
 }
 
-function generateQuestion() {
+function generateQuestion(verbSet) {
 	const moodTense = chooseMoodTense();
 	const pronoun = choosePronoun();
-	const verb = chooseVerb();
+	const data = verbSets[verbSet];
+	let verbs=[];
+	let hasDefinition = false;
+	if (data.constructor === Array){
+		verbs = data;
+	} else {
+		verbs = Object.keys(data);
+		hasDefinition = true;
+	}
+
+	const verb = chooseVerb(verbs);
 	const reflexive = isReflexive(verb);
 	const question = {
 		pronoun: pronoun.name,
 		verb: verb,
+		definition: hasDefinition ? data[verb] : '',
 		mood: moodTense.mood,
 		tense: moodTense.tense,
 		isReflexive: reflexive,
@@ -137,12 +156,12 @@ function generateQuestion() {
 	return null;
 }
 
-function generateQuiz(numQuestions=100) {
+function generateQuiz(numQuestions=100, verbSet='default') {
 	const quiz = {
 		questions: []
 	};
 	while (quiz.questions.length < numQuestions) {
-		const question = generateQuestion();
+		const question = generateQuestion(verbSet);
 		// TODO: check uniqueness
 		if (question) {
 			quiz.questions.push(question);
