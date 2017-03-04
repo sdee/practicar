@@ -297,11 +297,11 @@ const quiz = (state = initialState, action) => {
 		console.log(state.focus);
 		const newState = Object.assign({}, state, {})
 		if (state.focus==='card') {
-			newState['focus'] = 'userAnswer';
+			newState.focus = 'userAnswer';
 			console.log("focus->userAnswer");
 		}
 		else if (state.focus==='userAnswer'){
-			newState['focus'] = 'card';
+			newState.focus = 'card';
 			console.log("focus->card");
 		}
 		return newState;

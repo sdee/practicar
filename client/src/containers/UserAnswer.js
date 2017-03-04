@@ -6,10 +6,6 @@ var ReactDOM = require('react-dom');
 
 class UserAnswer extends Component {
 
-	constructor(props) {
-	 super(props);
- }
-
 	componentDidMount(){
 		const { dispatch } = this.props;
 	}
@@ -21,51 +17,51 @@ class UserAnswer extends Component {
 	}
 
 	render() {
-			const { dispatch } = this.props;
-			let input;
-			let userAnswer;
-			let ignoreAccents;
+		const { dispatch } = this.props;
+		let input;
+		let userAnswer;
+		let ignoreAccents;
 
 		return(
-					<form
-						className="userInput form-inline ctrl"
-						ref={(form) => { this.userAnswer = form; }}
-						onSubmit={(e) => {
-							e.preventDefault();
-							if (!input.value.trim()) {
-								return;
-							}
-							dispatch(submitAnswer(input.value, ignoreAccents.checked));
-							input.value = '';
-						}
-						}
-					>
+			<form
+			className="userInput form-inline ctrl"
+			ref={(form) => { this.userAnswer = form; }}
+			onSubmit={(e) => {
+				e.preventDefault();
+				if (!input.value.trim()) {
+					return;
+				}
+				dispatch(submitAnswer(input.value, ignoreAccents.checked));
+				input.value = '';
+			}
+		}
+		>
 
-						<FormGroup
-							controlId="formUserAnswer"
-						>
-							<FormControl
-								type="text"
-								placeholder="Your Answer"
-								ref={(FormControl) => {
-									this.answerField = FormControl;
-								}}
-							/>
-							{' '}
-							<Button
-								type="submit"
-								bsStyle="success"
-								bsSize="medium"
-							>
-								post
-							</Button>
-						</FormGroup>
-						<Row>
-							<Checkbox inputRef={(ref) => { ignoreAccents = ref; }}> Ignore Accents</Checkbox>
-						</Row>
-					</form>
-		);
-	}
+		<FormGroup
+		controlId="formUserAnswer"
+		>
+		<FormControl
+		type="text"
+		placeholder="Your Answer"
+		ref={(FormControl) => {
+			this.answerField = FormControl;
+		}}
+		/>
+		{' '}
+		<Button
+		type="submit"
+		bsStyle="success"
+		bsSize="medium"
+		>
+		post
+		</Button>
+		</FormGroup>
+		<Row>
+		<Checkbox inputRef={(ref) => { ignoreAccents = ref; }}> Ignore Accents</Checkbox>
+		</Row>
+		</form>
+	);
+}
 }
 
 const mapStateToProps = state => ({
