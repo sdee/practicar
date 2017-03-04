@@ -14,9 +14,9 @@ const FILTER_NONE = 2;
 const FILTER_BYCASE = 3;
 
 const verbSets = {
-	"default": verbs,
-	"topTwenty": topTwentyVerbs,
-	"topHundred": topHundredVerbs
+	default: verbs,
+	topTwenty: topTwentyVerbs,
+	topHundred: topHundredVerbs
 }
 
 function getByName(all, name) {
@@ -125,8 +125,7 @@ function generateQuestion(verbSet) {
 	let hasDefinition = false;
 	if (data.constructor === Array){
 		verbs = data;
-	}
-	else {
+	} else {
 		verbs = Object.keys(data);
 		hasDefinition = true;
 	}
