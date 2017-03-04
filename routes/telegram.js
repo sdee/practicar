@@ -1,6 +1,7 @@
 const _ = require('underscore');
 const express = require('express');
 const router = express.Router();
+const quiz = require('../services/quiz');
 
 const token = process.env.TELEGRAM_TOKEN;
 
@@ -21,7 +22,6 @@ router.post('/practicarhook', function (req, res) {
 	const chat = message.chat;
 	const mDate = message.date;
 	const text = message.text;
-	const entities = message.entities;
 	let back = {
 		ok: true,
 		method: 'sendMessage',
@@ -30,23 +30,32 @@ router.post('/practicarhook', function (req, res) {
 	};
 
 	if (text.startsWith('/')) {
-		const cmdEntity = _.find(entities, function(entity) { return entity.type === 'bot_command'; });
-		if (cmdEntity) {
-			const cmd = text.substr(cmdEntity.offset, cmdEntity.length);
-			switch (cmd) {
-				case 'start':
-					back.text = 'hello, ' + chat.username + ', I am PracticarBot! Send me a command like /conj';
-					break;
-				case 'conj': {
-					const verbOffset = cmdEntity.offset + cmdEntity.length + 1;
-					const verb = text.substr(verbOffset, text.length - verbOffset);
-					back.text = 'you want to conjugate ' + verb;
-					break;
+		const words = text.split(' ');
+		const cmd = words[0].substr(1);
+		switch (cmd) {
+			case 'start':
+				back.text = 'hello, ' + chat.username + ', I am PracticarBot! Send me a command like /conj';
+				break;
+			case 'conj': {
+				if (words.length === 5) {
+					const verb = words[1];
+					const pronoun = words[2];
+					const tense = words[3];
+					const mood = words[4];
+					const conj = quiz.generateConjugationByName(verb, pronoun, tense, mood);
+					if (conj) {
+						back.text = pronoun + ' ' + conj;
+					} else {
+						back.text = 'unable to conjugate with those options';
+					}
+				} else {
+					back.text = '/conj requires verb pronoun tense mood'
 				}
-				case 'help':
-					back.text = 'help text coming soon';
-					break;
+				break;
 			}
+			case 'help':
+				back.text = 'help text coming soon';
+				break;
 		}
 	}
 
