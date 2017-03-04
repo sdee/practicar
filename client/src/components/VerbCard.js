@@ -13,7 +13,7 @@ function VerbCard({ infinitive, pronoun, tense, mood, questionNum, definition })
 			overlay={tooltip}
 			>
 			<Glyphicon
-			className="def_glyph"
+			className="def-glyph"
 			glyph="question-sign"
 			/>
 			</OverlayTrigger>
@@ -23,7 +23,7 @@ function VerbCard({ infinitive, pronoun, tense, mood, questionNum, definition })
 		<div>
 		<section className="card front">
 		<div>
-		<span className="questionNum">{questionNum}</span><br />
+		<span className="question-num">{questionNum}</span><br />
 		<br />
 		{pronoun}, <b>{infinitive}</b>{meaning}<br/>
 		({tense} {mood})
