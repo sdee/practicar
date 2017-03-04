@@ -25,7 +25,7 @@ function CustomOptions() {
 				</FormGroup>
 			</Panel>
 			<Panel header="Choose verbs">
-				<VerbSetSelector/>
+				<VerbSetSelector />
 			</Panel>
 			<Panel header="Choose tenses">
 				<Panel header="Indicative">

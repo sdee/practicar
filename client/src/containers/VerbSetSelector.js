@@ -4,7 +4,7 @@ import { setVerbSet, loadQuiz } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
 	const currVerbSet = state.quiz.verbSet;
-	return { currVerbSet};
+	return { currVerbSet };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
