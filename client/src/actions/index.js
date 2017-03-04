@@ -11,6 +11,8 @@ export const LOAD_QUIZ = 'LOAD_QUIZ';
 export const LOAD_QUIZ_SUCCESS = 'LOAD_QUIZ_SUCCESS';
 export const LOAD_QUIZ_ERROR = 'LOAD_QUIZ_ERROR';
 
+export const SET_VERBSET = 'SET_VERBSET';
+
 export const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
 
 /*
@@ -50,9 +52,14 @@ export function loadQuizRequest() {
 	return { type: LOAD_QUIZ };
 }
 
-export function loadQuiz() {
+export function setVerbSet(verbSet) {
+	return { type: SET_VERBSET, verbSet };
+}
+
+export function loadQuiz(verbSet = 'default') {
+	const url = 'api/quiz?verbs=' + verbSet;
 	return (dispatch) => {
-		fetch('api/quiz', {
+		fetch(url, {
 			accept: 'application/json',
 		})
 		.then(response => response.json())
