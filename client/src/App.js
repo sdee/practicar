@@ -2,6 +2,7 @@ import React from 'react';
 import { Panel, Grid, Row, Col } from 'react-bootstrap';
 import './App.css';
 import Readme from './components/Readme';
+import ShortcutInfo from './components/ShortcutInfo'
 import LinkControls from './containers/LinkControls';
 import CustomOptions from './containers/CustomOptions';
 import ControlledCard from './containers/ControlledCard';
@@ -26,6 +27,7 @@ function App() {
 								<Row className="card ctrl">
 									<br />
 									<UserAnswer />
+									<ShortcutInfo />
 								</Row>
 							</Col>
 							<Col md={5}>

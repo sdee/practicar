@@ -41,7 +41,7 @@ class UserAnswer extends Component {
 					<Button
 						type="submit"
 						bsStyle="success"
-						bsSize="medium"
+						bsSize="small"
 					>
 						Post
 					</Button>
