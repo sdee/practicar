@@ -5,6 +5,7 @@ const utils = require('./spanish-utils');
 const verbs = require('../data/verbs.json');
 const topTwentyVerbs = require('../data/verbs-top-twenty.json');
 const topHundredVerbs = require('../data/verbs-top-hundred.json');
+const thousandPlus = require('../data/verbs-thousand-plus.json');
 const pronouns = require('../data/pronouns.json');
 const moodsTenses = require('../data/moods-tenses.json');
 const irregularVerbs = require('../data/irregular-verbs.json');
@@ -16,7 +17,8 @@ const FILTER_BYCASE = 3;
 const verbSets = {
 	default: verbs,
 	topTwenty: topTwentyVerbs,
-	topHundred: topHundredVerbs
+	topHundred: topHundredVerbs,
+	thousandPlus: thousandPlus
 }
 
 function getByName(all, name) {

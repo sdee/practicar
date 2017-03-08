@@ -9,11 +9,14 @@ function VerbSetSelector({ currVerbSet, onSelect }) {
 			</Radio>
 			{' '}
 			<Radio inline onChange={onSelect} value="topTwenty" checked={currVerbSet === 'topTwenty'}>
-				20 Most Common
+				20 Most Common Verbs
 			</Radio>
 			{' '}
 			<Radio inline onChange={onSelect} value="topHundred" checked={currVerbSet === 'topHundred'}>
-				100 Most Common
+				100 Most Common Verbs
+			</Radio>
+			<Radio inline onChange={onSelect} value="thousandPlus" checked={currVerbSet === 'thousandPlus'}>
+				1000+ Verbs
 			</Radio>
 		</FormGroup>
 	);
