@@ -158,7 +158,7 @@ const initialState = {
 	ALLOW_PRONOUN_NOSOTROS: true,
 	ALLOW_PRONOUN_ELLOS: true,
 	focus: 'card',
-	verbSet: 'default'
+	verbSet: 'topHundred'
 };
 
 const quiz = (state = initialState, action) => {
@@ -300,15 +300,11 @@ const quiz = (state = initialState, action) => {
 		return newState;
 	}
 	case TOGGLE_FOCUS: {
-		console.log("TOGGLE_FOCUS");
-		console.log(state.focus);
 		const newState = Object.assign({}, state, {});
 		if (state.focus === 'card') {
 			newState.focus = 'userAnswer';
-			console.log("focus->userAnswer");
 		} else if (state.focus === 'userAnswer') {
 			newState.focus = 'card';
-			console.log("focus->card");
 		}
 		return newState;
 	}

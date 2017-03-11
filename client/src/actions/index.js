@@ -58,7 +58,7 @@ export function setVerbSet(verbSet) {
 	return { type: SET_VERBSET, verbSet };
 }
 
-export function loadQuiz(verbSet = 'default') {
+export function loadQuiz(verbSet = 'topHundred') {
 	const url = 'api/quiz?verbs=' + verbSet;
 	return (dispatch) => {
 		fetch(url, {

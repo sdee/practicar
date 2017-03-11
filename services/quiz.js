@@ -2,8 +2,7 @@ const _ = require('underscore');
 const diff = require('fast-diff');
 const conjugate = require('./conjugation');
 const utils = require('./spanish-utils');
-const verbs = require('../data/verbs.json');
-const topTwentyVerbs = require('../data/verbs-top-twenty.json');
+const topTwentyFiveVerbs = require('../data/verbs-top-twenty.json');
 const topHundredVerbs = require('../data/verbs-top-hundred.json');
 const thousandPlus = require('../data/verbs-thousand-plus.json');
 const pronouns = require('../data/pronouns.json');
@@ -15,8 +14,8 @@ const FILTER_NONE = 2;
 const FILTER_BYCASE = 3;
 
 const verbSets = {
-	default: verbs,
-	topTwenty: topTwentyVerbs,
+	default: topHundredVerbs,
+	topTwentyFive: topTwentyFiveVerbs,
 	topHundred: topHundredVerbs,
 	thousandPlus: thousandPlus
 }
@@ -158,7 +157,7 @@ function generateQuestion(verbSet) {
 	return null;
 }
 
-function generateQuiz(numQuestions=100, verbSet='default') {
+function generateQuiz(numQuestions=100, verbSet='topHundred') {
 	const quiz = {
 		questions: []
 	};

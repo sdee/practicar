@@ -4,12 +4,8 @@ import { FormGroup, Radio } from 'react-bootstrap';
 function VerbSetSelector({ currVerbSet, onSelect }) {
 	return (
 		<FormGroup>
-			<Radio inline onChange={onSelect} value="default" checked={currVerbSet === 'default'}>
-				Default
-			</Radio>
-			{' '}
-			<Radio inline onChange={onSelect} value="topTwenty" checked={currVerbSet === 'topTwenty'}>
-				20 Most Common Verbs
+			<Radio inline onChange={onSelect} value="topTwentyFive" checked={currVerbSet === 'topTwentyFive'}>
+				25 Most Common Verbs
 			</Radio>
 			{' '}
 			<Radio inline onChange={onSelect} value="topHundred" checked={currVerbSet === 'topHundred'}>
@@ -28,7 +24,7 @@ VerbSetSelector.propTypes = {
 };
 
 VerbSetSelector.defaultProps = {
-	currVerbSet: 'default'
+	currVerbSet: 'topHundred'
 };
 
 export default VerbSetSelector;
