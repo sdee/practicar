@@ -71,6 +71,5 @@ export function loadQuiz(verbSet = 'topHundred') {
 }
 
 export function toggleFocus() {
-	console.log("toggleFocus");
 	return { type: TOGGLE_FOCUS };
 }
