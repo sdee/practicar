@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { FormGroup, Radio } from 'react-bootstrap';
 
-function VerbSetSelector({ currVerbSet, onSelect }) {
+function VerbSetRadioButtons({ currVerbSet, onSelect }) {
 	return (
 		<FormGroup>
 			<Radio inline onChange={onSelect} value="topTwentyFive" checked={currVerbSet === 'topTwentyFive'}>
@@ -18,13 +18,13 @@ function VerbSetSelector({ currVerbSet, onSelect }) {
 	);
 }
 
-VerbSetSelector.propTypes = {
+VerbSetRadioButtons.propTypes = {
 	currVerbSet: PropTypes.string,
 	onSelect: PropTypes.func.isRequired
 };
 
-VerbSetSelector.defaultProps = {
+VerbSetRadioButtons.defaultProps = {
 	currVerbSet: 'topHundred'
 };
 
-export default VerbSetSelector;
+export default VerbSetRadioButtons;
