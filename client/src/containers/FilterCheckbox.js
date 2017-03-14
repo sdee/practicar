@@ -55,7 +55,7 @@ FilterCheckbox.propTypes = {
 
 FilterCheckbox.defaultProps = {
 	explanation: '',
-	disable: true
+	disable: false
 };
 
 export default connect(mapStateToProps)(FilterCheckbox);
