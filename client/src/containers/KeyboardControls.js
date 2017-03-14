@@ -20,7 +20,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 		dispatch(flipCard());
 	},
 	onSpaceBarClick: (e) => {
-		console.log("******");
 		e.preventDefault();
 		dispatch(toggleFocus());
 	}
