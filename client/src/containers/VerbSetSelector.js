@@ -2,10 +2,9 @@ import { connect } from 'react-redux';
 import VerbSetRadioButtons from '../components/VerbSetRadioButtons';
 import { setVerbSet, loadQuiz } from '../actions';
 
-const mapStateToProps = (state, ownProps) => {
-	const currVerbSet = state.quiz.verbSet;
-	return { currVerbSet };
-};
+const mapStateToProps = (state, ownProps) => ({
+	currVerbSet: state.quiz.verbSet
+});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onSelect: (e) => {

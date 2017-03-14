@@ -15,6 +15,8 @@ export const SET_VERBSET = 'SET_VERBSET';
 
 export const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
 
+export const TOGGLE_FOCUS = 'TOGGLE_FOCUS';
+
 /*
  * action creators
  */
@@ -56,7 +58,7 @@ export function setVerbSet(verbSet) {
 	return { type: SET_VERBSET, verbSet };
 }
 
-export function loadQuiz(verbSet = 'default') {
+export function loadQuiz(verbSet = 'topHundred') {
 	const url = 'api/quiz?verbs=' + verbSet;
 	return (dispatch) => {
 		fetch(url, {
@@ -66,4 +68,8 @@ export function loadQuiz(verbSet = 'default') {
 		.then(json => dispatch(loadQuizSuccess(json)))
 		.catch((error) => { console.log('request failed', error); });
 	};
+}
+
+export function toggleFocus() {
+	return { type: TOGGLE_FOCUS };
 }

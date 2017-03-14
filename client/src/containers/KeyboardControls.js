@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { nextQuestion, prevQuestion, flipCard } from '../actions';
+import { nextQuestion, prevQuestion, flipCard, toggleFocus } from '../actions';
 import KeyboardListener from '../components/KeyboardListener';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -18,6 +18,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	onUpKeyClick: (e) => {
 		e.preventDefault();
 		dispatch(flipCard());
+	},
+	onSpaceBarClick: (e) => {
+		e.preventDefault();
+		dispatch(toggleFocus());
 	}
 });
 

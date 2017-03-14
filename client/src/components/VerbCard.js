@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Checkbox, OverlayTrigger, Glyphicon, Tooltip } from 'react-bootstrap';
+import { OverlayTrigger, Glyphicon, Tooltip } from 'react-bootstrap';
 
 function VerbCard({ infinitive, pronoun, tense, mood, questionNum, definition }) {
 	let meaning = '';
@@ -13,7 +13,7 @@ function VerbCard({ infinitive, pronoun, tense, mood, questionNum, definition })
 				overlay={tooltip}
 			>
 				<Glyphicon
-					className="def_glyph"
+					className="def-glyph"
 					glyph="question-sign"
 				/>
 			</OverlayTrigger>

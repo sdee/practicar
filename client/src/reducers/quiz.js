@@ -1,7 +1,6 @@
 import _ from 'underscore';
-import { NEXT_QUESTION, PREV_QUESTION, FLIP_CARD, SUBMIT_ANSWER,
-	LOAD_QUIZ, LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR,
-	SET_FILTER, SET_VERBSET } from '../actions';
+import { NEXT_QUESTION, PREV_QUESTION, FLIP_CARD, SUBMIT_ANSWER, LOAD_QUIZ,
+	LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR, SET_FILTER, TOGGLE_FOCUS, SET_VERBSET } from '../actions';
 
 // TODO: move this
 function accentsTidy(s) {
@@ -145,7 +144,7 @@ const initialState = {
 	tense: '',
 	mood: '',
 	pronoun: '',
-	text: 'Get started by clicking \'next question\'!',
+	text: 'Let\'s learn some Spanish verb conjugations! Get started by clicking \'next\'',
 	submittedAnswer: '',
 	showAnswer: false,
 	isCorrect: false,
@@ -158,7 +157,8 @@ const initialState = {
 	ALLOW_PRONOUN_EL: true,
 	ALLOW_PRONOUN_NOSOTROS: true,
 	ALLOW_PRONOUN_ELLOS: true,
-	verbSet: 'default'
+	focus: 'card',
+	verbSet: 'topHundred'
 };
 
 const quiz = (state = initialState, action) => {
@@ -217,7 +217,8 @@ const quiz = (state = initialState, action) => {
 			isReflexive: question.isReflexive,
 			definition: question.definition,
 			sequenceIndex: newSequenceIndex,
-			questionSequence: newQuestionSequence
+			questionSequence: newQuestionSequence,
+			focus: 'userAnswer'
 		});
 	}
 	case PREV_QUESTION: {
@@ -243,7 +244,8 @@ const quiz = (state = initialState, action) => {
 				isReflexive: question.isReflexive,
 				definition: question.definition,
 				sequenceIndex: newSequenceIndex,
-				questionSequence: state.questionSequence
+				questionSequence: state.questionSequence,
+				focus: 'userAnswer'
 			});
 		}
 		return state;
@@ -295,6 +297,15 @@ const quiz = (state = initialState, action) => {
 	case SET_FILTER: {
 		const newState = Object.assign({}, state, {});
 		newState[action.filter] = action.status;
+		return newState;
+	}
+	case TOGGLE_FOCUS: {
+		const newState = Object.assign({}, state, {});
+		if (state.focus === 'card') {
+			newState.focus = 'userAnswer';
+		} else if (state.focus === 'userAnswer') {
+			newState.focus = 'card';
+		}
 		return newState;
 	}
 	default: {
