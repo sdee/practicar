@@ -16,7 +16,10 @@ class ControlledCard extends Component {
 		return (
 			<View style={styles.outer}>
 				<View style={styles.card}>
-					<Text style={styles.questionNum}>{questionNum}</Text>
+					{questionNum > 0 ? (
+						<Text style={styles.questionNum}>{questionNum}</Text>
+						) : <Text />
+					}
 					<QuizCard
 						{...this.props.quiz}
 					/>

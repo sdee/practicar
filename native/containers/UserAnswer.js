@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import { submitAnswer } from '../actions';
 
 class UserAnswer extends Component {
+	constructor(props) {
+		super(props);
+		this.state = { text: '' };
+	}
+
 	render() {
 		const { dispatch } = this.props;
 		let ignoreAccents = false;
@@ -12,17 +17,19 @@ class UserAnswer extends Component {
 				<TextInput
 					autoCapitalize="none"
 					autoCorrect={false}
-					placeholder="Your Answer"
 					style={styles.userInput}
-					onChangeText={(text) => this.input = text}
+					placeholder="Your Answer"
+					onChangeText={(text) => this.setState({text})}
+					value={this.state.text}
 				/>
 				<Button
 					onPress={(e) => {
 						e.preventDefault();
-						if (!this.input || !this.input.trim()) {
+						if (!this.state.text || !this.state.text.trim()) {
 							return;
 						}
-						dispatch(submitAnswer(this.input, ignoreAccents));
+						dispatch(submitAnswer(this.state.text, ignoreAccents));
+						this.state.text = '';
 					}
 					}
 					title="Post"
