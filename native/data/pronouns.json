@@ -1,0 +1,26 @@
+[
+  {
+    "name": "yo",
+    "code": "1"
+  },
+  {
+    "name": "tú",
+    "code": "2"
+  },
+  {
+    "name": "él",
+    "code": "3"
+  },
+  {
+    "name": "nosotros",
+    "code": "4"
+  },
+  {
+    "name": "vosotros",
+    "code": "5"
+  },
+  {
+    "name": "ellos",
+    "code": "6"
+  }
+]
