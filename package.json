@@ -28,6 +28,7 @@
     "express": "^4.17.1",
     "fast-diff": "^1.1.1",
     "morgan": "^1.9.1",
+    "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.2.0",
     "redux-undo": "^0.6.1",
     "serve-favicon": "^2.5.0",
@@ -37,6 +38,6 @@
     "concurrently": "^3.1.0"
   },
   "engines": {
-    "node": "6.9.x"
+    "node": "12.14.x"
   }
 }
