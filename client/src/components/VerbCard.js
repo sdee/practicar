@@ -5,17 +5,22 @@ import FontAwesome from 'react-fontawesome';
 
 function VerbCard({ infinitive, pronoun, tense, mood, questionNum, definition }) {
 	let meaning = '';
+	console.log('DEF')
+	console.log(definition)
 	if (definition) {
-		const tooltip = (
-			<Tooltip id="tooltip" className="definition">{definition}</Tooltip>
-		);
+		function renderTooltip(props) {
+			return <Tooltip id="tooltip" className="definition">{definition}</Tooltip>;
+		  }
+		  
 		meaning = (
+			<div>
 			<OverlayTrigger
 				placement="right"
-				overlay={tooltip}
+				overlay={renderTooltip}
 			>
 			<FontAwesome name="info" className="question-circle" fixedWidth />;
 			</OverlayTrigger>
+			</div>
 		);
 	}
 	return (

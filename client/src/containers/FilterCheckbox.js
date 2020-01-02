@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Form, OverlayTrigger, Tooltip, Button} from 'react-bootstrap';
 import { setFilter } from '../actions';
 import FontAwesome from 'react-fontawesome';
 
@@ -16,17 +16,22 @@ const FilterCheckbox = ({ checked, dispatch, label, filter, explanation, disable
 		dispatch(setFilter(filter, !checked));
 	}
 	let description = '';
+	console.log('EXPLAIN')
+	console.log(explanation)
 	if (explanation) {
-		const tooltip = (
-			<Tooltip id="tooltip">{explanation}</Tooltip>
-		);
+		function renderTooltip(props) {
+			return <Tooltip id="tooltip">{explanation}</Tooltip>;
+		  }
 		description = (
+			<div>
 			<OverlayTrigger
 				placement="right"
-				overlay={tooltip}
+				overlay={renderTooltip}
 			>
-			<FontAwesome name="info" className="info-circle" fixedWidth />;
+			<FontAwesome name="info" className="info-circle" fixedWidth />
+			{/* <Button variant="success">Hover me to see</Button> */}
 			</OverlayTrigger>
+			</div>
 		);
 	}
 	return (
