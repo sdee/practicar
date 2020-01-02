@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { OverlayTrigger, Glyphicon, Tooltip } from 'react-bootstrap';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import FontAwesome from 'react-fontawesome';
 
 function VerbCard({ infinitive, pronoun, tense, mood, questionNum, definition }) {
 	let meaning = '';
@@ -13,10 +14,7 @@ function VerbCard({ infinitive, pronoun, tense, mood, questionNum, definition })
 				placement="right"
 				overlay={tooltip}
 			>
-				<Glyphicon
-					className="def-glyph"
-					glyph="question-sign"
-				/>
+			<FontAwesome name="info" className="question-circle" fixedWidth />;
 			</OverlayTrigger>
 		);
 	}

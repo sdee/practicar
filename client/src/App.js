@@ -1,5 +1,5 @@
 import React from 'react';
-import { Panel, Grid, Row, Col } from 'react-bootstrap';
+import { Card, Container, Row, Col } from 'react-bootstrap';
 import './App.css';
 import Readme from './components/Readme';
 import ShortcutInfo from './components/ShortcutInfo';
@@ -13,8 +13,8 @@ function App() {
 	return (
 		<KeyboardControls>
 			<div className="App">
-				<Panel header="Yo practico, tú practicas, nosotros practicamos">
-					<Grid>
+				<Card header="Yo practico, tú practicas, nosotros practicamos">
+					<Container>
 						<Row className="show-grid">
 							<Col md={7}>
 								<Row className="show-grid">
@@ -34,8 +34,8 @@ function App() {
 								<CustomOptions />
 							</Col>
 						</Row>
-					</Grid>
-				</Panel>
+					</Container>
+				</Card>
 				<Readme />
 			</div>
 		</KeyboardControls>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormGroup, FormControl, Button, Checkbox, Row } from 'react-bootstrap';
+import { FormGroup, FormControl, Button, Form, Row } from 'react-bootstrap';
 import { submitAnswer } from '../actions';
 
 class UserAnswer extends Component {
@@ -48,7 +48,7 @@ class UserAnswer extends Component {
 					</Button>
 				</FormGroup>
 				<Row>
-					<Checkbox inputRef={(ref) => { ignoreAccents = ref; }}> Ignore Accents</Checkbox>
+					<Form.Check type={'radio'} inputRef={(ref) => { ignoreAccents = ref; }}> Ignore Accents</Form.Check>
 				</Row>
 			</form>
 		);

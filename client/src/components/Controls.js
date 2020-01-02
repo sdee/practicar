@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Glyphicon } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import FontAwesome from 'react-fontawesome';
 
 function Controls({ onNextClick, onPrevClick, onShowClick, showAnswer }) {
 	const showButtonText = showAnswer ? 'See Question' : 'See Answer';
@@ -8,11 +9,11 @@ function Controls({ onNextClick, onPrevClick, onShowClick, showAnswer }) {
 		<div>
 			<div>
 				<Button bsStyle="success" onClick={onPrevClick}>
-					<Glyphicon glyph="chevron-left" />Back
+					<FontAwesome name="back-button" className="fa-chevron-left" fixedWidth />
 				</Button>
 				{' '}
 				<Button bsStyle="success" onClick={onNextClick}>Next
-					<Glyphicon glyph="chevron-right" />
+				<FontAwesome name="next-button" className="fa-chevron-right" fixedWidth />
 				</Button>
 			</div>
 			<br />

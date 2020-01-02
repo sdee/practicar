@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-
+import React from 'react';
+import PropTypes from 'prop-types';
 function FeedbackCard({ isCorrect, correctAnswer, submittedAnswer, irregularity, before, after }) {
 	const userAnswerClass = isCorrect ? 'correctAnswer' : 'incorrectAnswer';
 	const displayAnswer = isCorrect ? correctAnswer : submittedAnswer;

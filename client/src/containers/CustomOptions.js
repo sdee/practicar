@@ -1,5 +1,5 @@
 import React from 'react';
-import { Panel, FormGroup, Tabs, Tab } from 'react-bootstrap';
+import { Card, FormGroup, Tabs, Tab } from 'react-bootstrap';
 import FilterCheckbox from './FilterCheckbox';
 import MoodTrigger from './MoodTrigger';
 import VerbSetSelector from './VerbSetSelector';
@@ -7,7 +7,7 @@ import VerbSetSelector from './VerbSetSelector';
 function CustomOptions() {
 	return (
 		<div>
-			<Panel header="Customize your lesson">
+			<Card header="Customize your lesson">
 				<FormGroup>
 					<FilterCheckbox
 						filter="ALLOW_REPEATS"
@@ -16,11 +16,11 @@ function CustomOptions() {
 						inline
 					/>
 				</FormGroup>
-			</Panel>
+			</Card>
 			<Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
 				<Tab eventKey={1} title="Choose Tenses">
-					<Panel>
-						<Panel header="Indicative">
+					<Card>
+						<Card header="Indicative">
 							<MoodTrigger mood="INDICATIVE" label="all on" trigger="on" />
 							<MoodTrigger mood="INDICATIVE" label="all off" trigger="off" />
 							<FormGroup>
@@ -50,8 +50,8 @@ function CustomOptions() {
 									explanation="I will walk tomorrow."
 								/>
 							</FormGroup>
-						</Panel>
-						<Panel header="Subjunctive">
+						</Card>
+						<Card header="Subjunctive">
 							<MoodTrigger mood="SUBJUNCTIVE" label="all on" trigger="on" />
 							<MoodTrigger mood="SUBJUNCTIVE" label="all off" trigger="off" />
 							<FormGroup>
@@ -71,23 +71,23 @@ function CustomOptions() {
 									explanation="I don't think they will have walked all day without water."
 								/>
 							</FormGroup>
-						</Panel>`
-					</Panel>
+						</Card>`
+					</Card>
 				</Tab>
 				<Tab eventKey={2} title="Choose Verbs">
-					<Panel>
-						<Panel header="Select Verb Sets">
+					<Card>
+						<Card header="Select Verb Sets">
 							<VerbSetSelector />
-						</Panel>
-						<Panel header="Verb Filters">
+						</Card>
+						<Card header="Verb Filters">
 							<FilterCheckbox filter="ALLOW_IRREGULAR" label="allow irregular" inline />
 							<FilterCheckbox filter="ALLOW_REFLEXIVE" label="allow reflexive" inline />
-						</Panel>
-					</Panel>
+						</Card>
+					</Card>
 				</Tab>
 				<Tab eventKey={3} title="Choose Pronouns">
-					<Panel>
-						<Panel header="Pronoun Filters">
+					<Card>
+						<Card header="Pronoun Filters">
 							<FormGroup>
 								<FilterCheckbox filter="ALLOW_PRONOUN_YO" label="yo" inline />
 								<FilterCheckbox filter="ALLOW_PRONOUN_TU" label="tú" inline />
@@ -96,8 +96,8 @@ function CustomOptions() {
 								<FilterCheckbox filter="ALLOW_PRONOUN_VOSOTROS" label="vosotros" inline />
 								<FilterCheckbox filter="ALLOW_PRONOUN_ELLOS" label="ellos/ellas/Uds." inline />
 							</FormGroup>
-						</Panel>
-					</Panel>
+						</Card>
+					</Card>
 				</Tab>
 			</Tabs>
 		</div>

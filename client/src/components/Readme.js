@@ -1,24 +1,24 @@
 import React from 'react';
-import { Panel, Accordion } from 'react-bootstrap';
+import { Card, Accordion } from 'react-bootstrap';
 
 function Readme(props) {
 	return (
-		<Panel>
+		<Card>
 			<h2>About</h2>
 			<Accordion defaultActiveKey="1">
-				<Panel header="Concept" eventKey="1">
+				<Card header="Concept" eventKey="1">
 					<p id="paragraph1">This app ensures that you get enough practice with your verbs. The best
 					way to learn verb endings is not to memorize conjugation tables but to
 					instead practice conjugating the verbs in real time as you would
 					in a conversation. The app automatically generates flashcards to give you practice with
 					many diverse combinations of pronouns, tenses, and verbs. </p>
-				</Panel>
-				<Panel header="Why use this app?" eventKey="2">
+				</Card>
+				<Card header="Why use this app?" eventKey="2">
 					<p>Don&#39;t let the many tenses in Spanish intimidate you or limit you
 					to what you can say in your new favorite language. Verbar is ideal
 					for expanding your knowledge of tenses as well as improving your speed and confidence.</p>
-				</Panel>
-				<Panel header="Key difference" eventKey="3">
+				</Card>
+				<Card header="Key difference" eventKey="3">
 					<p><b>Unlimited practice: </b>Workbooks and other apps feature curated
 					exercises. This approach is good for certain kinds of skills such as
 					complex sentence formation but is limited in the sheer amount of practice
@@ -39,8 +39,8 @@ function Readme(props) {
 					own personal experience, I have found it helpful to isolate and focus
 					on one skill within a language at a time and then combine them all in
 					frequent, conversation practice.</p>
-				</Panel>
-				<Panel header="Story" eventKey="4">
+				</Card>
+				<Card header="Story" eventKey="4">
 					<p>This tool is built around my personal learning style so it might
 					not be ideal for everyone. I quit my software job and started to
 					travel the world to learn about food. I started in Peru and quickly
@@ -60,8 +60,8 @@ function Readme(props) {
 					while sharing an Airbnb in Ecuador. Together, we were able to build something
 					that was faster and actually useful. Without Jake&#39;s enthusiasm and
 					expertise, this app would have just been a forgotten, weekend project.</p>
-				</Panel>
-				<Panel header="Code" eventKey="5">
+				</Card>
+				<Card header="Code" eventKey="5">
 					<p>This app was written partially as as way for me to familiarize
 					myself with React and Flux. The core of the app uses Redux and Express.js.
 					The layout is powered by Twitter Bootstrap and the React Bootstrap library</p>
@@ -70,9 +70,9 @@ function Readme(props) {
 					</p>
 					<p>All of the code for this app can be found on <a href="https://github.com/sdee/practicar">Github</a>
 					</p>
-				</Panel>
+				</Card>
 			</Accordion>
-		</Panel>
+		</Card>
 	);
 }
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Checkbox, OverlayTrigger, Glyphicon, Tooltip } from 'react-bootstrap';
+import { Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { setFilter } from '../actions';
+import FontAwesome from 'react-fontawesome';
 
 const mapStateToProps = (state, ownProps) => {
 	const filter = ownProps.filter;
@@ -24,23 +25,21 @@ const FilterCheckbox = ({ checked, dispatch, label, filter, explanation, disable
 				placement="right"
 				overlay={tooltip}
 			>
-				<Glyphicon
-					className="overlay"
-					glyph="info-sign"
-				/>
+			<FontAwesome name="info" className="info-circle" fixedWidth />;
 			</OverlayTrigger>
 		);
 	}
 	return (
 		<div>
-			<Checkbox
+			<Form.Check
+				type={'check'}
 				checked={checked}
 				onChange={handleChange}
 				disabled={disable}
 			>
 				{label}
 				{description}
-			</Checkbox>
+			</Form.Check>
 		</div>
 	);
 };
