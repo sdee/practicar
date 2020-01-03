@@ -14,12 +14,12 @@ function VerbCard({ infinitive, pronoun, tense, mood, questionNum, definition })
 		  
 		meaning = (
 			<div>
-			<OverlayTrigger
+			{/* <OverlayTrigger
 				placement="right"
 				overlay={renderTooltip}
 			>
 			<FontAwesome name="info" className="question-circle" fixedWidth />;
-			</OverlayTrigger>
+			</OverlayTrigger> */}
 			</div>
 		);
 	}

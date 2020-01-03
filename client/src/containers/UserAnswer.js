@@ -6,10 +6,17 @@ import { submitAnswer } from '../actions';
 
 class UserAnswer extends Component {
 
+	constructor(props){
+        super(props);
+		this.input =  React.createRef()
+      }
+
 	componentDidUpdate() {
-		if (this.props.quiz.focus === 'userAnswer') {
-			this.input.focus();
-		}
+		//TODO: refactor to use hooks and functional components
+		// if (this.props.quiz.focus === 'userAnswer') {
+		// 	console.log(this.input)
+		// 	this.input.focus();
+		// }
 	}
 
 	render() {
@@ -55,9 +62,10 @@ class UserAnswer extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state =>{ console.log(state); return ({
+	
 	quiz: state.quiz
-});
+})};
 
 UserAnswer.propTypes = {
 	dispatch: PropTypes.func.isRequired
