@@ -60,7 +60,7 @@ article.flashcard label {
   width: 100%;
   height: 100%;
 }
-section.card {
+section.flashcard {
   display: block;
   font: 30px 'Helvetica', sans-serif;
   text-align: center;
@@ -77,7 +77,7 @@ section.card {
   min-height: 300px;
   position: relative;
 }
-section.card div {
+section.flashcard div {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
@@ -105,7 +105,7 @@ section.card div {
 .irregularity {
   color: red;
 }
-#card {
+#flashcard {
   outline-width: 0;
 }
 .question-num {
@@ -123,4 +123,14 @@ section.card div {
 
 .definition {
   font-size: 16px
+}
+.card {
+
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+
 }

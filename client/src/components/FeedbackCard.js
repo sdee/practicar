@@ -5,7 +5,7 @@ function FeedbackCard({ isCorrect, correctAnswer, submittedAnswer, irregularity,
 	const displayAnswer = isCorrect ? correctAnswer : submittedAnswer;
 	return (
 		<div>
-			<section className="card back">
+			<section className="flashcard back">
 				<div>
 					<span className={userAnswerClass}>{displayAnswer}</span>
 					{!isCorrect ? (

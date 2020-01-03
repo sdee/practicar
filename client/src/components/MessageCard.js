@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function MessageCard({ msg }) {
 	return (<div>
-		<section className="card front">
+		<section className="flashcard front">
 			<div>
 				{msg}
 			</div>

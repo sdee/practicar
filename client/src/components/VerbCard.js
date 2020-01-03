@@ -25,7 +25,7 @@ function VerbCard({ infinitive, pronoun, tense, mood, questionNum, definition })
 	}
 	return (
 		<div>
-			<section className="card front">
+			<section className="flashcard front">
 				<div>
 					<span className="question-num">{questionNum}</span>
 					<br />
