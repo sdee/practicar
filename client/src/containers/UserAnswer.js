@@ -1,71 +1,56 @@
-import React, { Component } from 'react';
+import React, { Component, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormGroup, FormControl, Button, Form, Row } from 'react-bootstrap';
 import { submitAnswer } from '../actions';
 
-class UserAnswer extends Component {
+const UserAnswer = (props) => {
+	const { dispatch } = props;
+	const input = useRef()
+	const ignoreAccents = useRef()
 
-	constructor(props){
-        super(props);
-		this.input =  React.createRef()
-      }
-
-	componentDidUpdate() {
-		//TODO: refactor to use hooks and functional components
-		// if (this.props.quiz.focus === 'userAnswer') {
-		// 	console.log(this.input)
-		// 	this.input.focus();
-		// }
-	}
-
-	render() {
-		const { dispatch } = this.props;
-		let ignoreAccents;
-		return (
-			<form
-				className="userInput form-inline ctrl"
-				onSubmit={(e) => {
-					e.preventDefault();
-					if (!this.input.value.trim()) {
-						return;
-					}
-					dispatch(submitAnswer(this.input.value, ignoreAccents.checked));
-					this.input.value = '';
+	return (
+		<form
+			className="userInput form-inline ctrl"
+			onSubmit={(e) => {
+				e.preventDefault();
+				if (!input.current.value.trim()) {
+					return;
 				}
-				}
+				dispatch(submitAnswer(input.current.value, ignoreAccents.checked));
+				input.current.value = '';
+			}
+			}
+		>
+			<FormGroup
+				controlId="formUserAnswer"
 			>
-				<FormGroup
-					controlId="formUserAnswer"
+				<FormControl
+					type="text"
+					placeholder="Your Answer"
+					ref={input}
+				/>
+				{' '}
+				<Button
+					type="submit"
+					bsStyle="success"
+					bsSize="small"
 				>
-					<FormControl
-						type="text"
-						placeholder="Your Answer"
-						inputRef={(ref) => {
-							this.input = ref;
-						}}
-					/>
-					{' '}
-					<Button
-						type="submit"
-						bsStyle="success"
-						bsSize="small"
-					>
-						Post
+					Post
 					</Button>
-				</FormGroup>
-				<Row>
-					<Form.Check type={'radio'} inputRef={(ref) => { ignoreAccents = ref; }}> Ignore Accents</Form.Check>
-				</Row>
-			</form>
-		);
-	}
+			</FormGroup>
+			<Row>
+				<Form.Check type={'radio'} ref={ignoreAccents}> Ignore Accents</Form.Check>
+			</Row>
+		</form>
+	);
 }
 
-const mapStateToProps = state =>{ console.log(state); return ({
-	
-	quiz: state.quiz
-})};
+const mapStateToProps = state => {
+	return ({
+		quiz: state.quiz
+	})
+};
 
 UserAnswer.propTypes = {
 	dispatch: PropTypes.func.isRequired

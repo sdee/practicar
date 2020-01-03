@@ -16,8 +16,6 @@ const FilterCheckbox = ({ checked, dispatch, label, filter, explanation, disable
 		dispatch(setFilter(filter, !checked));
 	}
 	let description = '';
-	console.log('EXPLAIN')
-	console.log(explanation)
 	if (explanation) {
 		function renderTooltip(props) {
 			return <Tooltip id="tooltip">{explanation}</Tooltip>;

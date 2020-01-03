@@ -162,7 +162,6 @@ const initialState = {
 };
 
 const quiz = (state = initialState, action) => {
-	console.log(state)
 	switch (action.type) {
 	case NEXT_QUESTION: {
 		const questions = state.questions;
