@@ -13,32 +13,32 @@ function App() {
 	return (
 		<KeyboardControls>
 			<div className="App">
-			    <Card style={{ width: '100%' }}>
-                    <Card.Header>"Yo practico, tú practicas, nosotros practicamos"</Card.Header>
-                    <Card.Body>
-                        <Container>
-                            <Row className="show-grid">
-                                <Col md={7}>
-                                    <Row className="show-grid">
-                                        <ControlledCard />
-                                    </Row>
-                                    <Row className="ctrl">
-                                        <LinkControls />
-                                    </Row>
-                                    <Row className="ctrl">
-                                        <UserAnswer />
-                                    </Row>
-                                    <Row className="ctrl">
-                                        <ShortcutInfo />
-                                    </Row>
-                                </Col>
-                                <Col md={5}>
-                                    <CustomOptions />
-                                </Col>
-                            </Row>
-                        </Container>
-                    </Card.Body>
-                </Card>
+				<Card style={{ width: '100%' }}>
+					<Card.Header>"Yo practico, tú practicas, nosotros practicamos"</Card.Header>
+					<Card.Body>
+						<Container>
+							<Row className="show-grid">
+								<Col md={7}>
+									<Row className="show-grid">
+										<ControlledCard />
+									</Row>
+									<Row className="ctrl">
+										<LinkControls />
+									</Row>
+									<Row className="ctrl">
+										<UserAnswer />
+									</Row>
+									<Row className="ctrl">
+										<ShortcutInfo />
+									</Row>
+								</Col>
+								<Col md={5}>
+									<CustomOptions />
+								</Col>
+							</Row>
+						</Container>
+					</Card.Body>
+				</Card>
 				<Readme />
 			</div>
 		</KeyboardControls>
