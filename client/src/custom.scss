@@ -1,0 +1,32 @@
+// Override default variables before the import
+$body-bg: #333;
+$font-size-base: 0.875rem;
+$enable-gradients: true;
+$nav-tabs-link-active-bg: #fff;
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+a {
+    color: #337ab7;
+}
+
+.nav-tabs { 
+  .nav-item {
+    margin-bottom: -$nav-tabs-border-width;
+  } 
+}
+
+.card-header-tabs {
+  margin-left: 0;
+}
+
+.control-buttons {
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.control-buttons div button {
+  margin: 3px;
+  margin-bottom: 15px;
+}

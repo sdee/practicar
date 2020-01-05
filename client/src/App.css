@@ -1,21 +1,3 @@
-.ctrl {
-  float: none;
-  margin: 3px auto;
-  padding: 3px;
-  text-align:center;
-}​
-
-.btn {
-  padding: 3px;
-}
-
-/* makes target for accordion expand whole length of header*/
-.panel-title a {
-  display: block;
-  padding: 10px 15px;
-  margin: -10px -15px;
-}
-
 @import url(http://fonts.googleapis.com/css?family=Oswald);
 * {
   margin: 0px;
@@ -37,6 +19,33 @@ body {
   display: table-cell;
   vertical-align: middle;
 }
+
+.ctrl {
+  float: none;
+  margin: 3px auto;
+  padding: 3px;
+  text-align: center;
+}​
+
+div.control-buttons {
+  margin: 0 auto;
+}
+
+.controls div .btn {
+  margin: 3px;
+}
+
+.btn {
+  padding: 3px;
+}
+
+/* makes target for accordion expand whole length of header*/
+.panel-title a {
+  display: block;
+  padding: 10px 15px;
+  margin: -10px -15px;
+}
+
 article.flashcard {
   margin: 0px auto;
   border: 1px rgba(255, 255, 255, 0.03) solid;
@@ -105,8 +114,9 @@ section.flashcard div {
 .irregularity {
   color: red;
 }
-#flashcard {
+#card {
   outline-width: 0;
+  width: 100%;
 }
 .question-num {
   font: 50px 'Helvetica', sans-serif;
@@ -124,13 +134,34 @@ section.flashcard div {
 .definition {
   font-size: 16px
 }
-.card {
 
-    margin-bottom: 20px;
-    background-color: #fff;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+.shortcuts {
+  width: 100%;
+}
 
+.card-header-tabs {
+  margin: 0;
+}
+
+#customize-card {
+  margin-bottom: 20px;
+}
+
+.tab-content {
+  border: 1px solid #eee;
+  padding: 10px;
+  margin-top: 11px;
+}
+
+.tab-card {
+  margin: 20px;
+}
+
+#user-answer {
+  margin: 0 auto;
+}
+
+.about-card {
+  padding: 15px;
+  margin-top: 20px;
 }

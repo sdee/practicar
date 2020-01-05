@@ -5,12 +5,12 @@ import FontAwesome from 'react-fontawesome';
 
 function VerbCard({ infinitive, pronoun, tense, mood, questionNum, definition }) {
 	let meaning = '';
-	console.log('DEF')
-	console.log(definition)
+	// console.log('DEF')
+	// console.log(definition)
 	if (definition) {
-		function renderTooltip(props) {
+		const renderTooltip = (props) => {
 			return <Tooltip id="tooltip" className="definition">{definition}</Tooltip>;
-		  }
+		}
 		  
 		meaning = (
 			<div>
@@ -24,18 +24,16 @@ function VerbCard({ infinitive, pronoun, tense, mood, questionNum, definition })
 		);
 	}
 	return (
-		<div>
-			<section className="flashcard front">
-				<div>
-					<span className="question-num">{questionNum}</span>
-					<br />
-					<br />
-					{pronoun}, <b>{infinitive}</b> {meaning}
-					<br />
-					({tense} {mood})
-				</div>
-			</section>
-		</div>
+		<section className="flashcard front">
+			<div>
+				<span className="question-num">{questionNum}</span>
+				<br />
+				<br />
+				{pronoun}, <b>{infinitive}</b> {meaning}
+				<br />
+				({tense} {mood})
+			</div>
+		</section>
 	);
 }
 

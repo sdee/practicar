@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Form, OverlayTrigger, Tooltip, Button} from 'react-bootstrap';
+import { Form, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import { setFilter } from '../actions';
-import FontAwesome from 'react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const mapStateToProps = (state, ownProps) => {
 	const filter = ownProps.filter;
@@ -11,39 +11,34 @@ const mapStateToProps = (state, ownProps) => {
 	return { checked };
 };
 
-const FilterCheckbox = ({ checked, dispatch, label, filter, explanation, disable }) => {
-	function handleChange() {
+const FilterCheckbox = ({ checked, dispatch, label, filter, explanation, disabled }) => {
+	const handleChange = () => {
 		dispatch(setFilter(filter, !checked));
 	}
 	let description = '';
 	if (explanation) {
-		function renderTooltip(props) {
+		const renderTooltip = (props) => {
 			return <Tooltip id="tooltip">{explanation}</Tooltip>;
-		  }
+		}
 		description = (
-			<div>
 			<OverlayTrigger
 				placement="right"
 				overlay={renderTooltip}
 			>
-			<FontAwesome name="info" className="info-circle" fixedWidth />
-			{/* <Button variant="success">Hover me to see</Button> */}
+				<FontAwesomeIcon name="info" icon="info-circle" fixedWidth />
+				{/* <Button variant="success">Hover me to see</Button> */}
 			</OverlayTrigger>
-			</div>
 		);
 	}
 	return (
-		<div>
-			<Form.Check
-				type={'check'}
-				checked={checked}
-				onChange={handleChange}
-				disabled={disable}
-			>
-				{label}
-				{description}
-			</Form.Check>
-		</div>
+		<Form.Check
+			type="checkbox"
+			checked={checked}
+			onChange={handleChange}
+		>
+			<Form.Check.Input type="checkbox" disabled={disabled} readOnly={disabled} />
+			<Form.Check.Label>{label} {description}</Form.Check.Label>
+		</Form.Check>
 	);
 };
 
@@ -58,7 +53,7 @@ FilterCheckbox.propTypes = {
 
 FilterCheckbox.defaultProps = {
 	explanation: '',
-	disable: false
+	disabled: false
 };
 
 export default connect(mapStateToProps)(FilterCheckbox);

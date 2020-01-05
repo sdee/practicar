@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, FormGroup, Tabs, Tab } from 'react-bootstrap';
+import { Card, Form, Tabs, Tab } from 'react-bootstrap';
 import FilterCheckbox from './FilterCheckbox';
 import MoodTrigger from './MoodTrigger';
 import VerbSetSelector from './VerbSetSelector';
@@ -7,23 +7,25 @@ import VerbSetSelector from './VerbSetSelector';
 function CustomOptions() {
 	return (
 		<div>
-			<Card header="Customize your lesson">
-				<FormGroup>
+			<Card id="customize-card">
+				<Card.Header>Customize your lesson</Card.Header>
+				<Card.Body>
 					<FilterCheckbox
 						filter="ALLOW_REPEATS"
 						label="allow repeats (coming soon)"
-						disable
+						disabled
 						inline
 					/>
-				</FormGroup>
+				</Card.Body>
 			</Card>
-			<Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
+			<Tabs defaultActiveKey={1} id="customized-tabs">
 				<Tab eventKey={1} title="Choose Tenses">
-					<Card>
-						<Card header="Indicative">
+					<Card className="tab-card">
+						<Card.Header>Indicative</Card.Header>
+						<Card.Body>
 							<MoodTrigger mood="INDICATIVE" label="all on" trigger="on" />
 							<MoodTrigger mood="INDICATIVE" label="all off" trigger="off" />
-							<FormGroup>
+							<Form.Group>
 								<FilterCheckbox
 									filter="ALLOW_PRESENT_IND"
 									label="present"
@@ -49,54 +51,62 @@ function CustomOptions() {
 									label="future"
 									explanation="I will walk tomorrow."
 								/>
-							</FormGroup>
-						</Card>
-						<Card header="Subjunctive">
-							<MoodTrigger mood="SUBJUNCTIVE" label="all on" trigger="on" />
-							<MoodTrigger mood="SUBJUNCTIVE" label="all off" trigger="off" />
-							<FormGroup>
-								<FilterCheckbox
-									filter="ALLOW_PRESENT_SUBJ"
-									label="present"
-									explanation="I doubt that he walks in this weather."
-								/>
-								<FilterCheckbox
-									filter="ALLOW_IMPERFECT_SUBJ"
-									label="imperfect"
-									explanation="I hoped that you had walked yesterday. It was so nice outside."
-								/>
-								<FilterCheckbox
-									filter="ALLOW_FUTURE_SUBJ"
-									label="future"
-									explanation="I don't think they will have walked all day without water."
-								/>
-							</FormGroup>
-						</Card>`
+							</Form.Group>
+						</Card.Body>
+					</Card>
+					<Card className="tab-card">
+						<Card.Header>Subjunctive</Card.Header>
+						<Card.Body>
+						<MoodTrigger mood="SUBJUNCTIVE" label="all on" trigger="on" />
+						<MoodTrigger mood="SUBJUNCTIVE" label="all off" trigger="off" />
+						<Form.Group>
+							<FilterCheckbox
+								filter="ALLOW_PRESENT_SUBJ"
+								label="present"
+								explanation="I doubt that he walks in this weather."
+							/>
+							<FilterCheckbox
+								filter="ALLOW_IMPERFECT_SUBJ"
+								label="imperfect"
+								explanation="I hoped that you had walked yesterday. It was so nice outside."
+							/>
+							<FilterCheckbox
+								filter="ALLOW_FUTURE_SUBJ"
+								label="future"
+								explanation="I don't think they will have walked all day without water."
+							/>
+						</Form.Group>
+						</Card.Body>
 					</Card>
 				</Tab>
 				<Tab eventKey={2} title="Choose Verbs">
-					<Card>
-						<Card header="Select Verb Sets">
+					<Card className="tab-card">
+						<Card.Header>Select Verb Sets</Card.Header>
+						<Card.Body>
 							<VerbSetSelector />
-						</Card>
-						<Card header="Verb Filters">
+						</Card.Body>
+					</Card>
+					<Card className="tab-card">
+						<Card.Header>Verb Filters</Card.Header>
+						<Card.Body>
 							<FilterCheckbox filter="ALLOW_IRREGULAR" label="allow irregular" inline />
 							<FilterCheckbox filter="ALLOW_REFLEXIVE" label="allow reflexive" inline />
-						</Card>
+						</Card.Body>
 					</Card>
 				</Tab>
 				<Tab eventKey={3} title="Choose Pronouns">
-					<Card>
-						<Card header="Pronoun Filters">
-							<FormGroup>
+					<Card className="tab-card">
+						<Card.Header>Pronoun Filters</Card.Header>
+						<Card.Body>
+							<Form.Group>
 								<FilterCheckbox filter="ALLOW_PRONOUN_YO" label="yo" inline />
 								<FilterCheckbox filter="ALLOW_PRONOUN_TU" label="tú" inline />
 								<FilterCheckbox filter="ALLOW_PRONOUN_EL" label="él/ella/Ud." inline />
 								<FilterCheckbox filter="ALLOW_PRONOUN_NOSOTROS" label="nosotros" inline />
 								<FilterCheckbox filter="ALLOW_PRONOUN_VOSOTROS" label="vosotros" inline />
 								<FilterCheckbox filter="ALLOW_PRONOUN_ELLOS" label="ellos/ellas/Uds." inline />
-							</FormGroup>
-						</Card>
+							</Form.Group>
+						</Card.Body>
 					</Card>
 				</Tab>
 			</Tabs>

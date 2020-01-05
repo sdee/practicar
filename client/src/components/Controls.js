@@ -1,24 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
-import FontAwesome from 'react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Controls({ onNextClick, onPrevClick, onShowClick, showAnswer }) {
 	const showButtonText = showAnswer ? 'See Question' : 'See Answer';
 	return (
-		<div>
+		<div className="control-buttons">
 			<div>
-				<Button bsStyle="success" onClick={onPrevClick}>
-					<FontAwesome name="back-button" className="fa-chevron-left" fixedWidth />
+				<Button variant="success" onClick={onPrevClick}>
+					<FontAwesomeIcon name="back-button" icon="chevron-left" fixedWidth /> Back
 				</Button>
-				{' '}
-				<Button bsStyle="success" onClick={onNextClick}>Next
-				<FontAwesome name="next-button" className="fa-chevron-right" fixedWidth />
+				<Button variant="success" onClick={onNextClick}>Next
+					<FontAwesomeIcon name="next-button" icon="chevron-right" fixedWidth />
 				</Button>
 			</div>
-			<br />
 			<div>
-				<Button bsStyle="primary" onClick={onShowClick}>{showButtonText}</Button>
+				<Button variant="primary" onClick={onShowClick}>{showButtonText}</Button>
 			</div>
 		</div>
 	);
