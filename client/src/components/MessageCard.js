@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function MessageCard({ msg }) {
-	return (<div>
+	return (
 		<section className="flashcard front">
 			<div>
 				{msg}
 			</div>
 		</section>
-	</div>);
+	);
 }
 
 MessageCard.propTypes = {

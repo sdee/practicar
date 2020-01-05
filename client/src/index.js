@@ -6,7 +6,17 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
 import App from './App';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import './custom.scss';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+// import { far } from '@fortawesome/free-regular-svg-icons';
+// import { fab } from '@fortawesome/free-brands-svg-icons';
+
+library.add(fas);
 
 const store = createStore(rootReducer,
 	composeWithDevTools(applyMiddleware(thunk))
@@ -14,8 +24,7 @@ const store = createStore(rootReducer,
 
 render(
 	<Provider store={store}>
-	<App />
-		
+		<App />
 	</Provider>,
 	document.getElementById('root')
 );

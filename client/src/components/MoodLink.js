@@ -5,9 +5,11 @@ import { Button } from 'react-bootstrap';
 function MoodLink({ label, onClick }) {
 	return (
 		<Button
-			bsClass="btn btn-default btn-xs"
 			href="#toggleMood"
+			variant="secondary"
+			size="sm"
 			onClick={onClick}
+			className="mood-link"
 		>
 			{label}
 		</Button>

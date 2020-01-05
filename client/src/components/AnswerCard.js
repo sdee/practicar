@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 
 function AnswerCard({ answer, irregularity, before, after }) {
 	return (
-		<div>
-			<section className="flashcard back">
-				<div>
-					{before}<span className="irregularity">{irregularity}</span>{after}
-				</div>
-			</section>
-		</div>
+		<section className="flashcard back">
+			<div>
+				{before}<span className="irregularity">{irregularity}</span>{after}
+			</div>
+		</section>
 	);
 }
 

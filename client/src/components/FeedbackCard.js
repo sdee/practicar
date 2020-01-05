@@ -1,19 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 function FeedbackCard({ isCorrect, correctAnswer, submittedAnswer, irregularity, before, after }) {
 	const userAnswerClass = isCorrect ? 'correctAnswer' : 'incorrectAnswer';
 	const displayAnswer = isCorrect ? correctAnswer : submittedAnswer;
 	return (
-		<div>
-			<section className="flashcard back">
-				<div>
-					<span className={userAnswerClass}>{displayAnswer}</span>
-					{!isCorrect ? (
-						<span className="answer"> {'-> '}{before}<span className="irregularity">{irregularity}</span>{after}</span>
-					) : ('')}
-				</div>
-			</section>
-		</div>
+		<section className="flashcard back">
+			<div>
+				<span className={userAnswerClass}>{displayAnswer}</span>
+				{!isCorrect ? (
+					<span className="answer"> {'-> '}{before}<span className="irregularity">{irregularity}</span>{after}</span>
+				) : ('')}
+			</div>
+		</section>
 	);
 }
 
