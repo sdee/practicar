@@ -14,7 +14,7 @@ function App() {
 		<KeyboardControls>
 			<div className="App">
 				<Card style={{ width: '100%' }}>
-					<Card.Header>"Yo practico, tú practicas, nosotros practicamos"</Card.Header>
+					<Card.Header>Yo practico, tú practicas, nosotros practicamos</Card.Header>
 					<Card.Body>
 						<Container>
 							<Row className="show-grid">
