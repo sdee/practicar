@@ -1,17 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Form, OverlayTrigger, Tooltip} from 'react-bootstrap';
+import { Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { setFilter } from '../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const mapStateToProps = (state, ownProps) => {
 	const filter = ownProps.filter;
-	console.log('.....')
-	console.log(filter)
-	console.log(state.filter[filter])
 	const checked = !!state.filter[filter];
-	console.log(checked)
 	return { checked };
 };
 
@@ -36,9 +32,9 @@ const FilterCheckbox = ({ checked, dispatch, label, filter, explanation, disable
 	return (
 		<Form.Check
 		>
-		<Form.Check.Input type={'checkbox'} onChange={handleChange} checked={checked}/>
-		<Form.Check.Label>
-			{label} {description}
+			<Form.Check.Input type={'checkbox'} onChange={handleChange} checked={checked} />
+			<Form.Check.Label>
+				{label} {description}
 			</Form.Check.Label>
 		</Form.Check>
 
@@ -56,7 +52,7 @@ FilterCheckbox.propTypes = {
 
 FilterCheckbox.defaultProps = {
 	explanation: '',
-	disabled: false, 
+	disabled: false,
 	checked: false
 };
 
