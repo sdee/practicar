@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Controls({ onNextClick, onPrevClick, onShowClick, showAnswer }) {
+const Controls = ({ onNextClick, onPrevClick, onShowClick, showAnswer }) => {
 	const showButtonText = showAnswer ? 'See Question' : 'See Answer';
 	return (
 		<div className="control-buttons">

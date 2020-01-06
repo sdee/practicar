@@ -7,7 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const mapStateToProps = (state, ownProps) => {
 	const filter = ownProps.filter;
+	console.log('.....')
+	console.log(filter)
+	console.log(state.filter[filter])
 	const checked = !!state.filter[filter];
+	console.log(checked)
 	return { checked };
 };
 
@@ -26,19 +30,18 @@ const FilterCheckbox = ({ checked, dispatch, label, filter, explanation, disable
 				overlay={renderTooltip}
 			>
 				<FontAwesomeIcon name="info" icon="info-circle" fixedWidth />
-				{/* <Button variant="success">Hover me to see</Button> */}
 			</OverlayTrigger>
 		);
 	}
 	return (
 		<Form.Check
-			type="checkbox"
-			checked={checked}
-			onChange={handleChange}
 		>
-			<Form.Check.Input type="checkbox" disabled={disabled} readOnly={disabled} />
-			<Form.Check.Label>{label} {description}</Form.Check.Label>
+		<Form.Check.Input type={'checkbox'} onChange={handleChange} checked={checked}/>
+		<Form.Check.Label>
+			{label} {description}
+			</Form.Check.Label>
 		</Form.Check>
+
 	);
 };
 
@@ -53,7 +56,8 @@ FilterCheckbox.propTypes = {
 
 FilterCheckbox.defaultProps = {
 	explanation: '',
-	disabled: false
+	disabled: false, 
+	checked: false
 };
 
 export default connect(mapStateToProps)(FilterCheckbox);
