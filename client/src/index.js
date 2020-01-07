@@ -1,12 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import rootReducer from './reducers/index';
-import App from './App';
+import { PersistGate } from 'redux-persist/lib/integration/react';
 
+import { store, persistor } from './configureStore';
+import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import './custom.scss';
@@ -18,13 +16,11 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 
 library.add(fas);
 
-const store = createStore(rootReducer,
-	composeWithDevTools(applyMiddleware(thunk))
-);
-
 render(
 	<Provider store={store}>
-		<App />
+		<PersistGate loading={null} persistor={persistor}>
+			<App />
+		</PersistGate>
 	</Provider>,
 	document.getElementById('root')
 );
