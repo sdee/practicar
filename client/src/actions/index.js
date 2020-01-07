@@ -1,3 +1,5 @@
+const quizService = require('../services/quiz');
+
 /*
  * action types
  */
@@ -68,6 +70,10 @@ export function loadQuiz(verbSet = 'topHundred') {
 		.then(json => dispatch(loadQuizSuccess(json)))
 		.catch((error) => { console.log('request failed', error); });
 	};
+}
+
+export function loadQuizLocal(verbSet = 'topHundred') {
+	return loadQuizSuccess(quizService.generateQuiz(500, verbSet));
 }
 
 export function toggleFocus() {

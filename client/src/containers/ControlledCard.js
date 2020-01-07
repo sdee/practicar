@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import QuizCard from '../components/QuizCard';
-import { loadQuiz, flipCard } from '../actions';
+import { loadQuizLocal, flipCard } from '../actions';
 
 class ControlledCard extends Component {
 	componentDidMount() {
 		const { dispatch } = this.props;
-		dispatch(loadQuiz());
+		dispatch(loadQuizLocal());
 	}
 
 	componentDidUpdate() {
