@@ -8,8 +8,15 @@ import CustomOptions from './containers/CustomOptions';
 import ControlledCard from './containers/ControlledCard';
 import UserAnswer from './containers/UserAnswer';
 import KeyboardControls from './containers/KeyboardControls';
+import {useRoutes} from 'hookrouter';
 
-function App() {
+const routes = {
+	'/app': () => <Verbs />,
+	'/api': () => null,
+  
+};
+
+const Verbs = () => {
 	return (
 		<KeyboardControls>
 			<div className="App">
@@ -41,8 +48,12 @@ function App() {
 				</Card>
 				<Readme />
 			</div>
-		</KeyboardControls>
-	);
+		</KeyboardControls>);
+}
+
+const App = () => {
+    const routeResult = useRoutes(routes);
+    if (routeResult){return routeResult}
 }
 
 export default App;
