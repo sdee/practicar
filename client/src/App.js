@@ -11,8 +11,7 @@ import KeyboardControls from './containers/KeyboardControls';
 import {useRoutes} from 'hookrouter';
 
 const routes = {
-	'/app': () => <Verbs />,
-	'/api': () => null,
+	'/': () => <Verbs />
   
 };
 
