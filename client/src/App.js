@@ -52,7 +52,7 @@ const Verbs = () => {
 
 const App = () => {
     const routeResult = useRoutes(routes);
-    if (routeResult){return routeResult}
+	return routeResult || 'nada'
 }
 
 export default App;
