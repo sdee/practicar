@@ -10,11 +10,6 @@ import UserAnswer from './containers/UserAnswer';
 import KeyboardControls from './containers/KeyboardControls';
 import {useRoutes} from 'hookrouter';
 
-const routes = {
-	'/': () => <Verbs />
-  
-};
-
 const Verbs = () => {
 	return (
 		<KeyboardControls>
@@ -47,11 +42,16 @@ const Verbs = () => {
 				</Card>
 				<Readme />
 			</div>
-		</KeyboardControls>);
+		</KeyboardControls>
+	);
 }
 
+const routes = {
+	'/': () => <Verbs />,
+};
+
 const App = () => {
-    const routeResult = useRoutes(routes);
+	const routeResult = useRoutes(routes);
 	return routeResult || 'nada'
 }
 
