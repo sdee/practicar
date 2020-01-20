@@ -24,7 +24,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-
 app.use('/api/quiz', quiz);
 app.use('/api/conjugate', conjugate);
 app.use('/api/telegram', telegram);
