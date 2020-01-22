@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FeedbackCard from './FeedbackCard';
+import VerbFeedbackCard from './VerbFeedbackCard';
 import VerbCard from './VerbCard';
 import AnswerCard from './AnswerCard';
 import MessageCard from './MessageCard';
@@ -39,7 +39,7 @@ function QuizCard(props) {
 
 	if (shouldShowFeedbackCard(props)) {
 		return (
-			<FeedbackCard
+			<VerbFeedbackCard
 				isCorrect={props.isCorrect}
 				correctAnswer={props.correctAnswer}
 				submittedAnswer={props.submittedAnswer}
