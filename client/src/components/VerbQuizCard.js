@@ -20,10 +20,10 @@ const getBeforeAfter = (answer, irregularity) => {
 
 const formatQuestion = (pronoun, infinitive, tense, mood) => <>{pronoun}, <b>{infinitive}</b><br />({tense} {mood})</>
 
-const formatAnswer = (answer, irregularity) => {	
+const formatAnswer = (answer, irregularity) => {
 	const beforeAfter = getBeforeAfter(answer, irregularity);
 	const before = beforeAfter.before;
-	const after = beforeAfter.after; 
+	const after = beforeAfter.after;
 	return <>{before}<span className="irregularity">{irregularity}</span>{after}</>
 }
 
@@ -31,9 +31,9 @@ const VerbQuizCard = (props) => {
 	const currentCard = props.currentCard;
 	let formattedQuestion;
 	let formattedAnswer;
-    
-    let answer;
-    if (!_.isEmpty(currentCard)){
+
+	let answer;
+	if (!_.isEmpty(currentCard)) {
 		const question = currentCard.question;
 		const pronoun = question.pronoun;
 		const verb = question.verb;
@@ -44,9 +44,9 @@ const VerbQuizCard = (props) => {
 		answer = currentCard.answer;
 
 		formattedAnswer = formatAnswer(answer, irregularity)
-    }
+	}
 	return (
-		<QuizCard {...props} question={formattedQuestion} correctAnswer={formattedAnswer}  />
+		<QuizCard {...props} question={formattedQuestion} correctAnswer={formattedAnswer} />
 	);
 }
 

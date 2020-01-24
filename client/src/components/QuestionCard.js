@@ -5,12 +5,12 @@ function QuestionCard({ question, questionNum }) {
     //TODO: add optional info back
     return (
         <section className="flashcard front">
-        <div>
-        <span className="question-num">{questionNum}</span>
-        <br/>
-        <br/>
-        {question}
-        </div>
+            <div>
+                <span className="question-num">{questionNum}</span>
+                <br />
+                <br />
+                {question}
+            </div>
         </section>
     );
 }
