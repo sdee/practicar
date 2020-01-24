@@ -44,9 +44,9 @@ export function loadQuizError(error) {
 	return { error, type: LOAD_QUIZ_ERROR };
 }
 
-export function loadQuizSuccess(quiz) {
+export function loadQuizSuccess(quiz, quizType) {
 	return (dispatch) => {
-		dispatch({ type: LOAD_QUIZ_SUCCESS, quiz });
+		dispatch({ type: LOAD_QUIZ_SUCCESS, quiz, quizType });
 	};
 }
 
@@ -72,7 +72,7 @@ export function loadQuiz(type, verbSet = 'topHundred') {
 			accept: 'application/json',
 		})
 		.then(response => response.json())
-		.then(json => dispatch(loadQuizSuccess(json)))
+		.then(json => dispatch(loadQuizSuccess(json, type)))
 		.catch((error) => { console.log('request failed', error); });
 	};
 }

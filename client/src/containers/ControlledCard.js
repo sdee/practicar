@@ -1,31 +1,37 @@
-import React, { Component, useEffect, useRef } from 'react';
-
+import React, {useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import QuizCard from '../components/QuizCard';
+import NumbersQuizCard from '../components/NumbersQuizCard';
+import VerbQuizCard from '../components/VerbQuizCard';
 import { loadQuiz, flipCard } from '../actions';
 import {usePath} from 'hookrouter';
 
-const ControlledCard = (props) => {
+const ControlledCard = ({dispatch, quiz, quizType, user}) => {
 	const cardRef = useRef();
 	const path = usePath();
 
 	useEffect(() => {
-		const quizType = path.slice(1)
-		props.dispatch(loadQuiz(quizType));
-		if (props.quiz.focus === 'card' && cardRef) {
+		const quizType = path.slice(1) || 'verbs'; 
+		dispatch(loadQuiz(quizType));
+		if (quiz.focus === 'card' && cardRef) {
 			cardRef.current.focus();
 		}
-	  }, []);
+	  }, [path, dispatch, quiz]);
 
+	let quizCard;
+	if (quizType==='numbers') {
+		quizCard = React.createElement(NumbersQuizCard, {...quiz, questionNum: user.questionNum})
+	}
+	else {
+		quizCard = React.createElement(VerbQuizCard, {...quiz, questionNum: user.questionNum})
+	}
 		return (
 			<div
 				id="card"
 				tabIndex="0"
-				// ref={(div) => { this.card = div; }}
 				ref={cardRef}
-				onClick={(e) => { props.dispatch(flipCard()); }}>
-				<QuizCard {...props.quiz} questionNum={props.user.questionNum} />
+				onClick={(e) => { dispatch(flipCard()); }}>
+				{quizCard}	
 			</div>
 		);
 	}
@@ -37,7 +43,8 @@ ControlledCard.propTypes = {
 
 const mapStateToProps = state => ({
 	quiz: state.quiz,
-	user: state.user
+	user: state.user,
+	quizType: state.quiz.type,
 });
 
 export default connect(mapStateToProps)(ControlledCard);

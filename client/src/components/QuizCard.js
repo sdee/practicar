@@ -1,71 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import VerbFeedbackCard from './VerbFeedbackCard';
-import VerbCard from './VerbCard';
+import QuestionCard from './QuestionCard'
+import FeedbackCard from './FeedbackCard';
 import AnswerCard from './AnswerCard';
 import MessageCard from './MessageCard';
 
 function shouldShowFeedbackCard(props) {
-	return props.hasSubmittedAnswer && props.infinitive;
+	return props.hasSubmittedAnswer && props.question;
 }
 
 function shouldShowVerbCard(props) {
-	return props.infinitive && props.showAnswer === false;
+	return props.question && props.showAnswer === false;
 }
 
 function shouldShowAnswerCard(props) {
-	return props.infinitive && props.showAnswer === true;
+	return props.question && props.showAnswer === true;
 }
 
-function getBeforeAfter(answer, irregularity) {
-	const beforeAfter = {};
-	beforeAfter.before = '';
-	beforeAfter.after = '';
-	if (irregularity.length > 0) {
-		const iStartIndex = answer.indexOf(irregularity);
-		const iEndIndex = iStartIndex + irregularity.length;
-		beforeAfter.before = answer.slice(0, iStartIndex).trim();
-		beforeAfter.after = answer.slice(iEndIndex, answer.length).trim();
-	} else {
-		beforeAfter.before = answer;
-	}
-	return beforeAfter;
-}
-
+/**
+ * Determines what card should be shown based on quiz state
+ */
 function QuizCard(props) {
-	const beforeAfter = getBeforeAfter(props.correctAnswer, props.irregularity);
-	const before = beforeAfter.before;
-	const after = beforeAfter.after;
-
 	if (shouldShowFeedbackCard(props)) {
 		return (
-			<VerbFeedbackCard
+			<FeedbackCard
 				isCorrect={props.isCorrect}
 				correctAnswer={props.correctAnswer}
 				submittedAnswer={props.submittedAnswer}
-				irregularity={props.irregularity}
-				before={before}
-				after={after}
 			/>
 		);
 	} else if (shouldShowVerbCard(props)) {
 		return (
-			<VerbCard
-				pronoun={props.pronoun}
-				infinitive={props.infinitive}
-				tense={props.tense}
-				mood={props.mood}
-				questionNum={props.questionNum}
-				definition={props.definition}
+			<QuestionCard question={props.question} questionNum={props.questionNum}
 			/>
 		);
 	} else if (shouldShowAnswerCard(props)) {
 		return (
 			<AnswerCard
 				answer={props.correctAnswer}
-				irregularity={props.irregularity}
-				before={before}
-				after={after}
 			/>
 		);
 	}
@@ -75,36 +47,27 @@ function QuizCard(props) {
 }
 
 QuizCard.propTypes = {
+	currentQuestion: PropTypes.object,
+	question:  PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+	correctAnswer: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 	hasSubmittedAnswer: PropTypes.bool,
 	isCorrect: PropTypes.bool,
 	showAnswer: PropTypes.bool,
 	submittedAnswer: PropTypes.string,
-	infinitive: PropTypes.string,
-	correctAnswer: PropTypes.string,
-	tense: PropTypes.string,
-	pronoun: PropTypes.string,
-	text: PropTypes.string,
-	mood: PropTypes.string,
-	irregularity: PropTypes.string,
+	text: PropTypes.string, //message
 	questionNum: PropTypes.number,
-	definition: PropTypes.string
 };
 
 QuizCard.defaultProps = {
+	currentQuestion: {},
+	question: '',
 	hasSubmittedAnswer: false,
 	isCorrect: false,
 	showAnswer: false,
 	submittedAnswer: '',
-	infinitive: '',
 	correctAnswer: '',
-	answer: '',
-	tense: '',
-	pronoun: '',
 	text: '',
-	mood: '',
-	irregularity: '',
 	questionNum: 0,
-	definition: ''
 };
 
 export default QuizCard;

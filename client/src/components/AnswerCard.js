@@ -5,17 +5,14 @@ function AnswerCard({ answer, irregularity, before, after }) {
 	return (
 		<section className="flashcard back">
 			<div>
-				{before}<span className="irregularity">{irregularity}</span>{after}
+				{answer}
 			</div>
 		</section>
 	);
 }
 
 AnswerCard.propTypes = {
-	answer: PropTypes.string.isRequired,
-	irregularity: PropTypes.string.isRequired,
-	before: PropTypes.string.isRequired,
-	after: PropTypes.string.isRequired
+	answer: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
 export default AnswerCard;

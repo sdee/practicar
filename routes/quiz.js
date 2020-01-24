@@ -7,9 +7,7 @@ router.get('/number', function(req, res, next) {
   res.json({'key': 'hello'})
 });
 
-
 router.get('/', function(req, res, next) {
-  console.log(req)
   const type = req.query.type;
   
   if (type==='numbers') {

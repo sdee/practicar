@@ -69,9 +69,9 @@ const Numbers = () => {
 										<ShortcutInfo />
 									</Row>
 								</Col>
-								<Col md={5}>
+								{/* <Col md={5}>
 									<CustomOptions />
-								</Col>
+								</Col> */}
 							</Row>
 						</Container>
 					</Card.Body>
