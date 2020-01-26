@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import QuizCard from './QuizCard';
-import { OverlayTrigger, Tooltip, Button } from 'react-bootstrap';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-const _ = require('lodash');
+import QuizCard from './QuizCard';
 
 const getBeforeAfter = (answer, irregularity) => {
 	const beforeAfter = {};
@@ -23,7 +22,7 @@ const getBeforeAfter = (answer, irregularity) => {
 const DefinitionHoverover = ({ definition }) => (
 	<OverlayTrigger
 		placement="right"
-		overlay={<Tooltip id={`tooltip`}>
+		overlay={<Tooltip id="tooltip">
 			{definition}
 		</Tooltip>}
 	>
@@ -38,28 +37,22 @@ const formatQuestion = (pronoun, infinitive, tense, mood, definition) => {
 
 const formatAnswer = (answer, irregularity) => {
 	const beforeAfter = getBeforeAfter(answer, irregularity);
-	const before = beforeAfter.before;
-	const after = beforeAfter.after;
+	const {before, after} = beforeAfter;
 	return <>{before}<span className="irregularity">{irregularity}</span>{after}</>
 }
 
 const VerbQuizCard = (props) => {
-	const currentCard = props.currentCard;
+	const {currentCard} = props;
 	let formattedQuestion;
 	let formattedAnswer;
 
-	let answer;
-	if (!_.isEmpty(currentCard)) {
-		const question = currentCard.question;
-		const pronoun = question.pronoun;
-		const verb = question.verb;
-		const tense = question.tense;
-		const mood = question.mood;
-		const irregularity = question.irregularity;
-		const definition = question.definition;
-		formattedQuestion = formatQuestion(pronoun, verb, tense, mood, definition);
-		answer = currentCard.answer;
-		formattedAnswer = formatAnswer(answer, irregularity);
+	if (currentCard.length !== 0) {
+		const {question} = currentCard;
+		if (question) {
+			const {pronoun, verb, tense, mood, irregularity, definition} = question;
+			formattedQuestion = formatQuestion(pronoun, verb, tense, mood, definition);
+			formattedAnswer = formatAnswer(currentCard.answer, irregularity);
+		}
 	}
 	return (
 		<QuizCard {...props} question={formattedQuestion} correctAnswer={formattedAnswer} />
@@ -67,12 +60,14 @@ const VerbQuizCard = (props) => {
 }
 
 VerbQuizCard.propTypes = {
+	currentCard: PropTypes.object.isRequired,
 	hasSubmittedAnswer: PropTypes.bool,
 	isCorrect: PropTypes.bool,
 	showAnswer: PropTypes.bool,
 	submittedAnswer: PropTypes.string,
 	infinitive: PropTypes.string,
 	correctAnswer: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+	answer: PropTypes.string,
 	tense: PropTypes.string,
 	pronoun: PropTypes.string,
 	text: PropTypes.string,
