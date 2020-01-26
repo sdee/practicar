@@ -17,10 +17,11 @@ function QuestionCard({ question, questionNum }) {
 
 QuestionCard.propTypes = {
     question: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    questionNum: PropTypes.number.isRequired,
 };
 
 QuestionCard.defaultProps = {
-    question: (<div></div>)
+    question: (<div />)
 };
 
 export default QuestionCard;
