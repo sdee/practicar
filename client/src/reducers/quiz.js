@@ -154,7 +154,7 @@ const initialState = {
 	hasSubmittedAnswer: false,
 	questionSequence: [],
 	sequenceIndex: -1,
-	//filters
+	// filters
 	ALLOW_PRESENT_IND: true,
 	ALLOW_PRONOUN_YO: true,
 	ALLOW_PRONOUN_TU: true,
@@ -172,7 +172,7 @@ const quiz = (state = initialState, action) => {
 
 	//TODO: Generalize and put attributes in current question slice
 	case NEXT_QUESTION: {
-		const questions = state.questions;
+		const {questions} = state;
 		if (questions.length === 0) {
 			console.error('cannot fetch next question, questions not loaded');
 			return state;
@@ -211,7 +211,8 @@ const quiz = (state = initialState, action) => {
 			newQuestionSequence = [...state.questionSequence, newQuestionIndex];
 			newSequenceIndex = state.sequenceIndex + 1;
 		}
-		return Object.assign({}, state, {
+		return {
+			...state,
 			questionIndex: newQuestionIndex,
 			hasSubmittedAnswer: false,
 			submittedAnswer: '',
@@ -221,19 +222,18 @@ const quiz = (state = initialState, action) => {
 			sequenceIndex: newSequenceIndex,
 			currentCard: card,
 			focus: 'userAnswer',
-		});
+		};
 	}
 	case PREV_QUESTION: {
 		let card;
-		let question;
 		if (state.sequenceIndex > 0) {
-			const questions = state.questions;
+			const {questions} = state;
 			const newSequenceIndex = state.sequenceIndex - 1;
 			const newQuestionIndex = state.questionSequence[newSequenceIndex];
 			card = questions[newQuestionIndex];
-			question = card.question;
-			
-			return Object.assign({}, state, {
+
+			return {
+				...state,
 				questionIndex: newQuestionIndex,
 				hasSubmittedAnswer: false,
 				submittedAnswer: '',
@@ -241,23 +241,24 @@ const quiz = (state = initialState, action) => {
 				showAnswer: false,
 				questionSequence: state.questionSequence,
 				sequenceIndex: newSequenceIndex,
-				currentCard: card, 
+				currentCard: card,
 				focus: 'userAnswer'
-			});
+			};
 		}
 		return state;
 	}
 	case FLIP_CARD: {
-		return Object.assign({}, state, {
+		return {
+			...state,
 			showAnswer: !state.showAnswer,
 			hasSubmittedAnswer: false
-		});
+		};
 	}
 	case LOAD_QUIZ: {
-		return Object.assign({}, state, {
-			isLoadingQuiz: true,
+		return {
+			...state, isLoadingQuiz: true,
 			isQuizLoaded: false,
-		});
+		};
 	}
 	case LOAD_QUIZ_SUCCESS: {
 		let text;
@@ -268,46 +269,53 @@ const quiz = (state = initialState, action) => {
 		else if (type==='verbs'){
 			text='Let\'s learn some Spanish verb conjugations! Get started by clicking \'next\''
 		}
-		return Object.assign({}, state, {
-			questions: action.quiz.questions,
-			type: type,
+		return {
+			...state, questions: action.quiz.questions,
+			type,
 			currentQuestionIndex: -1,
 			isLoadingQuiz: false,
 			isQuizLoaded: true,
-			text: text
-		});
+			text
+		};
 	}
 	case SET_VERBSET: {
-		return Object.assign({}, state, {
+		return {
+			...state,
 			verbSet: action.verbSet
-		});
+		};
 	}
 	case LOAD_QUIZ_ERROR: {
-		return Object.assign({}, state, {
+		return {
+			...state,
 			isLoadingQuiz: false,
 			isQuizLoaded: false,
-		});
+		};
 	}
 	case SUBMIT_ANSWER: {
 		console.log(`userAnswer: ${action.userAnswer} ignoreAccents: ${action.ignoreAccents}`);
 		const finalUserAnswer = getFinalUserAnswer(action.userAnswer, action.ignoreAccents);
 		const finalCorrectAnswer = getFinalCorrectAnswer(state.currentCard.answer, action.ignoreAccents);
-		return Object.assign({}, state, {
+		return {
+			...state,
 			ignoreAccents: action.ignoreAccents,
 			hasSubmittedAnswer: true,
 			submittedAnswer: action.userAnswer,
 			finalAnswer: finalUserAnswer,
 			isCorrect: checkUserAnswer(finalUserAnswer, finalCorrectAnswer),
 			showAnswer: true
-		});
+		};
 	}
 	case SET_FILTER: {
-		const newState = Object.assign({}, state, {});
+		const newState = {
+			...state,
+		};
 		newState[action.filter] = action.status;
 		return newState;
 	}
 	case TOGGLE_FOCUS: {
-		const newState = Object.assign({}, state, {});
+		const newState = {
+			...state,
+		};
 		if (state.focus === 'card') {
 			newState.focus = 'userAnswer';
 		} else if (state.focus === 'userAnswer') {
