@@ -30,8 +30,8 @@ const FilterCheckbox = ({ checked, dispatch, label, filter, explanation, disable
 		);
 	}
 	return (
-		<Form.Check disabled={disabled}>
-			<Form.Check.Input type="checkbox" onChange={handleChange} checked={checked} />
+		<Form.Check>
+			<Form.Check.Input type="checkbox" onChange={handleChange} checked={checked} disabled={disabled} />
 			<Form.Check.Label>
 				{label} {description}
 			</Form.Check.Label>
