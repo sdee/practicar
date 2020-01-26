@@ -24,10 +24,9 @@ function generateQuestion() {
 		[16, "dieciséis"],
 	  ]);
 
-	
     return {
-        question:{number: randomNumber},
-        answer: numbers.get(randomNumber)
+        question: {number: randomNumber},
+        answer: numbers.get(randomNumber),
     }
 }
 
