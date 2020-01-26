@@ -14,6 +14,9 @@ const ControlledCard = ({dispatch, quiz, user}) => {
 
 	useEffect(() => {
 		dispatch(loadQuiz(quizType));
+	}, []);
+
+	useEffect(() => {
 		if (quiz.focus === 'card' && cardRef) {
 			cardRef.current.focus();
 		}
