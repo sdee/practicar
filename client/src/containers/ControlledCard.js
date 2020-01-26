@@ -1,42 +1,54 @@
-import React, { Component } from 'react';
+import React, {useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import QuizCard from '../components/QuizCard';
+import {usePath} from 'hookrouter';
+import NumbersQuizCard from '../components/NumbersQuizCard';
+import VerbQuizCard from '../components/VerbQuizCard';
 import { loadQuiz, flipCard } from '../actions';
 
-class ControlledCard extends Component {
-	componentDidMount() {
-		const { dispatch } = this.props;
-		dispatch(loadQuiz());
-	}
+const ControlledCard = ({dispatch, quiz, user}) => {
+	const cardRef = useRef();
+	const path = usePath();
 
-	componentDidUpdate() {
-		if (this.props.quiz.focus === 'card') {
-			this.card.focus();
+	const quizType = path.slice(1) || 'verbs';
+
+	useEffect(() => {
+		dispatch(loadQuiz(quizType));
+	}, [dispatch, quizType]);
+
+	useEffect(() => {
+		if (quiz.focus === 'card' && cardRef) {
+			cardRef.current.focus();
 		}
-	}
+	}, [quiz.focus]);
 
-	render() {
-		const { dispatch } = this.props;
-		return (
-			<div
-				id="card"
-				tabIndex="0"
-				ref={(div) => { this.card = div; }}
-				onClick={(e) => { dispatch(flipCard()); }}>
-				<QuizCard {...this.props.quiz} questionNum={this.props.user.questionNum} />
-			</div>
-		);
+	let quizCard;
+	if (quizType === 'numbers') {
+		quizCard = React.createElement(NumbersQuizCard, {...quiz, questionNum: user.questionNum})
+	} else {
+		quizCard = React.createElement(VerbQuizCard, {...quiz, questionNum: user.questionNum})
 	}
+	return (
+		<div
+			id="card"
+			tabIndex="0"
+			ref={cardRef}
+			onClick={(e) => { dispatch(flipCard()); }}>
+			{quizCard}
+		</div>
+	);
 }
 
+
 ControlledCard.propTypes = {
-	dispatch: PropTypes.func.isRequired
+	dispatch: PropTypes.func.isRequired,
+	quiz: PropTypes.object.isRequired,
+	user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
 	quiz: state.quiz,
-	user: state.user
+	user: state.user,
 });
 
 export default connect(mapStateToProps)(ControlledCard);

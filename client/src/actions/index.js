@@ -44,9 +44,9 @@ export function loadQuizError(error) {
 	return { error, type: LOAD_QUIZ_ERROR };
 }
 
-export function loadQuizSuccess(quiz) {
+export function loadQuizSuccess(quiz, quizType) {
 	return (dispatch) => {
-		dispatch({ type: LOAD_QUIZ_SUCCESS, quiz });
+		dispatch({ type: LOAD_QUIZ_SUCCESS, quiz, quizType });
 	};
 }
 
@@ -58,15 +58,22 @@ export function setVerbSet(verbSet) {
 	return { type: SET_VERBSET, verbSet };
 }
 
-export function loadQuiz(verbSet = 'topHundred') {
-	const url = 'api/quiz?verbs=' + verbSet;
+export function loadQuiz(type, verbSet = 'topHundred') {
+	let url;
+	if (type === 'numbers') {
+		url = 'api/quiz?type=numbers';
+	} else {
+		url = `api/quiz?type=verbs&verbs=${verbSet}`;
+	}
 	return (dispatch) => {
 		fetch(url, {
 			accept: 'application/json',
 		})
 		.then(response => response.json())
-		.then(json => dispatch(loadQuizSuccess(json)))
-		.catch((error) => { console.log('request failed', error); });
+		.then(json => dispatch(loadQuizSuccess(json, type)))
+		.catch((error) => {
+			console.error('request failed', error);
+		});
 	};
 }
 

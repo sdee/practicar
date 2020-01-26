@@ -39,3 +39,5 @@ jspm_packages
 .env
 
 client/build
+.vscode
+
