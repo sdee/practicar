@@ -29,11 +29,6 @@
     "fast-diff": "^1.1.1",
     "morgan": "^1.9.1",
     "prop-types": "^15.7.2",
-    "react-fontawesome": "^1.7.1",
-    "react-hotkeys": "^2.0.0",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.2.0",
-    "redux-undo": "^0.6.1",
     "serve-favicon": "^2.5.0",
     "underscore": "^1.8.3"
   },
