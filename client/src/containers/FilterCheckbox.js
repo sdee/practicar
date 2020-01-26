@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setFilter } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
+
 	const {filter} = ownProps;
 	const checked = !!state.filter[filter];
 	return { checked };
