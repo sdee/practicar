@@ -9,7 +9,7 @@ router.get('/number', function(req, res, next) {
 
 router.get('/', function(req, res, next) {
   const type = req.query.type;
-  
+
   if (type==='numbers') {
     res.json(numbersService.generateQuiz());
   }
@@ -23,7 +23,5 @@ router.get('/', function(req, res, next) {
   }
 
 });
-
-
 
 module.exports = router;
