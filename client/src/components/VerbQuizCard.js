@@ -46,7 +46,7 @@ const VerbQuizCard = (props) => {
 	let formattedQuestion;
 	let formattedAnswer;
 
-	if (currentCard.length !== 0) {
+	if (currentCard && currentCard.length !== 0) {
 		const {question} = currentCard;
 		if (question) {
 			const {pronoun, verb, tense, mood, irregularity, definition} = question;
