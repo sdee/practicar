@@ -14,13 +14,13 @@ const ControlledCard = ({dispatch, quiz, user}) => {
 
 	useEffect(() => {
 		dispatch(loadQuiz(quizType));
-	}, []);
+	}, [dispatch, quizType]);
 
 	useEffect(() => {
 		if (quiz.focus === 'card' && cardRef) {
 			cardRef.current.focus();
 		}
-	}, [quizType, dispatch, quiz.focus]);
+	}, [quiz.focus]);
 
 	let quizCard;
 	if (quizType === 'numbers') {
