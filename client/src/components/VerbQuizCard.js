@@ -8,7 +8,7 @@ const getBeforeAfter = (answer, irregularity) => {
 	const beforeAfter = {};
 	beforeAfter.before = '';
 	beforeAfter.after = '';
-	if (irregularity.length > 0) {
+	if (irregularity && irregularity.length > 0) {
 		const iStartIndex = answer.indexOf(irregularity);
 		const iEndIndex = iStartIndex + irregularity.length;
 		beforeAfter.before = answer.slice(0, iStartIndex).trim();
