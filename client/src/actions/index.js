@@ -60,12 +60,10 @@ export function setVerbSet(verbSet) {
 
 export function loadQuiz(type, verbSet = 'topHundred') {
 	let url;
-	if (type==='numbers') {
+	if (type === 'numbers') {
 		url = 'api/quiz?type=numbers';
-	}
-		
-	else {
-		url = 'api/quiz?type=verbs&verbs=' + verbSet;
+	} else {
+		url = `api/quiz?type=verbs&verbs=${verbSet}`;
 	}
 	return (dispatch) => {
 		fetch(url, {
@@ -73,7 +71,9 @@ export function loadQuiz(type, verbSet = 'topHundred') {
 		})
 		.then(response => response.json())
 		.then(json => dispatch(loadQuizSuccess(json, type)))
-		.catch((error) => { console.log('request failed', error); });
+		.catch((error) => {
+			console.error('request failed', error);
+		});
 	};
 }
 
