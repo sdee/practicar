@@ -7,10 +7,10 @@ import QuizCard from './QuizCard'
  */
 const NumbersQuizCard = (props) => {
     const {currentCard} = props;
-    let question;
     let answer;
+    let question;
     if (currentCard.length !== 0 && currentCard.question !== undefined){
-        question = `¿Como se dice ${currentCard.question.number} en español?`;
+        question = <>¿Como se dice <b>{currentCard.question.number.toLocaleString()}</b> en español?</>;
         answer = currentCard.answer;
     }
 	return (
