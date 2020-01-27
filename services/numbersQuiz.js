@@ -5,10 +5,11 @@ function chooseRandomNumberInRange(min, max){
 }
 
 function generateQuestion(min=1, max=999999) {
-	const randomNumber = chooseRandomNumberInRange(min, max).toLocaleString();
-	const answer = numbersUtil.numberToSpanish(randomNumber)
+	const randomNumber = chooseRandomNumberInRange(min, max);
+	const formattedQuestion = randomNumber.toLocaleString()
+	const answer = numbersUtil.numberToSpanish(randomNumber);
     return {
-        question: {number: randomNumber},
+        question: {number: formattedQuestion},
         answer: answer,
     }
 }
