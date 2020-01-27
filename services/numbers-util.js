@@ -44,7 +44,7 @@ const numberToSpanish = function (number) {
     }
     else if (number > 10 && number < 20) {
         return "dieci" + numbers.get(number - 10);
-    } 
+    }
     else if (number > 20 && number < 30) {
         return "veinti" + numbers.get(number - 20);
     } else if (number > 30 && number < 100) {
@@ -65,7 +65,7 @@ const numberToSpanish = function (number) {
         const thousands = parseInt(thousandsDigit, 10);
         const remainder = number % (thousands * 1000);
 
-        return (thousands >1 ? numberToSpanish(thousands)+' ' : '') + "mil " + (remainder > 0
+        return (thousands > 1 ? numberToSpanish(thousands) + ' ' : '') + "mil " + (remainder > 0
             ? numberToSpanish(remainder)
             : "");
     }
