@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { nextQuestion, prevQuestion, flipCard } from '../actions';
 import Controls from '../components/Controls';
-import { strictEqual } from 'assert';
 
 const mapStateToProps = (state, ownProps) => ({
 	showAnswer: state.quiz.showAnswer,
