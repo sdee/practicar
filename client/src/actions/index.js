@@ -24,12 +24,12 @@ export function setFilter(filter, status) {
 	return { type: SET_FILTER, filter, status };
 }
 
-export function nextQuestion() {
-	return { type: NEXT_QUESTION };
+export function nextQuestion(filters) {
+	return { type: NEXT_QUESTION, filters };
 }
 
-export function prevQuestion() {
-	return { type: PREV_QUESTION };
+export function prevQuestion(filters) {
+	return { type: PREV_QUESTION, filters };
 }
 
 export function flipCard() {

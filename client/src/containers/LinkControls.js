@@ -1,22 +1,28 @@
 import { connect } from 'react-redux';
 import { nextQuestion, prevQuestion, flipCard } from '../actions';
 import Controls from '../components/Controls';
+import { strictEqual } from 'assert';
 
 const mapStateToProps = (state, ownProps) => ({
-	showAnswer: state.quiz.showAnswer
+	showAnswer: state.quiz.showAnswer,
+	filters: state.filter
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch, ownProps) => {
+	const {filters} = ownProps;
+	return(
+	{
+	
 	onNextClick: () => {
-		dispatch(nextQuestion());
+		dispatch(nextQuestion(filters));
 	},
 	onPrevClick: () => {
-		dispatch(prevQuestion());
+		dispatch(prevQuestion(filters));
 	},
 	onShowClick: () => {
 		dispatch(flipCard());
 	}
-});
+})};
 
 const LinkControls = connect(
 	mapStateToProps,
