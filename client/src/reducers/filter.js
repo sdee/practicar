@@ -1,4 +1,4 @@
-import { SET_FILTER } from '../actions';
+import { SET_FILTER, LOAD_QUIZ } from '../actions';
 
 const initialState = {
 	ALLOW_PRESENT_IND: true,
@@ -13,6 +13,10 @@ const filter = (state = initialState, action) => {
 	case SET_FILTER: {
 		const newState = Object.assign({}, state, {});
 		newState[action.filter] = action.status;
+		return newState;
+	}
+	case LOAD_QUIZ: {
+		const newState = {};
 		return newState;
 	}
 	default: {

@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
 import {useRoutes} from 'hookrouter';
-import Verbs from './Verbs'
-import Numbers from './Numbers'
+import Quiz from './containers/Quiz'
 
 const routes = {
-	'/': () => <Verbs />,
-	'/numbers': () => <Numbers />,
+	'/': () => <Quiz type={'verbs'} />,
+	'/numbers': () => <Quiz type={'numbers'} />,
 };
 
 const App = () => {

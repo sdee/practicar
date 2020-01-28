@@ -2,28 +2,21 @@ import React, {useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {usePath} from 'hookrouter';
-import NumbersQuizCard from '../components/NumbersQuizCard';
-import VerbQuizCard from '../components/VerbQuizCard';
-import { loadQuiz, flipCard } from '../actions';
+import NumbersQuizCard from './NumbersQuizCard';
+import VerbQuizCard from './VerbQuizCard';
+import { loadQuiz, flipCard, setQuizType } from '../actions';
 
-const ControlledCard = ({dispatch, quiz, user}) => {
+const ControlledCard = ({dispatch, quiz, user, filters, type}) => {
+	console.log()
 	const cardRef = useRef();
-	const path = usePath();
-
-	const quizType = path.slice(1) || 'verbs';
-
-	useEffect(() => {
-		dispatch(loadQuiz(quizType));
-	}, []);
-
 	useEffect(() => {
 		if (quiz.focus === 'card' && cardRef) {
 			cardRef.current.focus();
 		}
-	}, [quizType, dispatch, quiz.focus]);
+	}, [type, dispatch, quiz.focus]);
 
 	let quizCard;
-	if (quizType === 'numbers') {
+	if (type === 'numbers') {
 		quizCard = React.createElement(NumbersQuizCard, {...quiz, questionNum: user.questionNum})
 	} else {
 		quizCard = React.createElement(VerbQuizCard, {...quiz, questionNum: user.questionNum})
@@ -39,16 +32,12 @@ const ControlledCard = ({dispatch, quiz, user}) => {
 	);
 }
 
-
 ControlledCard.propTypes = {
 	dispatch: PropTypes.func.isRequired,
+	type: PropTypes.string.isRequired,
 	quiz: PropTypes.object.isRequired,
 	user: PropTypes.object.isRequired,
+	filters: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-	quiz: state.quiz,
-	user: state.user,
-});
-
-export default connect(mapStateToProps)(ControlledCard);
+export default ControlledCard;

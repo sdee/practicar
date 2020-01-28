@@ -5,11 +5,14 @@ import Readme from './components/Readme';
 import ShortcutInfo from './components/ShortcutInfo';
 import LinkControls from './containers/LinkControls';
 import CustomOptions from './containers/CustomOptions';
-import ControlledCard from './containers/ControlledCard';
+import ControlledCard from './components/ControlledCard';
 import UserAnswer from './containers/UserAnswer';
 import KeyboardControls from './containers/KeyboardControls';
 
-const Verbs = () => {
+/*
+Organizes Layout for Numbers Quiz UI
+*/
+const Verbs = (props) => {
 	return (
 		<KeyboardControls>
 			<div className="App">
@@ -20,7 +23,7 @@ const Verbs = () => {
 							<Row className="show-grid">
 								<Col md={7}>
 									<Row className="show-grid">
-										<ControlledCard />
+										<ControlledCard type='verbs' {...props} />
 									</Row>
 									<Row className="ctrl">
 										<LinkControls />
