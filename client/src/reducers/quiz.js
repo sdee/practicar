@@ -37,7 +37,6 @@ function doesVerbPassIndicativeFilters(state, question) {
 	if (question.mood !== 'indicative') {
 		return false;
 	}
-
 	if (!state.ALLOW_PRESENT_IND && question.tense === 'present') {
 		return false;
 	}
@@ -142,11 +141,6 @@ const initialState = {
 	questions: [],
 	ignoreAccents: false,
 	correctAnswer: '',
-	// irregularity: '',
-	// infinitive: '',
-	// tense: '',
-	// mood: '',
-	// pronoun: '',
 	text: '',
 	submittedAnswer: '',
 	showAnswer: false,
@@ -170,7 +164,6 @@ const initialState = {
 const quiz = (state = initialState, action) => {
 	switch (action.type) {
 
-	//TODO: Generalize and put attributes in current question slice
 	case NEXT_QUESTION: {
 		const {questions} = state;
 		if (questions.length === 0) {
