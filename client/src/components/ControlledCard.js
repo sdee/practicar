@@ -1,13 +1,10 @@
 import React, {useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import {usePath} from 'hookrouter';
 import NumbersQuizCard from './NumbersQuizCard';
 import VerbQuizCard from './VerbQuizCard';
-import { loadQuiz, flipCard, setQuizType } from '../actions';
+import { flipCard } from '../actions';
 
 const ControlledCard = ({dispatch, quiz, user, filters, type}) => {
-	console.log()
 	const cardRef = useRef();
 	useEffect(() => {
 		if (quiz.focus === 'card' && cardRef) {

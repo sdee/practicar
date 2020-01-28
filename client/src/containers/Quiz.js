@@ -10,18 +10,17 @@ Integrates filters, user, and quiz state slice to choose questions.
 */
 const Quiz = (props) => {
     const { dispatch, type} = props;
-
     useEffect(() => {
 		dispatch(loadQuiz(type));
 	}, [dispatch, type]);
-    let quizlet;
+    let quizLayout;
     if (type=='numbers'){
-        quizlet = React.createElement(Numbers, {...props})
+        quizLayout = React.createElement(Numbers, {...props})
     } 
     else {
-        quizlet = React.createElement(Verbs, {...props})
+        quizLayout = React.createElement(Verbs, {...props})
     }
-return quizlet;
+return quizLayout;
 }
 
 Quiz.propTypes = {
