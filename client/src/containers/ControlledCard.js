@@ -6,10 +6,9 @@ import NumbersQuizCard from '../components/NumbersQuizCard';
 import VerbQuizCard from '../components/VerbQuizCard';
 import { loadQuiz, flipCard } from '../actions';
 
-const ControlledCard = ({dispatch, quiz, user}) => {
+const ControlledCard = ({dispatch, quiz, user, filters}) => {
 	const cardRef = useRef();
 	const path = usePath();
-
 	const quizType = path.slice(1) || 'verbs';
 
 	useEffect(() => {
@@ -44,11 +43,13 @@ ControlledCard.propTypes = {
 	dispatch: PropTypes.func.isRequired,
 	quiz: PropTypes.object.isRequired,
 	user: PropTypes.object.isRequired,
+	filters: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
 	quiz: state.quiz,
 	user: state.user,
+	filters: state.filter
 });
 
 export default connect(mapStateToProps)(ControlledCard);

@@ -2,6 +2,7 @@
  * action types
  */
 export const SET_FILTER = 'SET_FILTER';
+export const SET_QUIZ_TYPE = 'SET_QUIZ_TYPE'
 
 export const NEXT_QUESTION = 'NEXT_QUESTION';
 export const PREV_QUESTION = 'PREV_QUESTION';
@@ -22,6 +23,10 @@ export const TOGGLE_FOCUS = 'TOGGLE_FOCUS';
  */
 export function setFilter(filter, status) {
 	return { type: SET_FILTER, filter, status };
+}
+
+export function setQuizType(type){
+	return { type: CHANGE_QUIZ_TYPE, type };
 }
 
 export function nextQuestion() {
