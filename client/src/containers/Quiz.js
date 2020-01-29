@@ -14,7 +14,7 @@ const Quiz = (props) => {
 		dispatch(loadQuiz(type));
 	}, [dispatch, type]);
     let quizLayout;
-    if (type=='numbers'){
+    if (type==='numbers'){
         quizLayout = React.createElement(Numbers, {...props})
     } 
     else {
