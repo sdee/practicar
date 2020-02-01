@@ -24,8 +24,8 @@ export function setFilter(filter, status) {
 	return { type: SET_FILTER, filter, status };
 }
 
-export function nextQuestion() {
-	return { type: NEXT_QUESTION };
+export function nextQuestion(filters) {
+	return { type: NEXT_QUESTION, filters };
 }
 
 export function prevQuestion() {
@@ -58,9 +58,9 @@ export function setVerbSet(verbSet) {
 	return { type: SET_VERBSET, verbSet };
 }
 
-export function loadQuiz(type, verbSet = 'topHundred') {
+export function loadQuiz(quizType, verbSet = 'topHundred') {
 	let url;
-	if (type === 'numbers') {
+	if (quizType === 'numbers') {
 		url = 'api/quiz?type=numbers';
 	} else {
 		url = `api/quiz?type=verbs&verbs=${verbSet}`;
@@ -70,12 +70,33 @@ export function loadQuiz(type, verbSet = 'topHundred') {
 			accept: 'application/json',
 		})
 		.then(response => response.json())
-		.then(json => dispatch(loadQuizSuccess(json, type)))
+		.then(json => dispatch(loadQuizSuccess(json, quizType)))
 		.catch((error) => {
 			console.error('request failed', error);
 		});
 	};
 }
+
+export function loadQuizWithParameters(quizType, params ) {
+	let url;
+	if (quizType === 'numbers') {
+		url = `api/quiz?type=numbers&min=${params.MIN_NUMBER}&max=${params.MAX_NUMBER}`;
+	} else {
+		const verbSet='topHundred'
+		url = `api/quiz?type=verbs&verbs=${verbSet}`;
+	}
+	return (dispatch) => {
+		fetch(url, {
+			accept: 'application/json',
+		})
+		.then(response => response.json())
+		.then(json => dispatch(loadQuizSuccess(json, quizType)))
+		.catch((error) => {
+			console.error('request failed', error);
+		});
+	};
+}
+
 
 export function toggleFocus() {
 	return { type: TOGGLE_FOCUS };

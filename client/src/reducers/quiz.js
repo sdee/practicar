@@ -1,5 +1,7 @@
-import { NEXT_QUESTION, PREV_QUESTION, FLIP_CARD, SUBMIT_ANSWER, LOAD_QUIZ,
-	LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR, SET_FILTER, TOGGLE_FOCUS, SET_VERBSET } from '../actions';
+import {
+	NEXT_QUESTION, PREV_QUESTION, FLIP_CARD, SUBMIT_ANSWER, LOAD_QUIZ,
+	LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR, SET_FILTER, TOGGLE_FOCUS, SET_VERBSET
+} from '../actions';
 
 // TODO: move this
 function accentsTidy(s) {
@@ -106,13 +108,23 @@ function doesPronounPassFilter(state, question) {
 	return true;
 }
 
-function doesQuestionPassFilter(state, question, quizType) {
+function doesQuestionPassNumbersFilter(question, filters) {
+
+	const { number } = question;
+	if (number >= filters['MIN_NUMBER'] && number <= filters['MAX_NUMBER']) {
+		return true;
+	}
+	return false;
+}
+
+function doesQuestionPassFilter(state, question, quizType, filters) {
+
 	if (!question) {
 		return false;
 	}
 
-	if (quizType==='numbers'){
-		return true
+	if (quizType === 'numbers') {
+		return doesQuestionPassNumbersFilter(question, filters)
 	}
 
 	if (!doesPronounPassFilter(state, question)) {
@@ -165,68 +177,48 @@ const initialState = {
 const quiz = (state = initialState, action) => {
 	switch (action.type) {
 
-	//TODO: Generalize and put attributes in current question slice
-	case NEXT_QUESTION: {
-		const {questions} = state;
-		if (questions.length === 0) {
-			console.error('cannot fetch next question, questions not loaded');
-			return state;
-		}
-		const quizType = state.type;
-		let newSequenceIndex;
-		let newQuestionIndex;
-		let newQuestionSequence = state.questionSequence;
-		let card;
-		let question;
-		if (state.sequenceIndex < state.questionSequence.length - 1) {
-			// on an old question, just move forward
-			newSequenceIndex = state.sequenceIndex + 1;
-			newQuestionIndex = state.questionSequence[newSequenceIndex];
-			card = questions[newQuestionIndex];
-			question = card.question;
-		} else {
-			// select new question
-			// TODO: do this somewhere better, not in reducer
-			newQuestionIndex = state.questionIndex;
-			let numAttempts = 0;
-			// keep on creating new question until question pass current filters
-			while (!doesQuestionPassFilter(state, question, quizType)) {
-				newQuestionIndex++;
-				if (newQuestionIndex >= questions.length) {
-					newQuestionIndex = 0;
-				}
-				card = questions[newQuestionIndex]
-				question = card.question;
-				numAttempts++;
-				if (numAttempts > questions.length) {
-					console.error('unable to generate a question with present filters');
-					return state;
-				}
+		//TODO: Generalize and put attributes in current question slice
+		case NEXT_QUESTION: {
+			const { filters } = action;
+			const { questions } = state;
+			if (questions.length === 0) {
+				console.error('cannot fetch next question, questions not loaded');
+				return state;
 			}
-			newQuestionSequence = [...state.questionSequence, newQuestionIndex];
-			newSequenceIndex = state.sequenceIndex + 1;
-		}
-		return {
-			...state,
-			questionIndex: newQuestionIndex,
-			hasSubmittedAnswer: false,
-			submittedAnswer: '',
-			isCorrect: false,
-			showAnswer: false,
-			questionSequence: newQuestionSequence,
-			sequenceIndex: newSequenceIndex,
-			currentCard: card,
-			focus: 'userAnswer',
-		};
-	}
-	case PREV_QUESTION: {
-		let card;
-		if (state.sequenceIndex > 0) {
-			const {questions} = state;
-			const newSequenceIndex = state.sequenceIndex - 1;
-			const newQuestionIndex = state.questionSequence[newSequenceIndex];
-			card = questions[newQuestionIndex];
-
+			const quizType = state.type;
+			let newSequenceIndex;
+			let newQuestionIndex;
+			let newQuestionSequence = state.questionSequence;
+			let card;
+			let question;
+			if (state.sequenceIndex < state.questionSequence.length - 1) {
+				// on an old question, just move forward
+				newSequenceIndex = state.sequenceIndex + 1;
+				newQuestionIndex = state.questionSequence[newSequenceIndex];
+				card = questions[newQuestionIndex];
+				question = card.question;
+			} else {
+				// select new question
+				// TODO: do this somewhere better, not in reducer
+				newQuestionIndex = state.questionIndex;
+				let numAttempts = 0;
+				// keep on creating new question until question pass current filters
+				while (!doesQuestionPassFilter(state, question, quizType, filters)) {
+					newQuestionIndex++;
+					if (newQuestionIndex >= questions.length) {
+						newQuestionIndex = 0;
+					}
+					card = questions[newQuestionIndex]
+					question = card.question;
+					numAttempts++;
+					if (numAttempts > questions.length) {
+						console.error('unable to generate a question with present filters');
+						return state;
+					}
+				}
+				newQuestionSequence = [...state.questionSequence, newQuestionIndex];
+				newSequenceIndex = state.sequenceIndex + 1;
+			}
 			return {
 				...state,
 				questionIndex: newQuestionIndex,
@@ -234,93 +226,114 @@ const quiz = (state = initialState, action) => {
 				submittedAnswer: '',
 				isCorrect: false,
 				showAnswer: false,
-				questionSequence: state.questionSequence,
+				questionSequence: newQuestionSequence,
 				sequenceIndex: newSequenceIndex,
 				currentCard: card,
-				focus: 'userAnswer'
+				focus: 'userAnswer',
 			};
 		}
-		return state;
-	}
-	case FLIP_CARD: {
-		return {
-			...state,
-			showAnswer: !state.showAnswer,
-			hasSubmittedAnswer: false
-		};
-	}
-	case LOAD_QUIZ: {
-		return {
-			...state, isLoadingQuiz: true,
-			isQuizLoaded: false,
-		};
-	}
-	case LOAD_QUIZ_SUCCESS: {
-		let text;
-		const type = action.quizType;
-		if (type==='numbers'){
-			text='Let\'s learn our numbers in Spanish! Get started by clicking \'next\''
+		case PREV_QUESTION: {
+			let card;
+			if (state.sequenceIndex > 0) {
+				const { questions } = state;
+				const newSequenceIndex = state.sequenceIndex - 1;
+				const newQuestionIndex = state.questionSequence[newSequenceIndex];
+				card = questions[newQuestionIndex];
+
+				return {
+					...state,
+					questionIndex: newQuestionIndex,
+					hasSubmittedAnswer: false,
+					submittedAnswer: '',
+					isCorrect: false,
+					showAnswer: false,
+					questionSequence: state.questionSequence,
+					sequenceIndex: newSequenceIndex,
+					currentCard: card,
+					focus: 'userAnswer'
+				};
+			}
+			return state;
 		}
-		else if (type==='verbs'){
-			text='Let\'s learn some Spanish verb conjugations! Get started by clicking \'next\''
+		case FLIP_CARD: {
+			return {
+				...state,
+				showAnswer: !state.showAnswer,
+				hasSubmittedAnswer: false
+			};
 		}
-		return {
-			...state, questions: action.quiz.questions,
-			type,
-			currentQuestionIndex: -1,
-			isLoadingQuiz: false,
-			isQuizLoaded: true,
-			text
-		};
-	}
-	case SET_VERBSET: {
-		return {
-			...state,
-			verbSet: action.verbSet
-		};
-	}
-	case LOAD_QUIZ_ERROR: {
-		return {
-			...state,
-			isLoadingQuiz: false,
-			isQuizLoaded: false,
-		};
-	}
-	case SUBMIT_ANSWER: {
-		console.log(`userAnswer: ${action.userAnswer} ignoreAccents: ${action.ignoreAccents}`);
-		const finalUserAnswer = getFinalUserAnswer(action.userAnswer, action.ignoreAccents);
-		const finalCorrectAnswer = getFinalCorrectAnswer(state.currentCard.answer, action.ignoreAccents);
-		return {
-			...state,
-			ignoreAccents: action.ignoreAccents,
-			hasSubmittedAnswer: true,
-			submittedAnswer: action.userAnswer,
-			finalAnswer: finalUserAnswer,
-			isCorrect: checkUserAnswer(finalUserAnswer, finalCorrectAnswer),
-			showAnswer: true
-		};
-	}
-	case SET_FILTER: {
-		const newState = {
-			...state,
-		};
-		newState[action.filter] = action.status;
-		return newState;
-	}
-	case TOGGLE_FOCUS: {
-		const newState = {
-			...state,
-		};
-		if (state.focus === 'card') {
-			newState.focus = 'userAnswer';
-		} else if (state.focus === 'userAnswer') {
-			newState.focus = 'card';
+		case LOAD_QUIZ: {
+			return {
+				...state, isLoadingQuiz: true,
+				isQuizLoaded: false,
+			};
 		}
-		return newState;
-	}
-	default: {
-		return state;
-	}
+		case LOAD_QUIZ_SUCCESS: {
+			let text;
+			const type = action.quizType;
+			if (type === 'numbers') {
+				text = 'Let\'s learn our numbers in Spanish! Get started by clicking \'next\''
+			}
+			else if (type === 'verbs') {
+				text = 'Let\'s learn some Spanish verb conjugations! Get started by clicking \'next\''
+			}
+			return {
+				...state, questions: action.quiz.questions,
+				type,
+				currentQuestionIndex: -1,
+				isLoadingQuiz: false,
+				isQuizLoaded: true,
+				text
+			};
+		}
+		case SET_VERBSET: {
+			return {
+				...state,
+				verbSet: action.verbSet
+			};
+		}
+		case LOAD_QUIZ_ERROR: {
+			return {
+				...state,
+				isLoadingQuiz: false,
+				isQuizLoaded: false,
+			};
+		}
+		case SUBMIT_ANSWER: {
+			console.log(`userAnswer: ${action.userAnswer} ignoreAccents: ${action.ignoreAccents}`);
+			const finalUserAnswer = getFinalUserAnswer(action.userAnswer, action.ignoreAccents);
+			const finalCorrectAnswer = getFinalCorrectAnswer(state.currentCard.answer, action.ignoreAccents);
+			return {
+				...state,
+				ignoreAccents: action.ignoreAccents,
+				hasSubmittedAnswer: true,
+				submittedAnswer: action.userAnswer,
+				finalAnswer: finalUserAnswer,
+				isCorrect: checkUserAnswer(finalUserAnswer, finalCorrectAnswer),
+				showAnswer: true
+			};
+		}
+		case SET_FILTER: {
+			const newState = {
+				...state,
+			};
+			newState[action.filter] = action.status;
+			return newState;
+		}
+		case TOGGLE_FOCUS: {
+			const newState = {
+				...state,
+			};
+			if (state.focus === 'card') {
+				newState.focus = 'userAnswer';
+			} else if (state.focus === 'userAnswer') {
+				newState.focus = 'card';
+			}
+			return newState;
+		}
+		default: {
+			return state;
+		}
 	}
 };
 

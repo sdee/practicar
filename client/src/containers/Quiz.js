@@ -3,18 +3,28 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Verbs from '../Verbs'
 import Numbers from '../Numbers'
-import {loadQuiz } from '../actions';
+import {loadQuiz, loadQuizWithParameters } from '../actions';
 
 /*
 Integrates filters, user, and quiz state slice to choose questions. 
 */
 const Quiz = (props) => {
-    const { dispatch, type} = props;
+    const { dispatch, type, filters} = props;
     useEffect(() => {
-		dispatch(loadQuiz(type));
-	}, [dispatch, type]);
+        if (type==='numbers'){
+            dispatch(loadQuizWithParameters(type, filters)); //do with parameters
+        }
+        else {
+            dispatch(loadQuiz(type));
+        }
+	}, []);
+    useEffect(() => {
+        if (type==='numbers'){
+            dispatch(loadQuizWithParameters(type, filters)); //do with parameters
+        }
+	}, [dispatch, type, filters]);
     let quizLayout;
-    if (type=='numbers'){
+    if (type==='numbers'){
         quizLayout = React.createElement(Numbers, {...props})
     } 
     else {

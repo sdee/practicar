@@ -3,19 +3,16 @@ var router = express.Router();
 const quizService = require('../services/quiz');
 const numbersService = require('../services/numbersQuiz')
 
-router.get('/number', function(req, res, next) {
-  res.json({'key': 'hello'})
-});
-
 router.get('/', function(req, res, next) {
   const type = req.query.type;
 
   if (type==='numbers') {
-    res.json(numbersService.generateQuiz());
+    const min = parseInt(req.query.min);
+    const max = parseInt(req.query.max);
+    res.json(numbersService.generateQuiz(500, min, max));
   }
   else{
-    // let verbSet = req.query.verbs;
-    let verbSet=null;
+    let verbSet=req.query.verbSet;
     if (!verbSet) {
       verbSet = 'default';
     }

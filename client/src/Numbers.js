@@ -8,11 +8,13 @@ import LinkControls from './containers/LinkControls';
 import ControlledCard from './components/ControlledCard';
 import UserAnswer from './containers/UserAnswer';
 import KeyboardControls from './containers/KeyboardControls';
+import CustomOptions from './containers/numbers/CustomOptions'
 
 /*
 Organizes Layout for Numbers Quiz UI
 */
 const Numbers = (props) => {
+	const {filters} = props;
 	return (
 		<KeyboardControls>
 			<div className="App">
@@ -26,7 +28,7 @@ const Numbers = (props) => {
 										<ControlledCard type="numbers" {...props} />
 									</Row>
 									<Row className="ctrl">
-										<LinkControls />
+										<LinkControls filters={filters} />
 									</Row>
 									<Row className="ctrl">
 										<UserAnswer />
@@ -35,9 +37,9 @@ const Numbers = (props) => {
 										<ShortcutInfo />
 									</Row>
 								</Col>
-								{/* <Col md={5}>
+								<Col md={5}>
 									<CustomOptions />
-								</Col> */}
+								</Col>
 							</Row>
 						</Container>
 					</Card.Body>
@@ -53,7 +55,6 @@ Numbers.propTypes = {
 	type: PropTypes.string.isRequired,
 	quiz: PropTypes.object.isRequired,
 	user: PropTypes.object.isRequired,
-	filters: PropTypes.object.isRequired,
 };
 
 export default Numbers;

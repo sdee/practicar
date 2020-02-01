@@ -3,12 +3,13 @@ import { nextQuestion, prevQuestion, flipCard } from '../actions';
 import Controls from '../components/Controls';
 
 const mapStateToProps = (state, ownProps) => ({
-	showAnswer: state.quiz.showAnswer
+	showAnswer: state.quiz.showAnswer,
+	filters: state.filter
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onNextClick: () => {
-		dispatch(nextQuestion());
+		dispatch(nextQuestion(ownProps.filters));
 	},
 	onPrevClick: () => {
 		dispatch(prevQuestion());
