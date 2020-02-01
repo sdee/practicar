@@ -6,14 +6,17 @@ const mapStateToProps = (state, ownProps) => ({
 	cn: ownProps.children
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch, ownProps) => 
+{
+	const {filters} = ownProps;
+return({
 	onRightKeyClick: (e) => {
 		e.preventDefault();
-		dispatch(nextQuestion());
+		dispatch(nextQuestion(filters));
 	},
 	onLeftKeyClick: (e) => {
 		e.preventDefault();
-		dispatch(prevQuestion());
+		dispatch(prevQuestion(filters));
 	},
 	onUpKeyClick: (e) => {
 		e.preventDefault();
@@ -23,7 +26,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 		e.preventDefault();
 		dispatch(toggleFocus());
 	}
-});
+})};
 
 const KeyboardControls = connect(
 	mapStateToProps,

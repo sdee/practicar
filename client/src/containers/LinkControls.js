@@ -7,17 +7,21 @@ const mapStateToProps = (state, ownProps) => ({
 	filters: state.filter
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch, ownProps) => {
+	const {filters} = ownProps;
+	return(
+	{
+	
 	onNextClick: () => {
-		dispatch(nextQuestion(ownProps.filters));
+		dispatch(nextQuestion(filters));
 	},
 	onPrevClick: () => {
-		dispatch(prevQuestion());
+		dispatch(prevQuestion(filters));
 	},
 	onShowClick: () => {
 		dispatch(flipCard());
 	}
-});
+})};
 
 const LinkControls = connect(
 	mapStateToProps,

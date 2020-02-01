@@ -28,8 +28,8 @@ export function nextQuestion(filters) {
 	return { type: NEXT_QUESTION, filters };
 }
 
-export function prevQuestion() {
-	return { type: PREV_QUESTION };
+export function prevQuestion(filters) {
+	return { type: PREV_QUESTION, filters };
 }
 
 export function flipCard() {

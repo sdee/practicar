@@ -14,7 +14,7 @@ Organizes Layout for Numbers Quiz UI
 */
 const Verbs = (props) => {
 	return (
-		<KeyboardControls>
+		<KeyboardControls filters={props.filters}>
 			<div className="App">
 				<Card style={{ width: '100%' }}>
 					<Card.Header>Yo practico, tú practicas, nosotros practicamos</Card.Header>
@@ -26,7 +26,7 @@ const Verbs = (props) => {
 										<ControlledCard type='verbs' {...props} />
 									</Row>
 									<Row className="ctrl">
-										<LinkControls />
+										<LinkControls filters={props.filters}/>
 									</Row>
 									<Row className="ctrl">
 										<UserAnswer />

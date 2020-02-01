@@ -177,26 +177,26 @@ const initialState = {
 const quiz = (state = initialState, action) => {
 	switch (action.type) {
 
-		//TODO: Generalize and put attributes in current question slice
-		case NEXT_QUESTION: {
-			const { filters } = action;
-			const { questions } = state;
-			if (questions.length === 0) {
-				console.error('cannot fetch next question, questions not loaded');
-				return state;
-			}
-			const quizType = state.type;
-			let newSequenceIndex;
-			let newQuestionIndex;
-			let newQuestionSequence = state.questionSequence;
-			let card;
-			let question;
-			if (state.sequenceIndex < state.questionSequence.length - 1) {
-				// on an old question, just move forward
-				newSequenceIndex = state.sequenceIndex + 1;
-				newQuestionIndex = state.questionSequence[newSequenceIndex];
-				card = questions[newQuestionIndex];
-				question = card.question;
+	//TODO: Generalize and put attributes in current question slice
+	case NEXT_QUESTION: {
+		const {questions} = state;
+		const filters = action.filters;
+		if (questions.length === 0) {
+			console.error('cannot fetch next question, questions not loaded');
+			return state;
+		}
+		const quizType = state.type;
+		let newSequenceIndex;
+		let newQuestionIndex;
+		let newQuestionSequence = state.questionSequence;
+		let card;
+		let question;
+		if (state.sequenceIndex < state.questionSequence.length - 1) {
+			// on an old question, just move forward
+			newSequenceIndex = state.sequenceIndex + 1;
+			newQuestionIndex = state.questionSequence[newSequenceIndex];
+			card = questions[newQuestionIndex];
+			question = card.question;
 			} else {
 				// select new question
 				// TODO: do this somewhere better, not in reducer
