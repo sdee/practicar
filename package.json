@@ -42,7 +42,8 @@
     "serve-favicon": "^2.5.0",
     "underscore": "^1.8.3",
     "webpack": "4.41.2",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "wnumb": "^1.2.0"
   },
   "devDependencies": {
     "@babel/node": "^7.8.3",
