@@ -35,7 +35,7 @@ class Slider extends React.Component {
                     clickablePips
                 />
                 <br />
-                <div class='sliderValue'>
+                <div className='sliderValue'>
                 <br/> 
                     Practice numbers between <b>{min.toLocaleString('en-US')}</b> and <b>{max.toLocaleString('en-US')}</b>
                 </div>
@@ -52,7 +52,9 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 Slider.propTypes = {
-    dispatch: PropTypes.func.isRequired,
+    min: PropTypes.number.isRequired,
+    max: PropTypes.number.isRequired,
+    setFilters: PropTypes.func.isRequired
 };
 
 Slider.defaultProps = {
