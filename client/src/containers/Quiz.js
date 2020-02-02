@@ -10,9 +10,9 @@ Integrates filters, user, and quiz state slice to choose questions.
 */
 const Quiz = (props) => {
     const { dispatch, type, filters} = props;
-    useEffect(() => {
+    useEffect(() => { //run once
         if (type==='numbers'){
-            dispatch(loadQuizWithParameters(type, filters)); //do with parameters
+            dispatch(loadQuizWithParameters(type, filters)); 
         }
         else {
             dispatch(loadQuiz(type));

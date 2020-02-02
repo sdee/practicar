@@ -1,6 +1,5 @@
 import React from 'react';
-import { Card, Form, Tabs, Tab } from 'react-bootstrap';
-import { setFilter } from '../../actions';
+import { Card } from 'react-bootstrap';
 import Slider from '../shared/Slider'
 
 class CustomOptions extends React.Component {

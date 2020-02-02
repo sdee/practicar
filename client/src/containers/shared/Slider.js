@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import Nouislider from "nouislider-react";
 import "nouislider/distribute/nouislider.css";
 import wNumb from 'wnumb';
-import { Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { setFilter,  } from '../../actions';
+import { setFilter, setFilters } from '../../actions';
 
 class Slider extends React.Component {
     onSet = (render, handle, value, un, percent) => {

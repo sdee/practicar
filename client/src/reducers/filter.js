@@ -1,4 +1,4 @@
-import { SET_FILTER, LOAD_QUIZ, LOAD_QUIZ_SUCCESS } from '../actions';
+import { SET_FILTER, LOAD_QUIZ_SUCCESS } from '../actions';
 
 const initialVerbsState = {
 	ALLOW_PRESENT_IND: true,
