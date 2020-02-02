@@ -2,7 +2,7 @@
  * action types
  */
 export const SET_FILTER = 'SET_FILTER';
-
+export const SET_FILTERS = 'SET_FILTERS';
 export const NEXT_QUESTION = 'NEXT_QUESTION';
 export const PREV_QUESTION = 'PREV_QUESTION';
 export const FLIP_CARD = 'FLIP_CARD';
@@ -22,6 +22,10 @@ export const TOGGLE_FOCUS = 'TOGGLE_FOCUS';
  */
 export function setFilter(filter, status) {
 	return { type: SET_FILTER, filter, status };
+}
+
+export function setFilters(filters) {
+	return { type: SET_FILTERS, filters };
 }
 
 export function nextQuestion(filters) {

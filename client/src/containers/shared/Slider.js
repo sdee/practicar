@@ -4,18 +4,14 @@ import { connect } from 'react-redux';
 import Nouislider from "nouislider-react";
 import "nouislider/distribute/nouislider.css";
 import wNumb from 'wnumb';
-import { setFilter, setFilters } from '../../actions';
+import { setFilters } from '../../actions';
 
 class Slider extends React.Component {
     onSet = (render, handle, value, un, percent) => {
-        console.log(value)
-        this.props.setFilter('MIN_NUMBER', Math.round(value[0]))
-        this.props.setFilter('MAX_NUMBER', Math.round(value[1]))
-
+        this.props.setFilters({'MIN_NUMBER':  Math.round(value[0]), 'MAX_NUMBER': Math.round(value[1])})
     };
     render() {
         const { min, max } = this.props;
-        console.log(this.props)
         //set slider
         return (
             <div>
@@ -37,8 +33,6 @@ class Slider extends React.Component {
                         thousand: ','
                     })}}
                     clickablePips
-                    
-                 
                 />
                 <br />
                 <div class='sliderValue'>
@@ -66,4 +60,4 @@ Slider.defaultProps = {
     max:100
 };
 
-export default connect(mapStateToProps,{setFilter})(Slider);
+export default connect(mapStateToProps,{setFilters})(Slider);

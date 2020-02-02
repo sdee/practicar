@@ -1,4 +1,4 @@
-import { SET_FILTER, LOAD_QUIZ_SUCCESS } from '../actions';
+import { SET_FILTER, SET_FILTERS, LOAD_QUIZ_SUCCESS } from '../actions';
 
 const initialVerbsState = {
 	ALLOW_PRESENT_IND: true,
@@ -19,6 +19,15 @@ const filter = (state = {}, action) => {
 		case SET_FILTER: {
 			const newState = Object.assign({}, state, {});
 			newState[action.filter] = action.status;
+			return newState;
+		}
+		case SET_FILTERS: {
+			const newState = Object.assign({}, state, {});
+			const filters = action.filters;
+			Object.entries(filters).forEach(entry => {
+				const [key, value] = entry;
+				newState[key] = value;
+			  });
 			return newState;
 		}
 		case LOAD_QUIZ_SUCCESS: {
