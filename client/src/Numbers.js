@@ -16,7 +16,7 @@ Organizes Layout for Numbers Quiz UI
 const Numbers = (props) => {
 	const {filters} = props;
 	return (
-		<KeyboardControls filters ={props.filters}>
+		<KeyboardControls filters ={filters}>
 			<div className="App">
 				<Card style={{ width: '100%' }}>
 					<Card.Header>Cuenta conmigo. Uno, dos, tres ...</Card.Header>

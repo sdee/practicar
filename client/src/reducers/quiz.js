@@ -35,74 +35,74 @@ function checkUserAnswer(finalUserAnswer, finalCorrectAnswer) {
 	return finalUserAnswer.toLowerCase() === finalCorrectAnswer.toLowerCase();
 }
 
-function doesVerbPassIndicativeFilters(state, question) {
+function doesVerbPassIndicativeFilters(question, filters) {
 	if (question.mood !== 'indicative') {
 		return false;
 	}
 
-	if (!state.ALLOW_PRESENT_IND && question.tense === 'present') {
+	if (!filters['ALLOW_PRESENT_IND'] && question.tense === 'present') {
 		return false;
 	}
-	if (!state.ALLOW_PRETERITE_IND && question.tense === 'preterite') {
+	if (!filters['ALLOW_PRETERITE_IND'] && question.tense === 'preterite') {
 		return false;
 	}
-	if (!state.ALLOW_IMPERFECT_IND && question.tense === 'imperfect') {
+	if (!filters['ALLOW_IMPERFECT_IND'] && question.tense === 'imperfect') {
 		return false;
 	}
-	if (!state.ALLOW_CONDITIONAL_IND && question.tense === 'conditional') {
+	if (!filters['ALLOW_CONDITIONAL_IND'] && question.tense === 'conditional') {
 		return false;
 	}
-	if (!state.ALLOW_FUTURE_IND && question.tense === 'future') {
+	if (!filters['ALLOW_FUTURE_IND'] && question.tense === 'future') {
 		return false;
 	}
 	return true;
 }
 
-function doesVerbPassSubjFilters(state, question) {
+function doesVerbPassSubjFilters(question, filters) {
 	if (question.mood !== 'subjunctive') {
 		return false;
 	}
-	if (!state.ALLOW_PRESENT_SUBJ && question.tense === 'present') {
+	if (!filters['ALLOW_PRESENT_SUBJ'] && question.tense === 'present') {
 		return false;
 	}
-	if (!state.ALLOW_IMPERFECT_SUBJ && question.tense === 'imperfect') {
+	if (!filters['ALLOW_IMPERFECT_SUBJ'] && question.tense === 'imperfect') {
 		return false;
 	}
-	if (!state.ALLOW_IMPERFECT_SUBJ && question.tense === 'imperfect2') {
+	if (!filters['ALLOW_IMPERFECT_SUBJ'] && question.tense === 'imperfect2') {
 		return false;
 	}
-	if (!state.ALLOW_FUTURE_SUBJ && question.tense === 'future') {
+	if (!filters['ALLOW_FUTURE_SUBJ'] && question.tense === 'future') {
 		return false;
 	}
 	return true;
 }
 
-function doesPronounPassFilter(state, question) {
-	if (!state.ALLOW_IRREGULAR && question.isIrregular) {
+function doesPronounPassFilter(question, filters) {
+	if (!filters['ALLOW_IRREGULAR'] && question.isIrregular) {
 		return false;
 	}
 
-	if (!state.ALLOW_PRONOUN_YO && question.pronoun === 'yo') {
+	if (!filters['ALLOW_PRONOUN_YO'] && question.pronoun === 'yo') {
 		return false;
 	}
 
-	if (!state.ALLOW_PRONOUN_TU && question.pronoun === 'tú') {
+	if (!filters['ALLOW_PRONOUN_TU'] && question.pronoun === 'tú') {
 		return false;
 	}
 
-	if (!state.ALLOW_PRONOUN_EL && question.pronoun === 'él') {
+	if (!filters['ALLOW_PRONOUN_EL'] && question.pronoun === 'él') {
 		return false;
 	}
 
-	if (!state.ALLOW_PRONOUN_NOSOTROS && question.pronoun === 'nosotros') {
+	if (!filters['ALLOW_PRONOUN_NOSOTROS'] && question.pronoun === 'nosotros') {
 		return false;
 	}
 
-	if (!state.ALLOW_PRONOUN_VOSOTROS && question.pronoun === 'vosotros') {
+	if (!filters['ALLOW_PRONOUN_VOSOTROS'] && question.pronoun === 'vosotros') {
 		return false;
 	}
 
-	if (!state.ALLOW_PRONOUN_ELLOS && question.pronoun === 'ellos') {
+	if (!filters['ALLOW_PRONOUN_ELLOS'] && question.pronoun === 'ellos') {
 		return false;
 	}
 	return true;
@@ -117,7 +117,7 @@ function doesQuestionPassNumbersFilter(question, filters) {
 	return false;
 }
 
-function doesQuestionPassFilter(state, question, quizType, filters) {
+function doesQuestionPassFilter(question, quizType, filters) {
 
 	if (!question) {
 		return false;
@@ -127,23 +127,23 @@ function doesQuestionPassFilter(state, question, quizType, filters) {
 		return doesQuestionPassNumbersFilter(question, filters)
 	}
 
-	if (!doesPronounPassFilter(state, question)) {
+	if (!doesPronounPassFilter(question, filters)) {
 		return false;
 	}
 
-	if (!state.ALLOW_REFLEXIVE && question.isReflexive) {
+	if (!filters['ALLOW_REFLEXIVE'] && question.isReflexive) {
 		return false;
 	}
 
-	if (question.mood === 'indicative' && !doesVerbPassIndicativeFilters(state, question)) {
+	if (question.mood === 'indicative' && !doesVerbPassIndicativeFilters(question, filters)) {
 		return false;
 	}
 
-	if (question.mood === 'subjunctive' && !doesVerbPassSubjFilters(state, question)) {
+	if (question.mood === 'subjunctive' && !doesVerbPassSubjFilters(question, filters)) {
 		return false;
 	}
 
-	if (!state.ALLOW_REPEATS) {
+	if (!filters['ALLOW_REPEATS']) {
 		// TODO: perform repeat check
 	}
 	return true;
@@ -161,13 +161,6 @@ const initialState = {
 	hasSubmittedAnswer: false,
 	questionSequence: [],
 	sequenceIndex: -1,
-	// filters
-	ALLOW_PRESENT_IND: true,
-	ALLOW_PRONOUN_YO: true,
-	ALLOW_PRONOUN_TU: true,
-	ALLOW_PRONOUN_EL: true,
-	ALLOW_PRONOUN_NOSOTROS: true,
-	ALLOW_PRONOUN_ELLOS: true,
 	focus: 'card',
 	verbSet: 'topHundred',
 	type: '',
@@ -203,7 +196,7 @@ const quiz = (state = initialState, action) => {
 				newQuestionIndex = state.questionIndex;
 				let numAttempts = 0;
 				// keep on creating new question until question pass current filters
-				while (!doesQuestionPassFilter(state, question, quizType, filters)) {
+				while (!doesQuestionPassFilter(question, quizType, filters)) {
 					newQuestionIndex++;
 					if (newQuestionIndex >= questions.length) {
 						newQuestionIndex = 0;
