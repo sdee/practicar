@@ -41,11 +41,9 @@ const numberToSpanish = function (number) {
 
     if (numbers.has(number)) {
         return numbers.get(number);
-    }
-    else if (number > 10 && number < 20) {
+    } else if (number > 10 && number < 20) {
         return "dieci" + numbers.get(number - 10);
-    }
-    else if (number > 20 && number < 30) {
+    } else if (number > 20 && number < 30) {
         return "veinti" + numbers.get(number - 20);
     } else if (number > 30 && number < 100) {
         const tensDigit = number.toString().slice(-2, -1);
