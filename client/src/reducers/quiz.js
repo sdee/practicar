@@ -173,7 +173,7 @@ const quiz = (state = initialState, action) => {
 	//TODO: Generalize and put attributes in current question slice
 	case NEXT_QUESTION: {
 		const {questions} = state;
-		const filters = action.filters;
+		const {filters} = action;
 		if (questions.length === 0) {
 			console.error('cannot fetch next question, questions not loaded');
 			return state;
@@ -271,12 +271,14 @@ const quiz = (state = initialState, action) => {
 				text = 'Let\'s learn some Spanish verb conjugations! Get started by clicking \'next\''
 			}
 			return {
-				...state, questions: action.quiz.questions,
+				...state,
+				questions: action.quiz.questions,
 				type,
 				currentQuestionIndex: -1,
+				currentCard: {},
 				isLoadingQuiz: false,
 				isQuizLoaded: true,
-				text
+				text,
 			};
 		}
 		case SET_VERBSET: {

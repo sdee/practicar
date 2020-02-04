@@ -1,4 +1,4 @@
-import { SET_FILTER, SET_FILTERS, LOAD_QUIZ_SUCCESS } from '../actions';
+import { SET_FILTER, SET_FILTERS, SWITCH_QUIZ, LOAD_QUIZ_SUCCESS } from '../actions';
 
 const initialVerbsState = {
 	ALLOW_PRESENT_IND: true,
@@ -17,34 +17,36 @@ const initialNumbersState = {
 const filter = (state = {}, action) => {
 	switch (action.type) {
 		case SET_FILTER: {
-			const newState = Object.assign({}, state, {});
+			const newState = { ...state };
 			newState[action.filter] = action.status;
 			return newState;
 		}
 		case SET_FILTERS: {
-			const newState = Object.assign({}, state, {});
-			const filters = action.filters;
-			Object.entries(filters).forEach(entry => {
-				const [key, value] = entry;
-				newState[key] = value;
-			  });
-			return newState;
+			return {
+				...state,
+				...action.filters,
+			};
+		}
+		case SWITCH_QUIZ: {
+			const quizType = action.quizType;
+			if (quizType === 'numbers') {
+				return initialNumbersState;
+			} else {
+				return initialVerbsState;
+			}
 		}
 		case LOAD_QUIZ_SUCCESS: {
 			const quizType = action.quizType;
-			let newState;
-			if (Object.entries(state).length === 0){
-				if (quizType === 'numbers') {
-					newState = initialNumbersState;
+			if (quizType === 'numbers') {
+				if (state.MAX_NUMBER === undefined) {
+					return initialNumbersState;
 				}
-				else {
-					newState = initialVerbsState;
+			} else {
+				if (state.ALLOW_PRESENT_IND === undefined) {
+					return initialVerbsState;
 				}
 			}
-			else {
-				return state;
-			}
-			return newState;
+			return state;
 		}
 		default: {
 			return state;

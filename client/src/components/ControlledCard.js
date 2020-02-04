@@ -1,5 +1,6 @@
-import React, {useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+
 import NumbersQuizCard from './NumbersQuizCard';
 import VerbQuizCard from './VerbQuizCard';
 import { flipCard } from '../actions';

@@ -42,7 +42,7 @@ const UserAnswer = (props) => {
 const mapStateToProps = state => {
 	return ({
 		quiz: state.quiz
-	})
+	});
 };
 
 UserAnswer.propTypes = {

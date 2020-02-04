@@ -1,18 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Nouislider from "nouislider-react";
-import "nouislider/distribute/nouislider.css";
+import Nouislider from 'nouislider-react';
 import wNumb from 'wnumb';
-import { setFilters } from '../../actions';
+
+import { setFilters } from '../actions';
+
+import 'nouislider/distribute/nouislider.css';
 
 class Slider extends React.Component {
     onSet = (render, handle, value, un, percent) => {
-        this.props.setFilters({'MIN_NUMBER':  Math.round(value[0]), 'MAX_NUMBER': Math.round(value[1])})
+        this.props.setFilters({
+            MIN_NUMBER:  Math.round(value[0]),
+            MAX_NUMBER: Math.round(value[1]),
+        });
     };
+
     render() {
         const { min, max } = this.props;
-        //set slider
         return (
             <div>
                 <Nouislider
@@ -36,30 +41,32 @@ class Slider extends React.Component {
                 />
                 <br />
                 <div className='sliderValue'>
-                <br/> 
+                    <br/>
                     Practice numbers between <b>{min.toLocaleString('en-US')}</b> and <b>{max.toLocaleString('en-US')}</b>
                 </div>
             </div>
-        )
-
+        );
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const min = state.filter['MIN_NUMBER'];
-    const max = state.filter['MAX_NUMBER'];
-    return { min, max };
-};
+const mapStateToProps = (state, ownProps) => ({
+    min: state.filters.MIN_NUMBER,
+    max: state.filters.MAX_NUMBER,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    setFilters: (filters) => dispatch(setFilters(filters)),
+});
 
 Slider.propTypes = {
     min: PropTypes.number.isRequired,
     max: PropTypes.number.isRequired,
-    setFilters: PropTypes.func.isRequired
+    setFilters: PropTypes.func.isRequired,
 };
 
 Slider.defaultProps = {
     min: 0,
-    max:100
+    max:100,
 };
 
-export default connect(mapStateToProps,{setFilters})(Slider);
+export default connect(mapStateToProps, mapDispatchToProps)(Slider);

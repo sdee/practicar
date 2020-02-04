@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import filter from './filter';
+import filters from './filters';
 import quiz from './quiz';
 import user from './user';
 
 const practicar = combineReducers({
-	filter,
+	filters,
 	quiz,
 	user
 });

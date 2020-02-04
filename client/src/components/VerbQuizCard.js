@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import QuizCard from './QuizCard';
 
 const getBeforeAfter = (answer, irregularity) => {

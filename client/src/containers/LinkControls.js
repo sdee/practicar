@@ -9,19 +9,18 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 	const {filters} = ownProps;
-	return(
-	{
-	
-	onNextClick: () => {
-		dispatch(nextQuestion(filters));
-	},
-	onPrevClick: () => {
-		dispatch(prevQuestion(filters));
-	},
-	onShowClick: () => {
-		dispatch(flipCard());
-	}
-})};
+	return({
+		onNextClick: () => {
+			dispatch(nextQuestion(filters));
+		},
+		onPrevClick: () => {
+			dispatch(prevQuestion(filters));
+		},
+		onShowClick: () => {
+			dispatch(flipCard());
+		}
+	});
+};
 
 const LinkControls = connect(
 	mapStateToProps,

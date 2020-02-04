@@ -6,12 +6,11 @@ const numbersService = require('../services/numbers-quiz')
 router.get('/', function(req, res, next) {
   const type = req.query.type;
 
-  if (type==='numbers') {
+  if (type === 'numbers') {
     const min = parseInt(req.query.min);
     const max = parseInt(req.query.max);
     res.json(numbersService.generateQuiz(500, min, max));
-  }
-  else{
+  } else {
     let verbSet=req.query.verbSet;
     if (!verbSet) {
       verbSet = 'default';
