@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const quizService = require('../services/quiz');
-const numbersService = require('../services/numbersQuiz')
+const numbersService = require('../services/numbers-quiz')
 
 router.get('/', function(req, res, next) {
   const type = req.query.type;
