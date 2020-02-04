@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const quizService = require('../services/quiz');
-const numbersService = require('../services/numbersQuiz')
+const numbersService = require('../services/numbers-quiz')
 
 router.get('/number', function(req, res, next) {
   res.json({'key': 'hello'})
