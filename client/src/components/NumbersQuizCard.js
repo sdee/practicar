@@ -9,7 +9,7 @@ const NumbersQuizCard = (props) => {
 	const {currentCard} = props;
 	let answer;
 	let question;
-	if (currentCard.length !== 0 && currentCard.question !== undefined){
+	if (currentCard.length !== 0 && currentCard.question !== undefined && currentCard.question.number !== undefined){
 		question = <>¿Como se dice <b>{currentCard.question.number.toLocaleString()}</b> en español?</>;
 		answer = currentCard.answer;
 	}
