@@ -1,10 +1,11 @@
 import React from 'react';
 import { Card, Form, Tabs, Tab } from 'react-bootstrap';
-import FilterCheckbox from './FilterCheckbox';
-import MoodTrigger from './MoodTrigger';
-import VerbSetSelector from './VerbSetSelector';
 
-function CustomOptions() {
+import FilterCheckbox from '../containers/FilterCheckbox';
+import MoodTrigger from '../containers/MoodTrigger';
+import VerbSetSelector from '../containers/VerbSetSelector';
+
+function CustomVerbOptions() {
 	return (
 		<div>
 			<Card id="customize-card">
@@ -114,4 +115,4 @@ function CustomOptions() {
 	);
 }
 
-export default CustomOptions;
+export default CustomVerbOptions;

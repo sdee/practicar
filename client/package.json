@@ -13,6 +13,7 @@
     "bootstrap": "^4.4.1",
     "hookrouter": "^1.2.3",
     "node-sass": "^4.13.1",
+    "nouislider-react": "^3.3.5",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",

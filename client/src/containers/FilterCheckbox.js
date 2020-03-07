@@ -5,13 +5,6 @@ import { Form, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { setFilter } from '../actions';
 
-const mapStateToProps = (state, ownProps) => {
-
-	const {filter} = ownProps;
-	const checked = !!state.filter[filter];
-	return { checked };
-};
-
 const FilterCheckbox = ({ checked, dispatch, label, filter, explanation, disabled }) => {
 	const handleChange = () => {
 		dispatch(setFilter(filter, !checked));
@@ -54,6 +47,11 @@ FilterCheckbox.defaultProps = {
 	explanation: '',
 	disabled: false,
 	checked: false
+};
+
+const mapStateToProps = (state, ownProps) => {
+	const checked = !!state.filters[ownProps.filter];
+	return { checked };
 };
 
 export default connect(mapStateToProps)(FilterCheckbox);

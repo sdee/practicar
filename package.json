@@ -30,8 +30,6 @@
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
-    "webpack": "4.41.2",
-    "webpack-cli": "^3.1.2",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
@@ -39,9 +37,13 @@
     "express": "^4.17.1",
     "fast-diff": "^1.1.1",
     "morgan": "^1.9.1",
+    "nouislider-react": "^3.3.5",
     "prop-types": "^15.7.2",
     "serve-favicon": "^2.5.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "webpack": "4.41.2",
+    "webpack-cli": "^3.1.2",
+    "wnumb": "^1.2.0"
   },
   "devDependencies": {
     "@babel/node": "^7.8.3",

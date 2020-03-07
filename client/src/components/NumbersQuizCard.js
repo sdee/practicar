@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import QuizCard from './QuizCard'
+
+import QuizCard from './QuizCard';
 
 /**
  * Determines what card should be shown based on quiz state

@@ -19,7 +19,7 @@ middlewares.push(thunk);
 const persistConfig = {
   key: 'root',
   storage,
-//   blacklist: ['someReducer']
+  blacklist: ['filters']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -2,7 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { HotKeys } from 'react-hotkeys';
 
-function KeyboardListener({ cn, onRightKeyClick, onLeftKeyClick, onUpKeyClick, onSpaceBarClick }) {
+import { nextQuestion, prevQuestion, flipCard, toggleFocus } from '../actions';
+
+function KeyboardListener(props) {
+	function onRightKeyClick(e) {
+		e.preventDefault();
+		props.dispatch(nextQuestion(props.filters));
+	}
+
+	function onLeftKeyClick(e) {
+		e.preventDefault();
+		props.dispatch(prevQuestion(props.filters));
+	}
+
+	function onUpKeyClick(e) {
+		e.preventDefault();
+		props.dispatch(flipCard());
+	}
+
+	function onSpaceBarClick(e) {
+		e.preventDefault();
+		props.dispatch(toggleFocus());
+	}
+
 	const keyMap = {
 		left: 'left',
 		right: 'right',
@@ -17,17 +39,14 @@ function KeyboardListener({ cn, onRightKeyClick, onLeftKeyClick, onUpKeyClick, o
 	};
 	return (
 		<HotKeys keyMap={keyMap} handlers={handlers}>
-			{cn}
+			{props.children}
 		</HotKeys>
 	);
 }
 
 KeyboardListener.propTypes = {
-	onRightKeyClick: PropTypes.func.isRequired,
-	onLeftKeyClick: PropTypes.func.isRequired,
-	onUpKeyClick: PropTypes.func.isRequired,
-	onSpaceBarClick: PropTypes.func.isRequired,
-	cn: PropTypes.node.isRequired
+	dispatch: PropTypes.func.isRequired,
+	filters: PropTypes.object.isRequired,
 };
 
 export default KeyboardListener;

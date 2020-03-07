@@ -1,17 +1,42 @@
 import React from 'react';
-import './App.css';
-import {useRoutes} from 'hookrouter';
-import Verbs from './Verbs'
-import Numbers from './Numbers'
+import { connect } from 'react-redux';
+import { useRoutes } from 'hookrouter';
 
-const routes = {
-	'/': () => <Verbs />,
-	'/numbers': () => <Numbers />,
+import QuizPage from './components/QuizPage';
+
+const routes = (props) => ({
+	'/': () => (
+		<QuizPage
+			type={props.type}
+			filters={props.filters}
+			user={props.user}
+			quiz={props.quiz}
+			dispatch={props.dispatch}
+			headerText="Yo practico, tú practicas, nosotros practicamos"
+		/>
+	),
+	'/numbers': () => (
+		<QuizPage
+			type={props.type}
+			filters={props.filters}
+			user={props.user}
+			quiz={props.quiz}
+			dispatch={props.dispatch}
+			headerText="Cuenta conmigo. Uno, dos, tres ..."
+		/>
+	),
+});
+
+const App = (props) => {
+	const routeResult = useRoutes(routes(props));
+	return routeResult || 'nada'
 };
 
-const App = () => {
-	const routeResult = useRoutes(routes);
-	return routeResult || 'nada'
-}
+const mapStateToProps = (state) => ({
+	filters: state.filters,
+	type: state.quiz.type,
+	quiz: state.quiz,
+	user: state.user,
+});
 
-export default App;
+export default connect(mapStateToProps)(App);
