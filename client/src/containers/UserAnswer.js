@@ -18,7 +18,7 @@ const UserAnswer = (props) => {
 					if (!input.current.value.trim()) {
 						return;
 					}
-					dispatch(submitAnswer(input.current.value, ignoreAccents.checked));
+					dispatch(submitAnswer(input.current.value, ignoreAccents.current.checked));
 					input.current.value = '';
 				}
 				}
