@@ -17,6 +17,10 @@ function shouldShowAnswerCard(props) {
 	return props.question && props.showAnswer === true;
 }
 
+function shouldShowSessionEndCard(props) {
+
+}
+
 /**
  * Determines what card should be shown based on quiz state
  */

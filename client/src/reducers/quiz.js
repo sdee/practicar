@@ -1,6 +1,6 @@
 import {
 	NEXT_QUESTION, PREV_QUESTION, FLIP_CARD, SUBMIT_ANSWER, LOAD_QUIZ,
-	LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR, SET_FILTER, TOGGLE_FOCUS, SET_VERBSET
+	LOAD_QUIZ_SUCCESS, LOAD_QUIZ_ERROR, SET_FILTER, TOGGLE_FOCUS, SET_VERBSET, SET_SESSION_LENGTH
 } from '../actions';
 
 // TODO: move this
@@ -161,6 +161,7 @@ const initialState = {
 	hasSubmittedAnswer: false,
 	questionSequence: [],
 	sequenceIndex: -1,
+	sessionLength: -1, 
 	focus: 'card',
 	verbSet: 'topHundred',
 	type: '',
@@ -314,6 +315,11 @@ const quiz = (state = initialState, action) => {
 			};
 			newState[action.filter] = action.status;
 			return newState;
+		}
+		case SET_SESSION_LENGTH: {
+			return {
+				...state,
+				sessionLength: action.sessionLength};
 		}
 		case TOGGLE_FOCUS: {
 			const newState = {

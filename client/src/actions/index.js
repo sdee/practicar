@@ -14,9 +14,13 @@ export const LOAD_QUIZ_ERROR = 'LOAD_QUIZ_ERROR';
 
 export const SET_VERBSET = 'SET_VERBSET';
 
+export const SET_SESSION_LENGTH = 'SET_SESSION_LENGTH';
+
 export const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
 
 export const TOGGLE_FOCUS = 'TOGGLE_FOCUS';
+
+export const START_SESSION = 'START_SESSION'
 
 /*
  * action creators
@@ -97,6 +101,18 @@ export function loadQuizWithParameters(quizType, params ) {
 			console.error('request failed', error);
 		});
 	};
+}
+
+export function setSessionLength(sessionLength) {
+	return (dispatch) => {
+		dispatch({type: SET_SESSION_LENGTH, sessionLength})
+	}
+}
+
+export function startSession(sessionLength) {
+	return (dispatch) => {
+		dispatch({type: SET_SESSION_LENGTH, sessionLength})
+	}
 }
 
 export function toggleFocus() {

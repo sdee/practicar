@@ -3,6 +3,7 @@ import { Card, Form, Tabs, Tab } from 'react-bootstrap';
 
 import FilterCheckbox from '../containers/FilterCheckbox';
 import MoodTrigger from '../containers/MoodTrigger';
+import SessionLengthChoices from '../containers/SessionLengthChoices';
 import VerbSetSelector from '../containers/VerbSetSelector';
 
 function CustomVerbOptions() {
@@ -17,6 +18,7 @@ function CustomVerbOptions() {
 						disabled
 						inline
 					/>
+					<SessionLengthChoices/>
 				</Card.Body>
 			</Card>
 			<Tabs defaultActiveKey={1} id="customized-tabs">
