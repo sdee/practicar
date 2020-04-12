@@ -105,7 +105,8 @@ export function loadQuizWithParameters(quizType, params ) {
 
 export function setSessionLength(sessionLength) {
 	return (dispatch) => {
-		dispatch({type: SET_SESSION_LENGTH, sessionLength})
+		dispatch({type: SET_SESSION_LENGTH, sessionLength});
+		dispatch({type: START_SESSION, sessionLength})
 	}
 }
 

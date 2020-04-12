@@ -4,7 +4,7 @@ import Controls from '../components/Controls';
 
 const mapStateToProps = (state, ownProps) => ({
 	showAnswer: state.quiz.showAnswer,
-	filters: state.filter
+	filters: state.filter,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {

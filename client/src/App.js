@@ -12,6 +12,7 @@ const routes = (props) => ({
 			user={props.user}
 			quiz={props.quiz}
 			dispatch={props.dispatch}
+			currentSession = {props.currentSession}
 			headerText="Yo practico, tú practicas, nosotros practicamos"
 		/>
 	),
@@ -22,6 +23,7 @@ const routes = (props) => ({
 			user={props.user}
 			quiz={props.quiz}
 			dispatch={props.dispatch}
+			currentSession = {props.currentSession}
 			headerText="Cuenta conmigo. Uno, dos, tres ..."
 		/>
 	),
@@ -37,6 +39,7 @@ const mapStateToProps = (state) => ({
 	type: state.quiz.type,
 	quiz: state.quiz,
 	user: state.user,
+	currentSession: state.currentSession,
 });
 
 export default connect(mapStateToProps)(App);

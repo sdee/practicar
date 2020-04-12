@@ -19,17 +19,17 @@ import './QuizPage.css';
 *   Organizes Layout for Quiz UI
 */
 const QuizPage = (props) => {
-	const { type, headerText, filters, dispatch, quiz, user } = props;
+	const { type, headerText, filters, dispatch, quiz, user, currentSession } = props;
 	const path = usePath();
 	const quizType = path.slice(1) || 'verbs';
 	useEffect(() => {
-		console.log('useEffect: type/quizType/filters');
 		if (quizType !== type) {
 			dispatch(switchQuiz(quizType));
 		} else {
 			dispatch(loadQuizWithParameters(quizType, filters));
 		}
 	}, [quizType, type, filters, dispatch]);
+	const sessionEnd = currentSession.questionsRemaining === 0
 
 	const customOptions = (quizType === 'numbers') ? <CustomNumberOptions /> : <CustomVerbOptions />
 	return (
@@ -42,7 +42,7 @@ const QuizPage = (props) => {
 							<Row className="show-grid">
 								<Col md={7}>
 									<Row className="show-grid">
-										<ControlledCard type={quizType} filters={filters} quiz={quiz} user={user} dispatch={dispatch} />
+										<ControlledCard type={quizType} filters={filters} quiz={quiz} user={user} dispatch={dispatch} sessionEnd={sessionEnd} />
 									</Row>
 									<Row className="ctrl">
 										<LinkControls filters={filters} />
@@ -74,6 +74,7 @@ QuizPage.propTypes = {
 	user: PropTypes.object.isRequired,
 	filters: PropTypes.object.isRequired,
 	headerText: PropTypes.string.isRequired,
+	currentSession: PropTypes.object.isRequired,
 };
 
 export default QuizPage;
