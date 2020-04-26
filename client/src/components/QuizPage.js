@@ -29,7 +29,6 @@ const QuizPage = (props) => {
 			dispatch(loadQuizWithParameters(quizType, filters));
 		}
 	}, [quizType, type, filters, dispatch]);
-	const sessionEnd = currentSession.questionsRemaining === 0
 
 	const customOptions = (quizType === 'numbers') ? <CustomNumberOptions /> : <CustomVerbOptions />
 	return (
@@ -42,10 +41,10 @@ const QuizPage = (props) => {
 							<Row className="show-grid">
 								<Col md={7}>
 									<Row className="show-grid">
-										<ControlledCard type={quizType} filters={filters} quiz={quiz} user={user} dispatch={dispatch} sessionEnd={sessionEnd} />
+										<ControlledCard type={quizType} filters={filters} quiz={quiz} user={user} dispatch={dispatch} sessionOver={currentSession.sessionOver} />
 									</Row>
 									<Row className="ctrl">
-										<LinkControls filters={filters} />
+										<LinkControls filters={filters} isLastQuestion={currentSession.isLastQuestion} />
 									</Row>
 									<Row className="ctrl">
 										<UserAnswer />

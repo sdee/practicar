@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import NumbersQuizCard from './NumbersQuizCard';
 import VerbQuizCard from './VerbQuizCard';
 import { flipCard } from '../actions';
-import SessionEndCard from './SessionEndCard';
 
-const ControlledCard = ({dispatch, quiz, user, filters, type, sessionEnd}) => {
+const ControlledCard = ({dispatch, quiz, user, filters, type, sessionOver}) => {
 	const cardRef = useRef();
 	useEffect(() => {
 		if (quiz.focus === 'card' && cardRef) {
@@ -15,13 +14,10 @@ const ControlledCard = ({dispatch, quiz, user, filters, type, sessionEnd}) => {
 	}, [type, dispatch, quiz.focus]);
 
 	let quizCard;
-	if (sessionEnd === true) {
-		quizCard = React.createElement(SessionEndCard)
-	}
-	else if (type === 'numbers') {
-		quizCard = React.createElement(NumbersQuizCard, {...quiz, questionNum: user.questionNum})
+	if (type === 'numbers') {
+		quizCard = React.createElement(NumbersQuizCard, {...quiz, questionNum: user.questionNum, sessionOver})
 	} else {
-		quizCard = React.createElement(VerbQuizCard, {...quiz, questionNum: user.questionNum})
+		quizCard = React.createElement(VerbQuizCard, {...quiz, questionNum: user.questionNum, sessionOver})
 	}
 	return (
 		<div
@@ -40,11 +36,12 @@ ControlledCard.propTypes = {
 	quiz: PropTypes.object.isRequired,
 	user: PropTypes.object.isRequired,
 	filters: PropTypes.object.isRequired,
-	sessionEnd: PropTypes.bool,
+	sessionOver: PropTypes.bool.isRequired
 };
 
-ControlledCard.defaultProps = {
-	sessionEnd: false
+ControlledCard.defaultProp = {
+	sessionOver: false,
 }
+
 
 export default ControlledCard;

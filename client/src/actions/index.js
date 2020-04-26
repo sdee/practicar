@@ -20,7 +20,8 @@ export const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
 
 export const TOGGLE_FOCUS = 'TOGGLE_FOCUS';
 
-export const START_SESSION = 'START_SESSION'
+export const START_SESSION = 'START_SESSION';
+export const END_SESSION = 'END_SESSION';
 
 /*
  * action creators
@@ -113,6 +114,12 @@ export function setSessionLength(sessionLength) {
 export function startSession(sessionLength) {
 	return (dispatch) => {
 		dispatch({type: SET_SESSION_LENGTH, sessionLength})
+	}
+}
+
+export function endSession() {
+	return (dispatch) => {
+		dispatch({type: END_SESSION});
 	}
 }
 
