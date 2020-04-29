@@ -11,7 +11,7 @@ import ControlledCard from './ControlledCard';
 import KeyboardListener from './KeyboardListener';
 import LinkControls from '../containers/LinkControls';
 import UserAnswer from '../containers/UserAnswer';
-import { loadQuizWithParameters, switchQuiz } from '../actions';
+import { loadQuizWithParameters, switchQuiz, startSession } from '../actions';
 
 import './QuizPage.css';
 import { getIsSessionEnabled } from '../selectors/currentSession';
@@ -24,6 +24,9 @@ const QuizPage = (props) => {
 	const path = usePath();
 	const quizType = path.slice(1) || 'verbs';
 	useEffect(() => {
+		if (session.isSessionEnabled) {
+			dispatch(startSession());
+		}
 		if (quizType !== type) {
 			dispatch(switchQuiz(quizType));
 		} else {
