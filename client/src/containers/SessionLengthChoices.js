@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {setSessionLength } from '../actions';
-import { Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 const SessionLengthChoices = ({sessionLength, onSelect}) => {
     return (
@@ -30,7 +30,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         dispatch(setSessionLength(e.target.value));
     }
 });
-
 
 export default connect(
     mapStateToProps,

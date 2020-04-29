@@ -14,12 +14,13 @@ import UserAnswer from '../containers/UserAnswer';
 import { loadQuizWithParameters, switchQuiz } from '../actions';
 
 import './QuizPage.css';
+import { getIsSessionEnabled } from '../selectors/currentSession';
 
 /*
 *   Organizes Layout for Quiz UI
 */
 const QuizPage = (props) => {
-	const { type, headerText, filters, dispatch, quiz, user, currentSession } = props;
+	const { type, headerText, filters, dispatch, quiz, user, session } = props;
 	const path = usePath();
 	const quizType = path.slice(1) || 'verbs';
 	useEffect(() => {
@@ -41,10 +42,10 @@ const QuizPage = (props) => {
 							<Row className="show-grid">
 								<Col md={7}>
 									<Row className="show-grid">
-										<ControlledCard type={quizType} filters={filters} quiz={quiz} user={user} dispatch={dispatch} sessionOver={currentSession.sessionOver} />
+										<ControlledCard type={quizType} filters={filters} quiz={quiz} user={user} dispatch={dispatch} session={session} />
 									</Row>
 									<Row className="ctrl">
-										<LinkControls filters={filters} isLastQuestion={currentSession.isLastQuestion} />
+										<LinkControls filters={filters} session={session} />
 									</Row>
 									<Row className="ctrl">
 										<UserAnswer />
@@ -73,7 +74,15 @@ QuizPage.propTypes = {
 	user: PropTypes.object.isRequired,
 	filters: PropTypes.object.isRequired,
 	headerText: PropTypes.string.isRequired,
-	currentSession: PropTypes.object.isRequired,
+	
+	session: PropTypes.shape({
+		isSessionOver: PropTypes.bool,
+		isSessionEnabled: PropTypes.bool,
+		sessionQuestionNum: PropTypes.number,
+		sessionLength: PropTypes.number,
+		isLastQuestionInSession: PropTypes.bool.isRequired,
+		isFirstQuestionInSession: PropTypes.bool.isRequired,
+	}).isRequired
 };
 
 export default QuizPage;

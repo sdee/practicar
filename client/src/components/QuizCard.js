@@ -22,7 +22,7 @@ function shouldShowAnswerCard(props) {
  * Determines what card should be shown based on quiz state
  */
 function QuizCard(props) {
-	if (props.sessionOver === true){
+	if (props.isSessionOver === true){
 		return(<SessionEndCard></SessionEndCard>);
 	}
 	else if (shouldShowFeedbackCard(props)) {
@@ -61,7 +61,7 @@ QuizCard.propTypes = {
 	submittedAnswer: PropTypes.string,
 	text: PropTypes.string, //message
 	questionNum: PropTypes.number,
-	sessionOver: PropTypes.bool.isRequired
+	isSessionOver: PropTypes.bool.isRequired
 };
 
 QuizCard.defaultProps = {
@@ -74,7 +74,7 @@ QuizCard.defaultProps = {
 	correctAnswer: '',
 	text: '',
 	questionNum: 0,
-	sessionOver: false
+	isSessionOver: false
 };
 
 export default QuizCard;

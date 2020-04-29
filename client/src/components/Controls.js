@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Controls = ({ onNextClick, onPrevClick, onShowClick, showAnswer }) => {
+const Controls = ({ onNextClick, onPrevClick, onShowClick, showAnswer, session: {isFirstQuestionInSession} }) => {
 	const showButtonText = showAnswer ? 'See Question' : 'See Answer';
 	return (
 		<div className="control-buttons">
 			<div>
-				<Button variant="success" onClick={onPrevClick}>
+				<Button variant="success" onClick={onPrevClick} disabled={isFirstQuestionInSession}>
 					<FontAwesomeIcon name="back-button" icon="chevron-left" fixedWidth /> Back
 				</Button>
 				<Button variant="success" onClick={onNextClick}>Next

@@ -1,37 +1,38 @@
 import {
-    START_SESSION, SET_SESSION_LENGTH, NEXT_QUESTION, END_SESSION
+    START_SESSION, SET_SESSION_LENGTH, NEXT_QUESTION, END_SESSION, PREV_QUESTION
 } from '../actions';
+import { getIsSessionEnabled } from '../selectors/currentSession';
 
 const initialState = {
     date: '',
-    sessionInProgress: false,
-    sessionLength: 0,
-    questionsRemaining: -1,
-    isLastQuestion: false,
-    sessionOver: false,
+    sessionLength: 10,
+    isSessionEnabled: true,
+    sessionQuestionNum: -1
 };
 
 const currentSession = (state=initialState, action) => {
     switch (action.type) {
         case START_SESSION: {
-            const {sessionLength} = action;
-            return { ...state, date: Date(Date.now()).toString(),
-            sessionInProgress: true,
-            questionsRemaining: parseInt(sessionLength),
-            lastQuestion: false
+            return { ...state, 
+                    date: Date(Date.now()).toString(),
+                    sessionQuestionNum: 0,
             };
         };
         case SET_SESSION_LENGTH: {
             const {sessionLength} = action;
-            return { ...state, sessionLength: parseInt(sessionLength)}
+            const isSessionEnabled = true ? sessionLength!="-1" : false;
+            return { ...state, sessionLength: parseInt(sessionLength), isSessionEnabled: isSessionEnabled}
+        }
+        case PREV_QUESTION: {
+            const questionNum = state.sessionQuestionNum -1;
+            return { ...state, sessionQuestionNum: questionNum }
         }
         case NEXT_QUESTION: {
-            const questionsRemaining = state.questionsRemaining -1;
-            const isLastQuestion = questionsRemaining === 0 ? true : false;
-            return { ...state, questionsRemaining: questionsRemaining, isLastQuestion: isLastQuestion}
+            const questionNum = state.sessionQuestionNum +1;
+            return { ...state, sessionQuestionNum: questionNum }
         }
         case END_SESSION: {
-            return  { ... initialState, sessionOver: true}
+            return  { ... state, sessionQuestionNum: state.sessionLength+2 }
         }
         default: {
             return state;

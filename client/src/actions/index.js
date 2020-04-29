@@ -111,9 +111,9 @@ export function setSessionLength(sessionLength) {
 	}
 }
 
-export function startSession(sessionLength) {
+export function startSession() {
 	return (dispatch) => {
-		dispatch({type: SET_SESSION_LENGTH, sessionLength})
+		dispatch({type: START_SESSION})
 	}
 }
 
