@@ -1,7 +1,6 @@
 import {
     START_SESSION, SET_SESSION_LENGTH, NEXT_QUESTION, END_SESSION, PREV_QUESTION
 } from '../actions';
-import { getIsSessionEnabled } from '../selectors/currentSession';
 
 const initialState = {
     date: '',
@@ -13,14 +12,11 @@ const initialState = {
 const currentSession = (state=initialState, action) => {
     switch (action.type) {
         case START_SESSION: {
-            return { ...state, 
-                    date: Date(Date.now()).toString(),
-                    sessionQuestionNum: 0,
-            };
-        };
+            return { ...state, date: Date.now().toString(), sessionQuestionNum: 0}
+        }
         case SET_SESSION_LENGTH: {
             const {sessionLength} = action;
-            const isSessionEnabled = true ? sessionLength!="-1" : false;
+            const isSessionEnabled = true ? sessionLength!=="-1" : false;
             return { ...state, sessionLength: parseInt(sessionLength), isSessionEnabled: isSessionEnabled}
         }
         case PREV_QUESTION: {
@@ -32,7 +28,7 @@ const currentSession = (state=initialState, action) => {
             return { ...state, sessionQuestionNum: questionNum }
         }
         case END_SESSION: {
-            return  { ... state, sessionQuestionNum: state.sessionLength+2 }
+            return  { ...state, sessionQuestionNum: state.sessionLength+2 }
         }
         default: {
             return state;

@@ -12,9 +12,7 @@ import KeyboardListener from './KeyboardListener';
 import LinkControls from '../containers/LinkControls';
 import UserAnswer from '../containers/UserAnswer';
 import { loadQuizWithParameters, switchQuiz, startSession } from '../actions';
-
 import './QuizPage.css';
-import { getIsSessionEnabled } from '../selectors/currentSession';
 
 /*
 *   Organizes Layout for Quiz UI
@@ -23,8 +21,9 @@ const QuizPage = (props) => {
 	const { type, headerText, filters, dispatch, quiz, user, session } = props;
 	const path = usePath();
 	const quizType = path.slice(1) || 'verbs';
+	const {isSessionEnabled} = session;
 	useEffect(() => {
-		if (session.isSessionEnabled) {
+		if (isSessionEnabled) {
 			dispatch(startSession());
 		}
 		if (quizType !== type) {
@@ -32,7 +31,7 @@ const QuizPage = (props) => {
 		} else {
 			dispatch(loadQuizWithParameters(quizType, filters));
 		}
-	}, [quizType, type, filters, dispatch]);
+	}, [quizType, type, filters, dispatch, isSessionEnabled]);
 
 	const customOptions = (quizType === 'numbers') ? <CustomNumberOptions /> : <CustomVerbOptions />
 	return (
