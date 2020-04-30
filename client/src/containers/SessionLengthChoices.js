@@ -8,7 +8,6 @@ const SessionLengthChoices = ({sessionLength, onSelect}) => {
         <div>
             Session Length <br />
             <Form.Check inline onChange={onSelect} label="None" value="-1" type="radio" checked={sessionLength === -1} />
-            <Form.Check inline onChange={onSelect} label="2" value="2" type="radio" checked={sessionLength === 2}/>
             <Form.Check inline onChange={onSelect} label="10" value="10" type="radio" checked={sessionLength === 10}/>
             <Form.Check inline onChange={onSelect} label="15" value="15" type="radio" checked={sessionLength === 15}/>
             <Form.Check inline onChange={onSelect} label="20" value="20" type="radio" checked={sessionLength === 20 }/>
