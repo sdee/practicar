@@ -74,7 +74,7 @@ VerbQuizCard.propTypes = {
 	text: PropTypes.string,
 	mood: PropTypes.string,
 	irregularity: PropTypes.string,
-	questionNum: PropTypes.number,
+	questionNum: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	definition: PropTypes.string
 };
 

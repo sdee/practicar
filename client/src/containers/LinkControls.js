@@ -10,7 +10,6 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-	console.log(ownProps);
 	const { filters, session: { isSessionOver, isLastQuestionInSession }} = ownProps;
 
 	return({

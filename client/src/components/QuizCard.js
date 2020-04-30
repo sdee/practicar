@@ -60,7 +60,7 @@ QuizCard.propTypes = {
 	showAnswer: PropTypes.bool,
 	submittedAnswer: PropTypes.string,
 	text: PropTypes.string, //message
-	questionNum: PropTypes.number,
+	questionNum: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	isSessionOver: PropTypes.bool.isRequired
 };
 

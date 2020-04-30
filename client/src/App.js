@@ -33,8 +33,8 @@ const mapStateToProps = (state) => ({
 	quiz: state.quiz,
 	user: state.user,
 	session: {isSessionOver: getIsSessionOver(state),
-		getIsFirstQuestion: getIsFirstQuestion(state),
-		isLastQuestion: getIsLastQuestion(state),
+		isFirstQuestionInSession: getIsFirstQuestion(state),
+		isLastQuestionInSession: getIsLastQuestion(state),
 		isSessionEnabled: getIsSessionEnabled(state),
 		sessionQuestionNum: state.currentSession.sessionQuestionNum,
 		sessionLength: state.currentSession.sessionLength}
