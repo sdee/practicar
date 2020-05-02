@@ -1,17 +1,30 @@
 import { connect } from 'react-redux';
-import { nextQuestion, prevQuestion, flipCard } from '../actions';
+import { nextQuestion, prevQuestion, flipCard, endSession, startSession } from '../actions';
 import Controls from '../components/Controls';
+import { getIsFirstQuestion } from '../selectors/currentSession';
 
 const mapStateToProps = (state, ownProps) => ({
 	showAnswer: state.quiz.showAnswer,
-	filters: state.filter
+	filters: state.filter,
+	session: { ...state.currentSession, isFirstQuestionInSession: getIsFirstQuestion(state)},
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-	const {filters} = ownProps;
+	const { filters, session: { isSessionOver, isLastQuestionInSession }} = ownProps;
+
 	return({
 		onNextClick: () => {
-			dispatch(nextQuestion(filters));
+			if (isSessionOver) {
+				dispatch(startSession());
+				dispatch(nextQuestion(filters));
+			}
+			else if (isLastQuestionInSession === true) {
+				dispatch(endSession());
+			}
+		
+			else {
+				dispatch(nextQuestion(filters));
+			}
 		},
 		onPrevClick: () => {
 			dispatch(prevQuestion(filters));

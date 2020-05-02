@@ -3,29 +3,24 @@ import { connect } from 'react-redux';
 import { useRoutes } from 'hookrouter';
 
 import QuizPage from './components/QuizPage';
+import {getIsFirstQuestion, getIsLastQuestion, getIsSessionOver, getIsSessionEnabled} from './selectors/currentSession';
 
-const routes = (props) => ({
+const routes = (props) => { 
+
+	return ({
 	'/': () => (
 		<QuizPage
-			type={props.type}
-			filters={props.filters}
-			user={props.user}
-			quiz={props.quiz}
-			dispatch={props.dispatch}
+			{... props}
 			headerText="Yo practico, tú practicas, nosotros practicamos"
 		/>
 	),
 	'/numbers': () => (
 		<QuizPage
-			type={props.type}
-			filters={props.filters}
-			user={props.user}
-			quiz={props.quiz}
-			dispatch={props.dispatch}
+			{... props}
 			headerText="Cuenta conmigo. Uno, dos, tres ..."
 		/>
 	),
-});
+})};
 
 const App = (props) => {
 	const routeResult = useRoutes(routes(props));
@@ -37,6 +32,12 @@ const mapStateToProps = (state) => ({
 	type: state.quiz.type,
 	quiz: state.quiz,
 	user: state.user,
+	session: {isSessionOver: getIsSessionOver(state),
+		isFirstQuestionInSession: getIsFirstQuestion(state),
+		isLastQuestionInSession: getIsLastQuestion(state),
+		isSessionEnabled: getIsSessionEnabled(state),
+		sessionQuestionNum: state.currentSession.sessionQuestionNum,
+		sessionLength: state.currentSession.sessionLength}
 });
 
 export default connect(mapStateToProps)(App);

@@ -4,6 +4,7 @@ import QuestionCard from './QuestionCard'
 import FeedbackCard from './FeedbackCard';
 import AnswerCard from './AnswerCard';
 import MessageCard from './MessageCard';
+import SessionEndCard from './SessionEndCard';
 
 function shouldShowFeedbackCard(props) {
 	return props.hasSubmittedAnswer && props.question;
@@ -21,7 +22,10 @@ function shouldShowAnswerCard(props) {
  * Determines what card should be shown based on quiz state
  */
 function QuizCard(props) {
-	if (shouldShowFeedbackCard(props)) {
+	if (props.isSessionOver === true){
+		return(<SessionEndCard></SessionEndCard>);
+	}
+	else if (shouldShowFeedbackCard(props)) {
 		return (
 			<FeedbackCard
 				isCorrect={props.isCorrect}
@@ -41,6 +45,7 @@ function QuizCard(props) {
 			/>
 		);
 	}
+
 	return (
 		<MessageCard msg={props.text} />
 	);
@@ -55,7 +60,8 @@ QuizCard.propTypes = {
 	showAnswer: PropTypes.bool,
 	submittedAnswer: PropTypes.string,
 	text: PropTypes.string, //message
-	questionNum: PropTypes.number,
+	questionNum: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	isSessionOver: PropTypes.bool.isRequired
 };
 
 QuizCard.defaultProps = {
@@ -68,6 +74,7 @@ QuizCard.defaultProps = {
 	correctAnswer: '',
 	text: '',
 	questionNum: 0,
+	isSessionOver: false
 };
 
 export default QuizCard;
